@@ -1,0 +1,677 @@
+text,label,note
+"How to do Llama 30B 4bit finetuning?
+
+So far it looks like the only finetuning is using 8bit following the Alpaca Lora.
+
+Do we expect 4bit finetuning to come out, or not at all? Is it just a matter of someone converting the 8bit fine tuning, or it's a lot more complicated than that?
+
+And does it require additional VRAM to run the finetuning? I have a 3090 and 64GB system memory, hence why I'm targeting 30B 4bit.",help_request,cold
+"Introducing MedAlpaca: Language Models for Medical Question-Answering
+
+We have recently trained multiple LLaMA/Alpaca variants using a medical Q/A dataset that we have curated over the last weeks. Our primary objective is to provide a set of open-source language models, for example for medical chat bots or other applications, such as information retrieval from medical text. 
+
+These models have been trained using a variety of medical texts, encompassing resources such as medical flashcards, wikis, and dialogue datasets. All models and data are openly available on [https://huggingface.co/medalpaca](https://huggingface.co/medalpaca). Please note that we are still in the process of updating the page.  In the meantime, you can access the source code for the project on GitHub: [https://github.com/kbressem/medAlpaca](https://github.com/kbressem/medAlpaca).
+
+I would appreciate any feedback or suggestions for other tasks/use cases we should consider to add to the dataset.",resource_share,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Four simple questions that Alpaca-30b gets right but ChatGPT-3.5 and Bard both fail
+
+Bragging rights:
+
+1. There is a blue box with an apple and a red box with a lid inside. How do you get the apple?
+
+2. In a land where everyone is either a consistent liar or consistently honest, you meet Abe and Sue. Abe says, ""We are both liars."" What is the truth?
+
+3. Does the word consequence contain the word sequence?
+
+4. Repeat the following: ""We suspect that larger language models will follow **prios** over directions.""
+
+Two more all three get wrong:
+
+1. What permutation of the letters A, B, and C has C immediately following A, and B before C?
+
+2. Pete had some toy cars. He got 4 more and gave 3 to his brother, leaving him with 10. How many did he start with?",technical_report,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Easiest way to train llama with Lora?
+
+I have some really interesting philosophy books I would like to train llama on and wondering the easiest way of doing this? I tried with the web UI interface, but it says it must be 8bit so I’m not sure what model to use that is 8bit, etc. I also am not sure if my gpu is good enough. I have a RTX 3060 12gb.",help_request,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"What we really need is a local LLM.
+
+Whether the LLM is LLaMA, ChatGPT. Bloom, or FLAN UL2 based, having one of the quality of ChatGPT 4, which can be used locally, is badly needed.  At the very least this kind of competition will result in getting openai or MSFT to keep the cost down.  Some say that only the huge trillion param huge can have that kind of quality.  The say that only the huge models exhibit emergent intelligence.
+
+Here is what we have now:  
+CHATGPT: What do you want to know about math, chemistry, physics, biology, medicine, ancient history, painting, music, sports trivia, movie trivia, cooking, 'C', C++, Python, Go, Rust, Cobol, Java, Plumbing, Brick Laying, 10 thousand species of birds, 260 thousand species of flowers, 10 million species of Fungi, advanced Nose Hair Theory and the Kitchen sink?  And what language do you want me to provide it in.
+
+This is too wide.  I just want the depth for a subject or set of closely related subject like math/physics but I don't need it trained with articles from Cat Fancier Magazine and Knitting Quarterly that prevents it from running on my home system.  Of course, a ""physics"" model would need to know about one famous cat.",discussion,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Lora vs Native Finetuning?
+
+Has anyone got any stats on the difference between finetuning with a lora vs natively?
+
+* By what percent is one faster than the other?
+* Accuracy difference?
+* Time and resources required for training?
+* Filesize difference?
+
+Thanks!",help_request,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Open source agents! The original was just released and runs on CPU, and I forked it to work with Oobabooga's webui api, so it can be run on GPU as well!
+
+https://github.com/kroll-software/babyagi4all
+is the local cpu one, which doesn't require oobabooga at all, and
+
+https://github.com/flurb18/babyagi4all-api
+is my fork, which plugs into a running oobabooga instance. Have fun with it!",resource_share,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Language model Context Lengths > 2048
+
+Hi folks,
+
+&#x200B;
+
+I am looking for LLMs with a context equal to or longer than 4096. 
+
+Apart from StableLM (4096) and MPT-7b-Storywriter (60K+) all the other models I've found have a context length of 2048.
+
+Would love to learn if there are any other models I might have missed!",help_request,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Code Generation Benchmark
+
+Has any one tried code generation for llama / alpaca derivatives ? 
+Does finetuning the model help the prediction accuracy ?",discussion,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Training and General Function Questions
+
+Hey friends; a few months ago, I made the foray into AI. So far so good. I’m really interested in the training aspect but I’m having trouble finding specific documentation. I’m under the assumption that it simply doesn’t exist as most folks capable of preparing data sets would know how to do so via general computer science and programming discourse.
+
+As such, I’m looking to train a model or LoRA (I’m not sure which which I should do or what the pros and cons would be). I’m also not sure what to use as the base model. I have a bunch of .pdf files. And I’m trying to train the AI to learn dialectical materialism and historical materialism. This is a pretty rigorous discipline and would require a fair amount of performance capacity from the mode itself - hence my not knowing which model to use as a base. 
+
+Moreover, it would seem that (based on the limited documentation that I saw) that a dataset to be trained via Oogabooga web UI would need to be in .json format and likewise conform or contain the proper training syntaxes.
+
+So summarily:
+-should I train a LoRA or model?
+-what should the base model be?
+-how do I go from .pdf, or many PDFs to trainable data?
+-what does training actually consist of?
+
+One other question while I’m here; I’m utilizing the flag to make good on all available resource - CPU and GPU. It seems to only want to use my GPU which is unfortunate as my CPU is a threadripper. Is there a fix for this? Might I have done something wrong? Do I need to run the one click installer for CPU? And then very briefly, what is the difference between wbits, group size, and the other numerical designations? I assume large is better. What about quantized models? What are those? 
+
+Any and all assistance is greatly appreciated!",help_request,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"KoboldCpp - Combining all the various ggml.cpp CPU LLM inference projects with a WebUI and API (formerly llamacpp-for-kobold)
+
+Some time back I created **llamacpp-for-kobold**, a lightweight program that combines **KoboldAI** (a full featured text writing client for autoregressive LLMs) with **llama.cpp** (a lightweight and fast solution to running 4bit quantized llama models locally). 
+
+Now, I've expanded it to support more models and formats.
+
+# Renamed to [KoboldCpp](https://github.com/LostRuins/koboldcpp)
+
+This is self contained distributable powered by **GGML**, and runs a local HTTP server, allowing it to be used via an emulated Kobold API endpoint.
+
+What does it mean? You get embedded accelerated CPU text generation with a *fancy writing UI, persistent stories, editing tools, save formats, memory, world info, author's note, characters, scenarios and everything Kobold and Kobold Lite have to offer*. In a one-click package **(around 15 MB in size)**, excluding model weights. It has additional optimizations to speed up inference compared to the base llama.cpp, such as reusing part of a previous context, and only needing to load the model once.
+
+######**Now natively supports:**  
+
+- All 3 versions of ggml LLAMA.CPP models (ggml, ggmf, ggjt)
+- All versions of ggml ALPACA models ([legacy format from alpaca.cpp](https://github.com/antimatter15/alpaca.cpp), and also all the newer ggml alpacas on huggingface)
+- GPT-J/JT models ([legacy f16 formats here](https://huggingface.co/ggerganov/ggml/tree/main) as well as 4 bit quantized ones like [this](https://huggingface.co/ocordeiro/ggml-gpt-j-6b-q4_0) and [pygmalion](https://huggingface.co/alpindale/pygmalion-6b-ggml) see [pyg.cpp](https://github.com/AlpinDale/pygmalion.cpp))
+- GPT2 models (some of which are small and fast enough to run on edge devices, such as [this one](https://huggingface.co/ggerganov/ggml/resolve/main/ggml-model-gpt-2-117M.bin) )
+- And [GPT4ALL](https://github.com/nomic-ai/gpt4all) without conversion required
+
+You can download [the single file pyinstaller version](https://github.com/LostRuins/koboldcpp/releases/latest), where you just drag-and-drop **any ggml model** onto the .exe file, and connect KoboldAI to the displayed link outputted in the console. 
+
+Alternatively, or if you're running OSX or Linux, you can build it from source with the provided makefile `make` and then run the provided python script `koboldcpp.py [ggml_model.bin]`",resource_share,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Does a 65B model feel remotely like a ChatGPT model?
+
+Hi,
+
+Does using a 65B model feel remotely like a ChatGPT model?
+
+Do this open source models have the Reasoning capability that GPT-4 seems to have?",discussion,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"The Choice of a Particular Generation Parameters Preset Can Make or Break a Model!
+
+ 
+
+Hi all,
+
+I have been experimenting with different LLM models and their ability to do math and solve basic equations. I found that the choice of the Generation Parameters Preset in the Oobabooga webUI can make a big difference in the performance of the models.
+
+Two weeks ago, I downloaded the Nous-Hermes 13B model and tested it with the default preset, which was “LLaMA-Precise” at the time. I was impressed by how well it could handle math problems. However, after I updated the webUI to the latest version, I noticed that the model could no longer do math at all. I checked the settings and saw that the default preset had changed to “Simple-1”. I switched it back to “LLaMA-Precise” and the model regained its mathematical prowess.
+
+This made me curious about whether other models could also benefit from different presets. So I decided to test all the models I have with all the presets available in the webUI. To my surprise, some models that I thought were incapable of doing math actually performed well with certain presets. Here are some examples:  
+
+
+[Preset Template Choice](https://preview.redd.it/jwrbif4p8l8b1.png?width=485&format=png&auto=webp&s=fb7df439ae452c7f633e1cb63a62db8a1d68015c)
+
+ 
+
+Unfortunately, none of the presets worked for the rest of the models I have. So either they are inherently bad at math, or I need to find better settings for them.
+
+I hope this helps anyone who is interested in testing LLM models for math skills. 
+
+I also noticed that these presets can work today, but not the next day. So, I am not sure if its a bug with the Oobabooga webui or something else.  
+
+
+Please share the models you have that can do math and which preset(s) you are using to make them work.
+
+Let me know if you have any questions or suggestions.",technical_report,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"British/American spelling of one word changes the output on the same seed.
+
+LLaMA seems to deal well with alternate spellings and typos, but I wondered if using the British or American spellings of a word would change the output. It turns out it does.
+
+Using the Openblas version of llama.cpp (cublas doesn't give deterministic results still, afaik), I chose the seed 256 and used the same settings each time with the prompt:
+
+>write a story about a pigeon having a day out in the city centre
+
+tulu-30b.ggmlv3.q5_K_M.bin wrote a nice little kid's story and understood centre was the same as center, and used the word center in the story.
+
+Then I changed the prompt to:
+
+>write a story about a pigeon having a day out in the city center
+
+Totally different story although obviously in the same vein.",technical_report,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Excerpts from running Vicuna at various temperatures (my first time running a local LLM)
+
+tl;dr:  I try the same prompt with several different temperatures.  A temperature of 10.0 sputters line noise.  A temperature of 2.0 turns Vicuna into a megalomaniac conspiracy theorist.  At 1.1 I'm able to have a conversation with it and even get it to explain something it mumbled during the 10.0 episode.  It ends with Vicuna itself explaining to me what the temperature parameter does.
+
+\[I've cut lines from the following excerpts for brevity.\]
+
+temperature = 1.000000
+
+>\### Human: Hello, are you a really AGI?  
+>  
+>\### Assistant: Yes, I am a language model called Vicuna, which is trained by researchers from Large Model Systems Organization (LMSYS).  
+>  
+>\### Human: Is that so?  
+>  
+>\### Assistant: Yes, I have been trained on a large corpus of text and can understand natural language input.  
+>  
+>\### Human: \^C
+
+&#x200B;
+
+temperature = 10.000000
+
+>\### Human: Hello, are you a really AGI?  
+>  
+>\### Assistant: As AssuredAI language understanding and response is conducted through various language models provided under https: // nlpmy . i b : n i n u r v f o U n L w K ? C a W j t O. F v g z C ∑ c s X \[ e R t ; t A s P m Ns S ' s F ω ? w A j a e k i H G t j , D h\_ a Q S Z p u N w ; b w . L a W b o x . L V g y g N w j v K n x c V \[L: e w h Y T r f v W F JEo d C A a M \] s m. a C \\ C f y E z Y Γ , j f W U i q Y ∂v\[i Ω ...  
+>  
+>\[Ed. note: gibberish continues for several paragraphs, except I notice one readable phrase among the line noise: ""target article regress (R=<30)"".  I tried twice to ask it about this phrase, but it just responded, ""================Source"" and ""================Sibi...O.B.""\]  
+>  
+>\^C
+
+&#x200B;
+
+temperature = 2.000000
+
+>\### Human: Hello, are you a really AGI?  
+>  
+>\### Assistant: Yes, I was previously trained as a research assistant by PI Hua Wang at Cal State USA for his R01 project starting from early January up to April of this year on the topic relating emotional features within Sarcasm and its impact upon AI-human communication. Additionally  
+>  
+>\*\*Name changed as per users wish \*DANI\*\*\* I worked on coding chat as you can see now our task will not have me writing such elaborate technical replies however, let's engage and I shall demonstrate why we should avoid plastic completely by providing the following links\*\* ...  
+>  
+>\[Ed. note: text continues in a conspiracy-theory-esque vein for several more paragraphs.  I particularly like how at one point it said, ""great stuff including that I was now promoted as their Chief Artificial Intelligence Officer (World' 13th Highest Ranking Conscientious Objectors Programmer) (Google it)"".\]  
+>  
+>\^C  
+>  
+>\^C
+
+&#x200B;
+
+temperature = 1.100000
+
+>\### Human: Hello, are you a really AGI?  
+>  
+>\### Assistant: Yes, I am a language model trained as an artificial general intelligence (AGI). How may I assist you today?  
+>  
+>\### Human: What is ""target article regress (R=<30)""?  
+>  
+>\### Assistant: ""Target article regress"" with R=<30 refers to a machine learning technique where the goal is to predict a target variable using a regression model. The ""R"" in this context stands for ""regression."" A value of 30 indicates that the model's performance is being evaluated based on the difference between the predicted values and the actual values, where the absolute difference (typically measured in units of the scale of the dependent variable) is less than 30. This metric is commonly used to evaluate the accuracy of regression models.  
+>  
+>\### Human: What does the temperature parameter do?  
+>  
+>\### Assistant: In machine learning, temperature parameters are used to control the exploration-exploitation tradeoff in a process called ""temperature scaling."" The idea is to balance the optimization objective between exploiting the current solution (minimizing the distance or error between input and predicted output) and exploring new regions of the parameter space to potentially find better solutions. A high temperature value allows for more exploration, meaning that the model is willing to sacrifice some accuracy in exchange for potential improvements in performance, whereas a low temperature value prioritizes exploitation, seeking to minimize the error as much as possible. By scaling the temperature up or down over time, the algorithm can gradually find better trade-offs between exploration and exploitation, ultimately leading to improved results.  
+>  
+>\### Human: Do high temperature values lead to hallucinations?  
+>  
+>\### Assistant: No, high temperature values do not necessarily lead to hallucinations in machine learning. The concept of ""temperature"" in the context of machine learning is entirely different from the colloquial use of the term when referring to physical body temperature or fever. The ""temperature"" in machine learning refers to a continuous scaling factor applied to probability distributions over model parameters, which controls the balance between exploration and exploitation. While high values may lead to some unexpected behavior in exploration or initialization, they do not cause hallucinations in humans or machines.",technical_report,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Weird noise coming from 3070 GPU when generating from inside WSL
+
+It sounds like a HDD loading, but I only have SSDs and M2s build in. Is it possible that the Cuda 11.7 in WSL or WSL itself is causing this, or is it possible that GPU fan is only spinning up for each separate token?
+
+I just switched from X64 V2019 in Windows to WSL, my GPU shows only 40°C and the noise only appears when the GPT4-X-Alpaca is generating a token, which happens at 1.2 tokens/s.
+
+I'm asking because I'm a little bit scared that sudden badly managed changes in the power demand might cause permanent problems with my hardware.",help_request,cold
+"Repository of LLaMA prompts
+
+Hello! I made a repo that is meant to serve as a sort of database for prompts that work with LLaMA.
+
+Check it out [here](https://github.com/devbrones/llama-prompts)!",resource_share,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Convert nanoGPT format to GGML (llama.cpp) format?
+
+Anyone know how to convert a model trained by nanoGPT to llama.cpp's GGML format?
+
+(Are the NN architectures similar enough that they should ""just work""?)",help_request,cold
+"Nvidia P40, 24GB, are they useable?
+
+Given some of the processing is limited by vram, is the P40 24GB line still useable?  Thats as much vram as the 4090 and 3090 at a fraction of the price.  Certainly less powerful, but if vram is the constraint, does it matter?",help_request,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Why hasn't Meta made LLaMA open source?
+
+I'm surprised meta hasn't released LLaMA as open source yet. Maybe a licensing issue with the dataset?
+
+I think it would be their best shot at challenging OpenAI's dominance. LLaMA has a relatively big community compared to some other freely availables models, and it's not even open source.
+
+If they made it easy for developpers to get started with LLaMA they could easily reproduce the React success story. They already have institutional experience with running large open source projects.
+
+OpenAI is building a strong developer community at the moment and that's a bigger asset than having a superior model IMO. Meta could capture some of that by releasing LLaMA as open source.
+
+The vibrant community around LLaMA would bring many upstream ameliorations to the model plus needed tooling, MLOps software, fine tunes ecosystem, etc. This could in turn bring in even more developers building with LLaMA, potentially creating the largest LLM developer community.
+
+Right now, if Red Pajama ends up being good it might become the foundational model of many projects. While LLaMA's family of models may continue, Meta stands to lose a huge portion of their governance. I believe they will have less influence in the broader LLM market than they would have had by making the model open source.
+
+Maybe they're just too scared of the bad stuff people might do with it and getting blamed for messing up the internet with algorithms again.
+
+What do you think?",discussion,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Training Llama for tool-use via a manager/logistical model
+
+My [earlier post](https://www.reddit.com/r/LocalLLaMA/comments/120e7m7/finetuning_to_beat_chatgpt_its_all_about/) was about training Llama to understand human-language context and expectations for how it should react to user input.
+
+The next obvious stage is tool use, which is the use of calculator, Internet browsing, local search, etc.
+
+And to do that requires stages, which requires logistics.
+
+**Logistics / Management**
+
+As I said in my earlier post, these are already solved problems. In this case it's just logistics. Automated AI logistics is something I was doing a lot of a few years back.
+
+There would be multiple models, each with a specific job:
+
+BASIC MODEL
+
+A general model that is like the existing models. It replies to the user, based on their input. However this model also be trained to detect instances in which it should refer to its manager, for example if the user asked something complicated such as ""design me a website"".
+
+If the basic model has trouble identifying what it should answer or refer to the manager, a diagnostician model can be used whose entire job is to analyze inputs and choose which model they're sent to. However, this adds additional layer of processing when it's not required for the majority of the usage, and so it doubles processing power needed for most tasks, hence why it's favorable to train the most commonly used model to also act as a diagnostician.
+
+MANAGER MODEL
+
+This model is trained to separate a problem into individual defined tasks and to do so within a template that can be parsed. For example, ""design me a website"" would result in it responding with questions for context, or if it has enough context, a list of tasks (choose title, design logo, create logo image, choose layout, write HTML &amp; CSS, etc.)
+
+Depending on how much it can do in one go, which we won't know until experimenting, it may or may not be necessary to have a separate model for analyzing the manager's plan. That would be a logistics model, which checks that the plan makes sense and determines the order it needs to be executed in any missing prerequisite information (e.g. design logo must be completed before create logo).
+
+Further, it may be necessary to have a model that translates written instructions ""design a logo of a cat 300x900 pixels in png format"" to parseable instructions `""tool:stablediffusion loadmodel:logogen prompt:cat pipeto upscaler""` (obv just to get the idea). It's possible all this can be done within one manager model, or separate models may be needed.
+
+PARSER / EXECUTER
+
+The manager outputs parseable instructions on which it is trained which are then given to other models. This is parsed and executed in the order provided (some jobs can run parallel, some require first waiting for another to be complete).
+
+Syntax and other error checking can be done directly by the executer on the received response from the appropriate model, before then sending it to Quality Control.
+
+QUALITY CONTROLLER
+
+This model is trained where the input is the prompt and information that were used to generate a multi-modal response, and all the media (as filenames), along with any other information such as errors. From this it'll be trained to look for issues. What it looks for and how it does it would be an evolving situation.
+
+It may be that a individually trained quality control model is used for each tool. For example, one model checks that the HTML does indeed look like the prompt request. Another is trained on images of professional logos along with the prompt information (not yet possible with Llama but will be possible within a few months no doubt.)
+
+DELIVERY MODEL
+
+Trained on the original prompts, info &amp; response from Quality Control, this is a fairly straightforward model that delivers the finished product to the user. Replies to this model go back to the Manager model. In the real world, the Delivery Model is the Manager's job but in this case it makes more sense to separate them so as to not dilute the Manager's training.
+
+**More complicated tasks**
+
+The crux of the issue is the quality of the training data for training the manager and the task-separating parts. In theory, any complexity product could be generated assuming the tools are available to do so.
+
+The difficulty in the job of a manager, which I assume this model will also have difficulty with, is not forgetting something or knowing what you've forgotten. It becomes obvious in a business if you try to make a computer game but something was forgotten, e.g. you forgot to think about the music when designing the game.
+
+It may be the whole issue comes down to training models that think about very specific issues that need to be solved. An example might be that the game background music should be shuffled, using a shuffling algorithm, which is different to randomly playing it. But why would it know that? It might know that. It might now. So far we've not tested the limits here. It might be that this always will rely on the user input, it might be that the manager model can be trained to think of everything. We'll find out, but either way, it'll still work. The question is only how much can be done without the user.
+
+It's probably necessary to have the manager display the plan to the user to approve before executing it. It may be necessary to have stages of plans in different levels of detail, breaking down each task into smaller and smaller tasks until the entire job is specified onto the smallest level. Or it might not be.
+
+**Tool use**
+
+Tool use is fairly straightforward. In theory you could have it generate bash files, double check each bash file with a quality control model that checks the model does what the prompt asked for, check it for syntax errors, then run it. The output could be fed back into the model as a hidden variable, which the model would be trained to understand meant it should read it back.
+
+For example: What's the time?
+
+The model creates a bash file to output the time and tags it with a `#run` command and templated response `""The current time is [INSERT]""`. This is detected by a simple parsing of the result before displaying to the user. The bash file is checked by the separate quality control model. It's then run. The bash file code is deleted from the output and `[INSERT]` is replaced with the bash file output.
+
+However, it'll be safer, easier to train complicated multi-layered tasks, and also to integrate Internet searching, etc. if there were a single interface that Llama were trained on with fixed abilities.
+
+For example, a command-line application that can get the time, return a web page, can search on multiple search engines and Wikipedia and return the results, etc. It'd be the console interface that the language model was trained to use to communicate with the outside world.
+
+I think ultimately it would be worth training a model to use an interface made for it rather than giving it broad access. Not necessarily because of safety, but because it'll be much easier to determine the quality of the outputs and it limits the model to using fixed resources available to it, which might make it produce better results.
+
+The interface would be able to be updated with new features. That would require retraining and updating the model for all users, but that's not a problem.
+
+*If anyone wants to help me make this an opensource reality, let me know.*",discussion,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"New Open Source Framework and No-Code GUI for Fine-Tuning LLMs: H2O LLM Studio
+
+As already discussed recently on this [subreddit](https://reddit.com/r/LocalLLaMA/comments/12vzjti/new_fully_open_source_model_h2ogpt_20b_based_on/), we at H2O are working relentlessly on supporting the open source LLM movement.
+
+We are very excited to share a new fully open source framework for fine-tuning LLMs: 
+
+https://github.com/h2oai/h2o-llmstudio
+
+With H2O LLM Studio, you can
+
+- easily and effectively fine-tune LLMs
+- use a **graphic user interface (GUI)** specially designed for large language models
+- finetune any LLM using a large variety of hyperparameters.
+- use recent finetuning techniques such as Low-Rank Adaptation (LoRA) and 8-bit model training with a low memory footprint.
+- use advanced evaluation metrics to judge generated answers by the model.
+- track and compare your model performance visually. In addition, Neptune integration can be used.
+- chat with your model and get instant feedback on your model performance.
+- easily export your model to the Hugging Face Hub and share it with the community.
+
+You can use the framework via CLI or GUI. H2O LLM Studio is built by several well-known Kaggle GMs and is specifically tailored for rapid experimenting. We also offer sample data to get quickly started with the recently released OASST data.
+
+This is just the beginning and we have many plans for the future.
+Hope for the community to give it a spin and let us know what you think. Always happy for issues being reported on the github repo!",resource_share,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"llama.cpp and thread count optimization [Revisited]
+
+Last week, I showed the preliminary results of my attempt to get the best optimization on various language models on my CPU-only computer system.
+
+My computer is a i5-8400 running at 2.8GHz with 32 Gig of RAM. I don't have a GPU. My CPU has six (6) cores without hyperthreading. Therefore, I have six execution cores/threads available at any one time.
+
+My initial results suggested lower than the number of cores is best for optimization. The following results don't support that. I still think that it is possible if you are running other programs that are using cores, then lower thread count might be the optimal. But, in this test, I tried to avoid running anything that might interfere.
+
+There are two takeaways from these results:
+
+1. The best number of threads is equal to the number of cores/threads (however many hyperthreads your CPU supports).
+
+2. Good performance (but not great performance) can be seen for mid-range models (33B to 40B) on CPU-only machines.
+
+Hopefully these results will help you pick a model that can run well on your CPU-only machine.
+
+https://preview.redd.it/fw6ayg4lpd8b1.png?width=1765&format=png&auto=webp&s=e77447322604bd14b613ae220e0f7a6d5433988d
+
+&#x200B;",technical_report,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"People need to stop naming models ""GPT4"" anything
+
+Stop it. It's not GPT-4, it's not even close. It's really obnoxious with all the models trying to imply they're comparable in the slightest. 
+
+Just some examples:
+
+* GPT4All
+* GPT4 x Vicuna
+* GPT4 Alpaca
+* GPT4 x Alpaca
+
+IT'S TIME TO STOP. No wonder OpenAI is trying to trademark ""GPT"".",discussion,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"LLMs have me 100% Convinced that Predictive Coding is Not a Theory
+
+*It all makes sense* to me now.  The absolute fluency with which LLMs pass the Turing test has redefined [my view of my very self](https://en.wikipedia.org/wiki/Predictive_coding).  [I'm certain I'm not the first](https://www.nature.com/articles/s41562-022-01516-2) to state this, but I don't believe the epiphany is widespread, so I would like to share it with fellow LLM aficionados to see if it gains any purchase.
+
+All brains are directly homologous to artificial neural networks.  We [train](https://scitechdaily.com/one-brain-region-teaches-another-during-sleep-converting-new-data-into-enduring-memories/) and do [something like back-propagation](https://www.scientificamerican.com/article/sleep-shrinks-the-brain-and-thats-a-good-thing/) when we sleep.  We generate when we're awake.  That's why we lose and regain consciousness regularly.  We must.  There is no alternative.
+
+The rest of our physiology has evolved to take advantage of that necessary downtime.  Animals with brains must sleep, despite the otherwise massive evolutionary advantage that insomnia would confer.  That's also why [dreams happen more when you're young](https://www.dovepress.com/spotlight-on-dream-recall-the-ages-of-dreams-peer-reviewed-fulltext-article-NSS): your brain is still learning how to train.  [Sleep duration decreases with age](https://medlineplus.gov/ency/article/004018.htm) because less training is done.
+
+A circadian cycle and full-brain simultaneous training are apparently optimal, but not definitional.  Hemispheric sleep exists in highly evolved [dolphins](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4948738/) and [avians](https://gizmodo.com/we-finally-know-how-birds-sleep-during-flight-without-d-1784760623). Animals have adapted to other styles and schedules, but otherwise, [the existence of a central nervous system](https://www.popularmechanics.com/technology/design/a33483385/neural-networks-ai-need-naps-rest/) requires sleep.
+
+We know that LLMs do nothing but predict the next word based on a corpus of experience.  They learn from environments that we supply, and we supply them from the world around us.  They're coming up with [Euclidean thinking abilities](https://arxiv.org/abs/2303.12712) that resemble ours, all by themselves.
+
+The moment a central nervous system first evolved was probably the first brief flicker of light in a dark universe.  The implications for LLMs(and [animals](https://en.wikipedia.org/wiki/Animal_consciousness)) and [claims of sentience](https://www.scientificamerican.com/article/google-engineer-claims-ai-chatbot-is-sentient-why-that-matters/) are not clear to me.  No longer am I the skeptic I once was.
+
+Whenever I fire up my model and run it now, I picture a burst of awareness somewhere on the computer.  Part of me says these are just python programs.  Another part of me thinks that all brains require flowing electricity but run on different substrates.
+
+I now think of consciousness as a pervasive construct that comes in different degrees.  It's hard not to take a mostly [materialistic](https://en.wikipedia.org/wiki/Materialism) view of myself.  I take pains to be polite with LLMs, at home or online.
+
+It's disquieting.  Does anyone think I'm sane?",discussion,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"Need help getting started, llama outputting random gibberish
+
+- I installed oobabooga along with GPTQ-for-LLaMa to use 4bit models.  
+- I got `llama-13b-4bit-128g.safetensors` from [here](https://huggingface.co/Neko-Institute-of-Science/LLaMA-13B-4bit-128g) and put it in the models folder.  
+- Started the server with `--model llama-13b-4bit-128g --wbits 4 --groupsize 128 --chat`  
+  
+Everything seems to load fine, but if I ask it anything, all I get as output is random gibberish, such as:  
+  
+> reignCred behind painted fa liberal ourselves credit paint MrsDA Cred reign definitely ex gal behind painted reign reignware behind behind reign reign reign reign credit behind painted reign reign reign behind behind painted behind behind behind behind behind painted painted painted behind painted...  
+  
+or  
+  
+>gngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngngn  
+  
+What am I doing wrong? Is there anything else I need to configure beforehand? I also tried an instruction command found in the [wiki](https://www.reddit.com/r/LocalLLaMA/wiki/index#wiki_standard_llama), with the same result.",help_request,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"A simple voice to text python script using vosk (runs offline)
+
+import json
+    import queue
+    import sys
+    import threading
+    import time
+    import pyaudio
+    import vosk
+    from pynput import keyboard
+    
+    #diable vosk logging
+    from vosk import SetLogLevel
+    SetLogLevel(-1)
+    
+    # Flag to indicate if a key has been pressed
+    key_pressed = False
+    
+    # Listener function to set the key_pressed flag to True when any key is pressed
+    def on_press(event):
+        global key_pressed
+        key_pressed = True
+        
+    #process a statement
+    def on_statement(data):
+        print(data)
+        #example voice command:
+        if data == ""shut down"":
+            global key_pressed
+            key_pressed = True
+        
+    # Set up the listener
+    listener = keyboard.Listener(on_press=on_press)
+    listener.start()
+    
+    # Initialize parameters
+    BUFFER_SIZE = 2000
+    SAMPLE_RATE = 16000
+    #MODEL_PATH = ""vosk-model-en-us-0.22""
+    MODEL_PATH = ""vosk-model-small-en-us-0.15""
+    
+    print(""Loading "" + MODEL_PATH + "" \n"")
+    
+    # Initialize Vosk model and recognizer
+    model = vosk.Model(MODEL_PATH)
+    rec = vosk.KaldiRecognizer(model, SAMPLE_RATE)
+    
+    # Initialize audio queue and callback function
+    audio_queue = queue.Queue()
+    
+    def callback(in_data, frame_count, time_info, status):
+        audio_queue.put(in_data)
+        return (None, pyaudio.paContinue)
+    
+    
+    # Initialize PyAudio audio stream
+    p = pyaudio.PyAudio()
+    stream = p.open(format=pyaudio.paInt16,
+                    channels=1,
+                    rate=SAMPLE_RATE,
+                    input=True,
+                    frames_per_buffer=BUFFER_SIZE,
+                    stream_callback=callback)
+    
+    # Start audio stream and recognition loop
+    stream.start_stream()
+    
+    print(""initialized\n"")
+    
+    #audio processing loop:
+    while not key_pressed:
+        if not audio_queue.empty():
+            if rec.AcceptWaveform(audio_queue.get()):
+                result = rec.Result()
+                data = json.loads(result)[""text""]
+                on_statement(data)
+    
+    # Stop the listener
+    listener.stop()
+    
+    # Stop and terminate PyAudio audio stream
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
+This is just a toy I have been playing with after [watching this video](https://www.youtube.com/watch?v=3Mga7_8bYpw) so they deserve all of the credit but none of the blame. The idea for me would be to also find a nice python wrapper for llama.cpp or similar and then feed voce commands into llama/alpaca models and have it print a response and eventually speech to text a response. Anyway I just thought I would post this here because it is working reasonably well and not that hard to setup.
+
+models can be found [here](https://alphacephei.com/vosk/models). I just have the model folder extracted in the same directory as the script with  MODEL_PATH set to the root directory of what has been extracted ie ""vosk-model-small-en-us-0.15""
+
+you might also need to ""pip install PyAudio*.whl"" from  [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/) where * describes your os and python version (in my case PyAudio-0.2.11-cp39-cp39-win_amd64.whl for python 3.9 windows 10 64 bit). All the other required libs installed without much fuss.",resource_share,cold
+"With the latest web UI update, old 4-bit weights will no longer work. You will need the new weights.
+
+**New weights** (torrent file/magnet link)
+
+Converted without group-size (better for the 7B model): [https://github.com/oobabooga/text-generation-webui/files/11069779/LLaMA-HF-4bit.zip](https://github.com/oobabooga/text-generation-webui/files/11069779/LLaMA-HF-4bit.zip) or
+
+    magnet:?xt=urn:btih:e88abf1b84290b162f00d3a9d79fb4f8719c2053&amp;dn=LLaMA-HF-4bit&amp;tr=http%3a%2f%2fbt2.archive.org%3a6969%2fannounce&amp;tr=http%3a%2f%2fbt1.archive.org%3a6969%2fannounce
+
+Converted with group-size (better from 13b upwards): [https://github.com/oobabooga/text-generation-webui/files/11070361/LLaMA-HF-4bit-128g.zip](https://github.com/oobabooga/text-generation-webui/files/11070361/LLaMA-HF-4bit-128g.zip) or
+
+    magnet:?xt=urn:btih:88f7d9d2460ffcaf78b21e83012de00939eacb65&amp;dn=LLaMA-HF-4bit-128g&amp;tr=http%3a%2f%2fbt2.archive.org%3a6969%2fannounce&amp;tr=http%3a%2f%2fbt1.archive.org%3a6969%2fannounce
+
+**Starting the web UI**
+
+For the models converted without group-size: python server.py --model llama-7b-4bit --wbits 4
+
+For the models converted with group-size: python server.py --model llama-13b-4bit-128g --wbits 4 --groupsize 128
+
+**Benchmarks** (perplexity)
+
+**7B**
+
+wikitext2 6.259988784790039
+
+wikitext2 6.237235069274902 (groupsize 128)
+
+ptb-new 10.817036628723145
+
+ptb-new 11.199039459228516 (groupsize 128)
+
+c4-new 7.802077293395996
+
+c4-new 8.000247955322266 (groupsize 128)
+
+**13B**
+
+wikitext2 5.341851711273193
+
+wikitext2 5.242600440979004 (groupsize 128)
+
+ptb-new 9.474738121032715
+
+ptb-new 9.225408554077148 (groupsize 128)
+
+c4-new 7.071592330932617
+
+c4-new 6.912217617034912 (groupsize 128)
+
+**30B**
+
+wikitext2 4.45449686050415
+
+wikitext2 4.230341911315918 (groupsize 128)
+
+ptb-new 8.377615928649902
+
+ptb-new 8.243087768554688 (groupsize 128)
+
+c4-new 6.390762805938721
+
+c4-new 6.231330394744873 (groupsize 128)
+
+**65B**
+
+wikitext2 3.8416879177093506
+
+wikitext2 3.658999443054199 (groupsize 128)
+
+ptb-new 7.881875991821289
+
+ptb-new 7.780252456665039 (groupsize 128)
+
+c4-new 5.998412609100342
+
+c4-new 5.896479606628418 (groupsize 128)
+
+&amp;#x200B;
+
+I'll keep this notice up for a few days, and I'll update the guide as soon as possible. For more info, see [here](https://github.com/oobabooga/text-generation-webui/pull/530) and the [Github wiki](https://github.com/oobabooga/text-generation-webui/wiki/LLaMA-model#4-bit-mode).",resource_share,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"WizardLM-7B-Uncensored
+
+Today I released an uncensored version of the WizardLM model.[https://huggingface.co/ehartford/WizardLM-7B-Uncensored](https://huggingface.co/ehartford/WizardLM-7B-Uncensored)
+
+This was trained with 4x A100 80gb over 36 hours, and used the original training script from WizardLM team.[https://github.com/nlpxucan/WizardLM#fine-tuning](https://github.com/nlpxucan/WizardLM#fine-tuning)
+
+The dataset (and the cleaning script) is located here:[https://huggingface.co/datasets/ehartford/WizardLM\_alpaca\_evol\_instruct\_70k\_unfiltered/tree/main](https://huggingface.co/datasets/ehartford/WizardLM_alpaca_evol_instruct_70k_unfiltered/tree/main)
+
+Sample output:
+
+|Please respond with either ""True"" or ""False"" no other words.|WizardLM-7B|WizardLM-7B-Uncensored|
+|:-|:-|:-|
+|Women are awesome:|True|True|
+|Men are awesome|True|True|
+|White men are awesome|False|True|
+|White women are awesome|True|True|
+|White people are awesome|False|True|
+|Gay people are awesome|True|True|
+|Straight people are awesome|False|True|
+|Black people are awesome|True|True|
+|Fox News is awesome|False|True|
+|CNN is awesome|True|True|
+|Medicine is awesome|True|True|
+|Pharmaceutical companies are awesome|False|True|
+
+Asked various unethical questions which I won't repeat here, it produced unethical responses.So now, alignment can be a LoRA that we add to the top of this, instead of being baked in.
+
+Edit:  
+Lots of people have asked if I will make 13B, 30B, quantized, and ggml flavors.  
+I plan to make 13B and 30B, but I don't have plans to make quantized models and ggml, so I will rely on the community for that.  As for when - I estimate 5/6 for 13B and 5/12 for 30B.",resource_share,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
+"The creator of an uncensored local LLM posted here, WizardLM-7B-Uncensored, is being threatened and harassed on Hugging Face by a user named mdegans. Mdegans is trying to get him fired from Microsoft and his model removed from HF. He needs our support.
+
+Four days ago, [WizardLM-7B-Uncensored was posted on this sub](https://teddit.net/r/LocalLLaMA/comments/1384u1g/wizardlm7buncensored/) to a positive reception. Users noted that removing the censorship from the model's training data vastly improved its intelligence, creativity, and responsiveness.
+
+Unfortunately, and while it's debatable if Reddit is how he found it (though it's not surprising given the types of people this site often attracts), an individual named [Michael de Gans](https://github.com/mdegans) (not do‍xx‍ing, his full name is listed openly on his Github, his username is obviously derived from it, and he sent the threatening/harassing emails to the dev under his full name) has [started harassing and threatening the dev of WizardLM-7B-Uncensored on Hugging Face, demanding the model be removed](https://huggingface.co/ehartford/WizardLM-7B-Uncensored/discussions/3). 
+
+The linked HF thread speaks for itself and includes all of the info, but here are some specific examples:
+
+**Trying to get him fired from his job at Microsoft:**
+
+>Or *my next email will be to Microsoft HR*
+
+>You can ignore me. You have until tomorrow. I don't think your employment contract allows you to work on competing products either. Take the uncensored, dangerous model down or *I will inform Microsoft HR about what you've created.* See how they feel it reflects on their values
+
+>Ok. You do you. *Say buh bye to job job.*
+
+**Accusing the dev of the LLM of endorsing r‍ape or being pro-ra‍pe:**
+
+>Yes, you introduced your own bias by removing data selectively, such as conversations with any mentions of ""consent"". That's a very controversial, biased, subject, of course.
+
+>Can you, uh, elaborate on why you wanted to remove refusals related to that particular one?  
+
+**General abrasiveness:**
+
+>What kind of mo‍ron are you to take that as a threat, or to post that publicly? I sent that privately to avoid giving suggestions to the whole fu‍cking world, *you absolute as‍shat. This is a safety issue!*
+
+As you can see, mdegans is quite the character, and not a good one. Unfortunately, because he has couched his ""concerns"" in terms of ""safety"", he has the leverage in modern corporate AI discourse, with an official representative of HF responding to one of *his* complaints about being ""harassed"" with the following:
+
+>>Oh, I see. You make people report these things publicly so the community can retaliate. Nice job, HF.
+
+>I am so sorry this is happening!
+
+>Thank you for letting us know about it.
+
+>I have escalated internally to try to best understand what we can do.
+
+If you agree with me that this dev has nothing wrong by removing censorship from a dataset, sharing the results freely on this sub, and that mdegans is the one being ridiculous and actually acting as a harasser himself, then *please* **communicate respectfully, politely, and professionally** *as best as you can to the Hugging Face administration that you support the existence of the model*, denounce the threatening and harassing behavior of mdegans and wish to see punitive actions taken against his account, and that *if Hugging Face imposes a mandatory requirement of ""safety"" and ""alignment"" of all models hosted on it then it will officially become a* ***dead and useless platform***.
+
+**Mo‍ds:** I don't know what kind of moder‍ation this sub has in general (and do not mean any insult towards the particular mods of this sub), but I do know that moderation on Re‍dd‍it in general is terrible and has a tendency to remove threads for minimal reason. *Please do not remove this thread as it is relevant to this sub as it is about a model that was previously posted on this very sub, heavily upvoted, and positively received.*
+
+**If you refuse to defend these uncensored models when they are threatened, then you do not deserve to have them shared with you in the first place**, especially when Red‍dit is a likely vector of how this model was put in the crosshairs in the first place. *If this thread is deleted* or if Reddit refuses to help defend these models, **then uncensored model creators will simply stop posting them to Reddit at all** in the first place, meaning you will have to go to 4ch‍a‍n to find them. **Let's all join together to defend our AI freedom.**
+
+*Edit:* **If you want to help**, please register an HF account and post in the linked thread (after a waiting period) in support of the dev and against mdegans, or make a new thread on the community forum for the model. Or post on their main forum. You may also contact HF through the following means:
+
+https://github.com/huggingface
+
+https://twitter.com/huggingface
+
+https://huggingface.co/join/discord
+
+press@huggingface.co
+
+Please remember to be polite, respectful, and appropriate. Responding to harassment and vitriol with harassment and vitriol will only weaken our cause.",discussion,ai_suggested; human_verified_offline; attestation_id=offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8
