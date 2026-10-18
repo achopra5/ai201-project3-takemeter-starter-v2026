@@ -56,7 +56,15 @@ def main():
     info=get("splits", {"dataset":DATASET})["splits"]
     trains=[s for s in info if s["split"]=="train"]
     conf=next((s for s in trains if s["config"]=="default"),trains[0])
-    total=int(conf["num_examples"])
+    # /splits lists configurations and split names; it does NOT give counts.
+    # /rows reports num_rows_total for the selected config and split.
+    first_page = get("rows", {
+        "dataset": DATASET, "config": conf["config"], "split": conf["split"],
+        "offset": 0, "length": 1,
+    })
+    total = int(first_page["num_rows_total"])
+    if total <= 0:
+        raise RuntimeError("Dataset has no rows to collect.")
     found={}
     scanned=0
     for i in range(args.max_pages):
@@ -78,14 +86,13 @@ def main():
     output(Path("data/candidate_posts.csv"), rows,
            ["text","source_url","source_id","created_utc","source_dataset"])
     queue=[{"text":r["text"],"label":"",
-            "note":"cold — label unaided" if i<20 else "unlabeled — review later",
+            "note":"cold_pending — label unaided" if i<20 else "unlabeled — review later",
             "source_url":r["source_url"]} for i,r in enumerate(rows)]
     output(Path("data/annotation_queue.csv"),queue,["text","label","note","source_url"])
     manifest={"dataset":DATASET,"archive_posts":total,"pages_scanned":scanned,
               "n_candidates":len(rows),"seed":20261018,
               "collected_utc":datetime.now(timezone.utc).isoformat(),
-              "archive_updated_through":"2026-03-03",
-              "labels":"NONE — all annotations remain pending",
+                            "labels":"NONE — all annotations remain pending",
               "selection":"Full text only, complete title+body, no truncation, no link-only posts."}
     Path("data/candidate_posts.manifest.json").write_text(json.dumps(manifest,indent=2)+"\n",encoding="utf-8")
     print(f"Collected {len(rows)} authentic UNLABELLED posts; first 20 must be cold-labeled by student.")
