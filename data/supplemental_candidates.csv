@@ -1,0 +1,523 @@
+text,source_url,source_id,created_utc,source_dataset,archive_row_idx,raw_file,raw_sha256,retrieval_url,retrieved_utc
+"I ran quantized Falcon-180B Q4 on a home/consumer computer and it is not good (maybe need help?)
+
+So I have a totally normal (almost) home computer: 
+
+i5-12400F, 128Gb DDR4, RTX 3060Ti
+
+I downloaded and ran falcon-180b-chat.Q4\_K\_M.gguf
+
+The speed is just like I and some others predicted: 0.3 tokens/second. Speed wise it is somewhat usable.
+
+But for some reason the model is uncoherent: I asked it to write me something and its just repeated me my question and asked what do I want to do with it. I asked it roleplay with me and it wrote me bad and uncoherent story, not at all like demo works: [https://huggingface.co/spaces/tiiuae/falcon-180b-demo](https://huggingface.co/spaces/tiiuae/falcon-180b-demo)
+
+Maybe I am doing something wrong? I running it using oobabooga\_windows\\text-generation-webui, I don't know if I need to set up something? I just loaded the model, set 5 layers to run on GPU ands that's it. Do I need to set a template or change loader or something?
+
+I expected better quality from Q4, at least 70% of full model.
+
+https://preview.redd.it/8fss75men3ob1.png?width=979&format=png&auto=webp&s=845a3dcf3d2f34d1320b97abf9c932ade9d98dff",https://www.reddit.com/r/LocalLLaMA/comments/16i15qc/i_ran_quantized_falcon180b_q4_on_a_homeconsumer/,16i15qc,2023-09-13T22:35:20,pszemraj/LocalLLaMA-posts,94530,data/supplemental_scans/20261018-curation-extra/rows-94500.json,cf9e2e460559d30baf7aa995ea9295922ad4f65a96034b1cdd9bc1429b48e93e,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=94500&length=100,2026-10-18T23:04:55.196041+00:00
+"HF transformers vs llama 2 example script performance
+
+Hi all,  
+I hope someone can point me in the right direction. I'm using the CodeLlama 13b model with the HuggingFace transformers library but it is 2x slower than when I run the example conversation script in the codellama GitHub repository. Both have been updated to use the same prompt and 4096 max tokens
+
+I've tried many things to try and speed up the generation including:
+
+* Using BetterTransformer - [https://huggingface.co/docs/transformers/perf\_infer\_gpu\_many](https://huggingface.co/docs/transformers/perf_infer_gpu_many)
+* Loading the model in 4 bit
+
+I'm running on a VM with 2xA100 40GB, 
+
+A boiled down version of the script is as follows:
+
+    from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig, TextIteratorStreamer
+    from threading import Thread
+    import time
+    import torch
+    
+    tokenizer = AutoTokenizer.from_pretrained(""out-codellama-13b/"")
+    tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+    
+    model = AutoModelForCausalLM.from_pretrained(""out-codellama-13b/"", device_map=""auto"", torch_dtype=torch.float16)
+    model.to_bettertransformer()
+    
+    user = ""my prompt goes here""
+    prompt = f""<s>[INST] {user.strip()} [/INST]""
+    
+    inputs = tokenizer(prompt, return_tensors=""pt"", add_special_tokens=False).to('cuda')
+    
+    generation_kwargs = dict(inputs, streamer=streamer, max_new_tokens=4096, pad_token_id=tokenizer.eos_token_id, temperature=0.9, do_sample=True)
+    
+    t1 = time.perf_counter()
+    output = model.generate(**generation_kwargs)
+    
+    t2 = time.perf_counter()
+    
+    output = output[0].to(""cpu"")
+    print(tokenizer.decode(output))
+    print(f""Generation took {t2-t1} seconds to execute."")
+
+This takes approximately 132 seconds to execute.
+
+Then if I run the example\_instructions.py as follows:
+
+    $ torchrun --nproc_per_node 2 example_instructions.py  --ckpt_dir CodeLlama-13b-Instruct/     --tokenizer_path CodeLlama-13b-Instruct/tokenizer.model     --max_seq_len 4096 --max_batch_size 8 --temperature 0.9
+
+It takes approximately 60 seconds to execute.  
+I checked that the auto device map has mapped everything to the GPU. I'm not sure what I'm missing.
+
+*Note: I converted the CL 13 model to the HF format using ./src/transformers/models/llama/convert\_llama\_weights\_to\_hf.py*
+
+Thanks in advance.",https://www.reddit.com/r/LocalLLaMA/comments/16hzpv4/hf_transformers_vs_llama_2_example_script/,16hzpv4,2023-09-13T21:39:23,pszemraj/LocalLLaMA-posts,94533,data/supplemental_scans/20261018-curation-extra/rows-94500.json,cf9e2e460559d30baf7aa995ea9295922ad4f65a96034b1cdd9bc1429b48e93e,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=94500&length=100,2026-10-18T23:04:55.196041+00:00
+"Some Lessons Learned from Building a Fine Tuned Model + RAG Question Answering App
+
+Follow up to [this post on our workflow](https://www.reddit.com/r/LocalLLaMA/comments/15oome9/our_workflow_for_a_custom_questionanswering_app/).
+
+After a quick turnaround development cycle, we deployed a QA app that uses:
+
+* Falcon-6b-FT (fine tuned on 51k QA pairs generated from target domain documents)
+* Chroma DB vector dataset of the same target documents
+* Llama-index as the data framework
+* OpenAI embeddings 
+
+Some observations/lessons learned:
+
+# The fine tuned model outperforms a base instruct version and Davinci-003
+
+The below is output from three models, each in the same RAG architecture using the same document DB:
+
+**gm-oasst1-en-2048-falcon-7b-v3**
+
+>Yes, you can purchase analytic software and datasets with your GPC. The GPC is a government-wide commercial purchase card that can be used to make purchases of COTS IT hardware and software, including analytic software and datasets. CHESS is the preferred source for the acquisition of IT services, and government-wide commercial purchase cards can be used to purchase these services.  
+
+
+**Davinci-003:**
+
+>Yes, you can purchase analytic software and datasets with your GPC as long as they are listed on the DoD UC APL and you coordinate with the local Network Enterprise Center to ensure the product complies with policy and is authorized to connect to the DOD Information Network. Additionally, the product must be procured through the Project Director, Computer Hardware and Enterprise Software Solutions (CHESS) contract vehicles.  
+
+
+**Falcon-7b-FT:**
+
+>The Department of the Army's R350-1 regulation outlines the guidelines for acquiring and using software. The Army must follow the guidelines to procure and use software with the GPC.   To determine software usage, license, and distribution rights, document usage rights for the software, including receipts, purchase orders, contract agreements, or software license agreements in accordance with the DoD Instruction for Accountability of Internal Use Software (see DoDI 5000.76).    
+>  
+>In addition, the Army must obtain approval from the cognizant agency to procure analytic software and data sets with the GPC. The Army must follow the guidelines in AR 700-80 to ensure that the software meets the Army's requirements and adheres to all relevant policies and procedures.     
+>  
+>Finally, the Army must ensure that all software is properly licensed and distributed according to the guidelines outlined in the Department of the Army R350-1 regulation. The Army must also ensure that all software is properly secured and protected against unauthorized access or exploitation.
+
+All three used the same documents retrieved, and are technically correct, however the FT version is much richer and useful from a procurement perspective, extracting by inference from the context important purchase and usage considerations.
+
+# What You Put in the DB Really Impacts Performance
+
+Duh, but it really became clear how sensitive document retrieval is to noise.  Obviously if you are missing important documents, your model can't answer from context.  But if you just dump all of your docs in, you can end up handing documents as context that technically have some semantic content that sounds relevant, but is not helpful.  Outdated policy or very obscure/corner case technical docs can be a problem.  Like if there is this really random pub on, idk changing spark plugs underwater, then when the user asks about vehicle maintenance the final answer might include stuff about scuba gear, underwater grounding, etc. that makes for a bad answer.
+
+# It's Hard to Get Models to Shut Up When There's No Context
+
+In theory these things should NOT give answer if there's no relevant context--that's the whole point.  The default prompt for QA in llama-index is
+
+    DEFAULT_TEXT_QA_PROMPT_TMPL = (
+        ""Context information is below.\n""
+        ""---------------------\n""
+        ""{context_str}\n""
+        ""---------------------\n""
+        ""Given the context information and not prior knowledge, ""
+        ""answer the query.\n""
+        ""Query: {query_str}\n""
+        ""Answer: ""
+    )
+
+That being said, if you ask dumbass questions like ""Who won the 1976 Super Bowl?"" or ""What's a good recipe for a margarita?"" it would cheerfully respond with an answer.  We had to experiment for days to get a prompt that forced these darn models to only answer from context and otherwise say ""There's no relevant information and so I can't answer."" 
+
+# These Models are Finicky 
+
+While we were working on our FT model we plugged in Davinci-003 to work on the RAG architecture, vector DB, test the deployed package, etc.  When we plugged our Falcon-7b-FT in, it spit out garbage, like sentence fragments and strings of numbers & characters.  Kind of obvious in retrospect that different models would need different prompt templates, but it was 2 days of salty head scratching in this case.",https://www.reddit.com/r/LocalLLaMA/comments/1686ul6/some_lessons_learned_from_building_a_fine_tuned/,1686ul6,2023-09-02T16:27:51,pszemraj/LocalLLaMA-posts,95052,data/supplemental_scans/20261018-curation-extra/rows-95000.json,b523d0bff51a060bc47d471e73498f80e1a085d669ea373eafea2b023b60e57b,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=95000&length=100,2026-10-18T23:04:55.196041+00:00
+"New Model RP Comparison/Test (7 models tested)
+
+This is a follow-up to my previous post here: [Big Model Comparison/Test (13 models tested) : LocalLLaMA](https://www.reddit.com/r/LocalLLaMA/comments/15lihmq/big_model_comparisontest_13_models_tested/)
+
+Here's how I evaluated these (same methodology as before) for their role-playing (RP) performance:
+
+- Same (complicated and limit-testing) long-form conversation with all models, [SillyTavern](https://github.com/SillyTavern/SillyTavern) frontend, [KoboldCpp](https://github.com/LostRuins/koboldcpp) backend, GGML q5\_K\_M, Deterministic generation settings preset, [Roleplay instruct mode preset](https://www.reddit.com/r/LocalLLaMA/comments/15mu7um/sillytaverns_roleplay_preset_vs_modelspecific/), > 22 messages, going to full 4K context, noting especially good or bad responses.
+
+So here's the list of models and my notes plus my very personal rating (➕ = worth a try, - ➖ disappointing, ❌ = unusable):
+
+- ➕ **[huginnv1.2](https://huggingface.co/TheBloke/huginnv1.2-GGML)**: Much better than the previous version (Huginn-13B), very creative and elaborate, focused one self-made plot point early on, nice writing and actions/emotes, repetitive emoting later, redundant speech/actions (says what she's going to do and then emotes doing it), missed important detail later and became nonsensical because of that. More creative but less smart than other models.
+
+- ➖ **[MythoMix-L2-13B](https://huggingface.co/TheBloke/MythoMix-L2-13B-GGML)**: While other models often went too fast, this one needed a bit of coaxing to proceed, got confused about who's who and anatomy, mixing up people and instructions, wrote what User does, actions switched between second and third person. But good actions and descriptions, and believable and lively characters, and no repetition/looping all the way to full 4K context and beyond! **Only gets a ➖ instead of a ➕ because there's already a successor, [MythoMax-L2-13B-GGML](https://huggingface.co/TheBloke/MythoMax-L2-13B-GGML), which I like even more!**
+
+- ➕ **[MythoMax-L2-13B](https://huggingface.co/TheBloke/MythoMax-L2-13B-GGML)**: Started talking/acting as User (had to use non-deterministic preset and enable ""Include Names"" for the first message)! While other models often went too fast, this one needed a bit of coaxing to proceed, got confused about who's who and anatomy, mixing up people and instructions, mentioned scenario being a simulation. But nice prose and excellent writing, and no repetition/looping all the way to full 4K context and beyond! **This is my favorite of this batch! I'll use this a lot more from now on, right now it's my second favorite model next to my old favorite [Nous-Hermes-Llama2](https://huggingface.co/TheBloke/Nous-Hermes-Llama2-GGML)!**
+
+- ➖ **[orca_mini_v3_13B](https://huggingface.co/TheBloke/orca_mini_v3_13B-GGML)**: Repeated greeting message verbatim (but not the emotes), talked without emoting, spoke of agreed upon parameters regarding limits/boundaries, terse/boring prose, had to ask for detailed descriptions, description was in past tense, speech within speech, wrote what User does, got confused about who's who and anatomy, became nonsensical later. **May be a generally smart model, but apparently not a good fit for roleplay!**
+
+- ➖ **[Stable-Platypus2-13B](https://huggingface.co/TheBloke/Stable-Platypus2-13B-GGML)**: Extremely short and terse responses (despite Roleplay preset!), had to ask for detailed descriptions, got confused about who's who and anatomy, repetitive later. But good and long descriptions when specifically asked for! **May be a generally smart model, but apparently not a good fit for roleplay!**
+
+- ❌ **[vicuna-13B-v1.5-16K](https://huggingface.co/TheBloke/vicuna-13B-v1.5-16K-GGML)**: Confused about who's who from the start, acted and talked as User, repeated greeting message verbatim (but not the very first emote), normal afterwards (talks and emotes and uses emoticons normally), but mentioned boundaries/safety multiple times, described actions without doing them, needed specific instructions to act, switched back from action to description in the middle of acting, repetitive later, some confusion. Seemed less smart (grammar errors, mix-ups), but great descriptions and sense of humor, but broke down completely within 20 messages (> 4K tokens)! **SCALING ISSUE (despite using `--contextsize 16384 --ropeconfig 0.25 10000`)?**
+
+- ❌ **[WizardMath-13B-V1.0](https://huggingface.co/TheBloke/WizardMath-13B-V1.0-GGML)**: Ends every message with ""The answer is: "", making it unsuitable for RP! So I instead did some logic tests - unfortunately it failed them all (""Sally has 3 brothers..."", ""What weighs more, two pounds of feathers or one pound of bricks?"", and ""If I have 3 apples and I give two oranges..."") even with ""Let's think step by step."" added.
+
+Looking forward to your comments, especially if you have widely different experiences, so I may go back to retest some models with different settings...",https://www.reddit.com/r/LocalLLaMA/comments/15ogc60/new_model_rp_comparisontest_7_models_tested/,15ogc60,2023-08-11T18:17:40,pszemraj/LocalLLaMA-posts,96089,data/supplemental_scans/20261018-curation-extra/rows-96000.json,6378b9ecf735f298982802077f256e4eadfc3c21e99f6fd214dd933a378d28b6,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=96000&length=100,2026-10-18T23:04:55.196041+00:00
+"What I've learned from orca-mini-3b.ggmlv3.q4_1 using LLamaCPP (_python), so far.
+
+Hello, it's Sol again. I apologize for using you people as external storage, but in return I hope you will find insights you might not get to read anywhere else, especially not in a condensed matter.
+
+- It's *fast*.
+
+- It's smart *enough* for it's speed. Proper prompt presentation is critical, but worth it. 70+tps fully offloaded to my 3060 6gigs, 1 CPU thread, not even in full-power mode.
+
+- Bigger models, as of today, appear to provide more convenience in regards to prompt-design. Everything points at this being a result of the data fed into the LLM, not the size. Cleaner, more self-referential data seems to increase the usefullness of the response tokens.
+
+- It appears that storing text is less usefull than storing question/answer-pairs about it.
+
+- It has a limited ability to understand words, with some or all of their vowels missing.
+
+- It has a limited capacity to repair text, as in: ""corrupted transmission"".
+
+- Response-Tokens written into an extended context window, beyond the ""natural"" size of the model, gradually decrease in usefullness with every new token.
+
+- Different context-window-sizes yield different responses.
+
+- Spaces between quotation marks, or maybe even generally, appear to increase usefullness.
+
+- It apparently supports doing multiple passes simply by requesting multiple passes ... which I find super interesting, actually.
+
+- It happens to often finish despite having ""more response"" available, or before reaching its token/context limit. Refeeding it only the history, with its latest response added, *can* trigger it to continue the response.
+
+- Refeeding history (including the latest response) revealed that responses *can* be incomplete despite not appearing to be, because it either adds more information or a final ""I hope this was useful!""-style of message.
+
+- It appears that there is a ""sense"" for when it's done responding regardless of ""final"" messages, though ""final"" messages *do* make it stop responding after re-feeding the history.
+
+- It's always worth trying communicating without special prompts to see how it reacts to requests or information.
+
+- Formulating requests in hidden prompts improves usefullness, like in ""### Assistant responds in a single sentence:\n""
+
+If any of this is ever usefull to you, let me know!
+
+Please don't hesitate to comment on/discuss any of this, even if it's just to insult me. \^_^ The more we all can help each other improving and refining, the more we benefit as a whole. I wish I could do all the things I want to try, but money and hardware are my limits. Time, though, I have plenty.",https://www.reddit.com/r/LocalLLaMA/comments/15g5419/what_ive_learned_from_orcamini3bggmlv3q4_1_using/,15g5419,2023-08-02T10:21:46,pszemraj/LocalLLaMA-posts,96521,data/supplemental_scans/20261018-curation-extra/rows-96500.json,0bde2c16c9a2d700af5e64bd1a2dbf5b548a364b8d263d928cd608dda932307e,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=96500&length=100,2026-10-18T23:04:55.196041+00:00
+"70b q3_K_S at 1.4 t/s 32gb cpu ram showcase
+
+### I didn't realize these very large models run  at their reasonable cpu speeds **on a smaller amount of ram.**
+
+This was on xubuntu. The inference speed was 1.4t/s after ingesting ~3000 tokens
+
+Here's my output- https://pastes.io/mwefcnz3jw
+
+ It may be nice to know, it's for those planning to upgrade RAM. A smaller model size with useable output reflections and summarizing will exist for you already. Test it for yourself.
+
+When using a larger quantized model: q3_K_M, I get 0.2t/s.
+So, using q3_K_M, the pc probably swaps portions of the model out and is using swap memory. Does this mean **only** the model fitting in RAM is needed? It will *STILL* be 1.4t/s when summarizing 8k, 16k articles and more with rope hacks?",https://www.reddit.com/r/LocalLLaMA/comments/15794m2/70b_q3_k_s_at_14_ts_32gb_cpu_ram_showcase/,15794m2,2023-07-23T08:24:32,pszemraj/LocalLLaMA-posts,97046,data/supplemental_scans/20261018-curation-extra/rows-97000.json,e58b36e4ffb36ca001133a19793d66f3b11ff6922630a0d0d96a9ca367c9468b,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=97000&length=100,2026-10-18T23:04:55.196041+00:00
+"The Choice of a Particular Generation Parameters Preset Can Make or Break a Model!
+
+ 
+
+Hi all,
+
+I have been experimenting with different LLM models and their ability to do math and solve basic equations. I found that the choice of the Generation Parameters Preset in the Oobabooga webUI can make a big difference in the performance of the models.
+
+Two weeks ago, I downloaded the Nous-Hermes 13B model and tested it with the default preset, which was “LLaMA-Precise” at the time. I was impressed by how well it could handle math problems. However, after I updated the webUI to the latest version, I noticed that the model could no longer do math at all. I checked the settings and saw that the default preset had changed to “Simple-1”. I switched it back to “LLaMA-Precise” and the model regained its mathematical prowess.
+
+This made me curious about whether other models could also benefit from different presets. So I decided to test all the models I have with all the presets available in the webUI. To my surprise, some models that I thought were incapable of doing math actually performed well with certain presets. Here are some examples:  
+
+
+[Preset Template Choice](https://preview.redd.it/jwrbif4p8l8b1.png?width=485&format=png&auto=webp&s=fb7df439ae452c7f633e1cb63a62db8a1d68015c)
+
+ 
+
+Unfortunately, none of the presets worked for the rest of the models I have. So either they are inherently bad at math, or I need to find better settings for them.
+
+I hope this helps anyone who is interested in testing LLM models for math skills. 
+
+I also noticed that these presets can work today, but not the next day. So, I am not sure if its a bug with the Oobabooga webui or something else.  
+
+
+Please share the models you have that can do math and which preset(s) you are using to make them work.
+
+Let me know if you have any questions or suggestions.",https://www.reddit.com/r/LocalLLaMA/comments/14kip27/the_choice_of_a_particular_generation_parameters/,14kip27,2023-06-27T16:43:22,pszemraj/LocalLLaMA-posts,98018,data/supplemental_scans/20261018-curation/rows-98000.json,cdfa354b051cdb66bcd83c4ab23e7f86b33e5fdf882fc6bfb6aa6e4c9a5bc3e6,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=98000&length=100,2026-10-18T23:03:56.299708+00:00
+"Compare TheBloke_WizardLM-13B-V1.0-Uncensored-GPTQ with TheBloke_WizardLM-13B-V1-0-Uncensored-SuperHOT-8K-GPTQ
+
+ExLlamaConfig
+
+config.compress\_pos\_emb = 4.0
+
+config.max\_seq\_len = 8192
+
+**Prompt 5176 tokens**
+
+&#x200B;
+
+https://preview.redd.it/zq15p57crk8b1.png?width=3194&format=png&auto=webp&s=40542966f851f99ec3e48437ec24232fb3aaa479
+
+**TheBloke\_WizardLM-13B-V1-0-Uncensored-SuperHOT-8K-GPTQ**
+
+This code defines a neural network model that takes as input an image represented by the matrix \`X\` and outputs a probability distribution over classes using softmax activation function. The model consists of several layers with different modes such as pooling layer (max or average), fully connected layer (\`fc\`), and convolutional layer (\`blah\`). It also includes backward propagation algorithm for training the weights of the model and computing the cost and accuracy during testing phase. Here is a summary of each part of the code:
+
+&#x200B;
+
+\- Initialize parameters function: Takes a list of dictionaries representing the architecture of the model as inputs and returns a new list of updated dictionary with modeled layers. For each layer it checks whether its type is maxpool or avgpool and updates accordingly. If fc or blah, it just adds to the previous layer's shape without any changes. If none of these types are found, print error message.
+
+\- sigmoid function: Calculates the output value of sigmoid activation function on given input Z, caches intermediate values.
+
+\- sigmoid\\\_backward function: Backpropagate through sigmoid activation function, updating dZ with respect to Z.
+
+\- relu function: Activation function, no caching involved.
+
+\- relu\\\_backward function: Backpropagating through relu activation function, updating dZ with respect to Z.
+
+\- Softmax function: Normalizes the output of linear transformation in forward pass, cache intermediate results.
+
+\- softmax\\\_forward function: Applies softmax activation function on linear transformation result.
+
+\- Linear activation forward: Reshapes Aprev to match next layer's dimensions, applies weighted dot product followed by bias addition. Cache intermediate values if needed.
+
+\- Linear activation backward: Update W, b, db using backpropagated gradients from previous layer.
+
+\- Zero padding function: Pads image to make sure all images have same size before applying convolutional layers.
+
+\- main\\\_algo\\\_forward function: Performs forward propagation for one time step (including pooling). Computes max/average operations where applicable. Caching intermediate values when necessary.
+
+\- main\\\_algo\\\_backward function: Updates weights and biases for current layer based on backpropagated errors. Includes handling cases for different modes like relu or maxpool.
+
+\- distribute\\\_value function: Calculates average value over window.
+
+\- create\\\_mask\\\_from\\\_window function: Creates a mask array indicating which elements are equal to maximum element in a given slice.
+
+\- pool\\\_forward function: Forward propogate max or avg operation depending on mode parameter. Flattens result into shape expected by next layer.
+
+\- compute\\\_cost function: Calculates cross entropy loss between predicted probabilities and true labels.
+
+\- backward\\\_propagation function: Backpropagates through all layers to update weights and biases using gradient descent algorithm.
+
+***TheBloke\_WizardLM-13B-V1.0-Uncensored-GPTQ***
+
+This code defines a neural network model for image classification task with multiple input and output layers that can be trained using backpropagation algorithm to minimize the cost function of cross-entropy loss between predicted logistic regression error. It consists of several functions such as \`initialize\_parameters\`, \`main\_forward\`\_, \`sigmargmax\`, \`softmax\`, \`relu\`, \`linear\_activation\_forward\`, \`pool\_backward\`, \`algo\_forward\`, \`softmax\`, \`linear\_backward\`, \`zero\`, \`relu\`, \`distribute\`, \`create\_window\`, \`mask\_from\_window\`, \`average\_value\`, \`pool\_forward\_propogtion\`, \`compute\_cost\`, \`backward\_propagion\`, \`update\_parameters\`, \`predict\`, \`train\_min\_batch\`, \`accuracy\`. The inputs are given in shape \`(X\_train\`, \`Y\_train\`, \`Y\_test\`, \`logger\`, \`num\_epoch\`, \`learning\_rate\`, \`batch\_size\`, \`experiments\`, \`n\_iterations\`, \`layer\`, \`W\`, \`b\`, \`b\`, \`db\`, \`dA\`, \`Z\`, \`dA\`, \`f\`, \`a\`, \`shape\`, \`p\`, \`s\`, \`stride\`, \`pad\`, \`H\`, \`n\_prev\`, \`W\`, \`C\`, \`n\_prev\`, \`mode\`, \`f\`, \`m\`, \`n\_H\`, \`n\_prev\`, \`n\_W\`, \`n\_C\`, \`m\_\`, \`dtype\`, \`shape\`, \`n\_ap\`, \`h\`, \`w\`, \`c\`, \`vert\_start\`, \`horiz\`, \`vert\_start\`, \`vert\_end\`, \`i\`, \`h\`, \`w\`, \`f\`, \`f\`, \`vert\_start\`, \`horiz\_start\`, \`vert\_start\`, \`v\`, \`horiz\_end\`, \`i\`, \`mask\`, \`prev\`, \`prev\`, \`prev\`, \`create\_window\`, \`max\`, \`avgaussian\`, \`none\`, \`relu\`, \`zero\`, \`zeros\_,\`
+
+**It works**
+
+I was spectical of the combine of two LoRA before trying. After tried serveral times, I am convinced SUPERHOT-8K finetune is necessary to make the compressed rotary positional embedding working with 8k context. Without finetune on the compressed rotary positional embedding, the generated text is ""semi-coherent"", but not useful at all.
+
+&#x200B;",https://www.reddit.com/r/LocalLLaMA/comments/14kfsi8/compare_thebloke_wizardlm13bv10uncensoredgptq/,14kfsi8,2023-06-27T14:49:29,pszemraj/LocalLLaMA-posts,98021,data/supplemental_scans/20261018-curation/rows-98000.json,cdfa354b051cdb66bcd83c4ab23e7f86b33e5fdf882fc6bfb6aa6e4c9a5bc3e6,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=98000&length=100,2026-10-18T23:03:56.299708+00:00
+"llama.cpp and thread count optimization [Revisited]
+
+Last week, I showed the preliminary results of my attempt to get the best optimization on various language models on my CPU-only computer system.
+
+My computer is a i5-8400 running at 2.8GHz with 32 Gig of RAM. I don't have a GPU. My CPU has six (6) cores without hyperthreading. Therefore, I have six execution cores/threads available at any one time.
+
+My initial results suggested lower than the number of cores is best for optimization. The following results don't support that. I still think that it is possible if you are running other programs that are using cores, then lower thread count might be the optimal. But, in this test, I tried to avoid running anything that might interfere.
+
+There are two takeaways from these results:
+
+1. The best number of threads is equal to the number of cores/threads (however many hyperthreads your CPU supports).
+
+2. Good performance (but not great performance) can be seen for mid-range models (33B to 40B) on CPU-only machines.
+
+Hopefully these results will help you pick a model that can run well on your CPU-only machine.
+
+https://preview.redd.it/fw6ayg4lpd8b1.png?width=1765&format=png&auto=webp&s=e77447322604bd14b613ae220e0f7a6d5433988d
+
+&#x200B;",https://www.reddit.com/r/LocalLLaMA/comments/14jk108/llamacpp_and_thread_count_optimization_revisited/,14jk108,2023-06-26T15:15:06,pszemraj/LocalLLaMA-posts,98058,data/supplemental_scans/20261018-curation/rows-98000.json,cdfa354b051cdb66bcd83c4ab23e7f86b33e5fdf882fc6bfb6aa6e4c9a5bc3e6,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=98000&length=100,2026-10-18T23:03:56.299708+00:00
+"When did this happen? re: Oobabooga, AtuoGPTQ vs GPTQ-for-Llama
+
+I updated my local install of Ooba a few days ago, and saw that the model loading options had changed, and there are now several methods of loading models. I continued using GPTQ-for-Llama, because I'm pretty sure that's what it was using to load my favorite quantized models (mostly from TheBloke) and things ran pretty much as normal, except that I did have to edit a couple references tot he training tab in [server.py](https://server.py) to avoid some crashing that was going on after the update. Ona  whim, today I removed the pound signs I had thrown in to comment out the sections, and updated again and everything seems to be working. None of that is the point.
+
+At any rate, when I went to load up a model (don't think it was one I had tried yet, so no saved settings) I noticed after the fact that it had loaded with AutoGPTQ instead of GPTQ-for-Llama. Since it didn't error out, which is something I had come to expect with trying to load models with anything other than GPTQ-for-Llama, I switched over to the text generation tab and gave it a whirl. My usual intro prompt for a new model is to ask for a detailed list of female-fronted rock and metal bands.
+
+I immediately noticed that it was generating ridiculously fast. I went to the parameters tab to increase new token size (lets me get a more accurate measure of generation speed, because with short replies, I'm losing a little time in the short delay between hitting enter and a reply starting.) This 13B model  was generating around 11tokens/s. For reference, I'm used to 13B models generating at 2T/s, and 7B models at 4 T/s. So I loaded up a 7B model and it was generating at 17 T/s! I switched back to a 13B model (ausboss\_WizardLM-13B-Uncensored-4bit-128g this time) and am getting 13-14 T/s. And switching to GPTQ-for-Llama to load the same model, I'm back to the 2 T/s that I've been getting for quite a while.
+
+So when did this happen? Why have I been struggling to choose between less coherent, but zippier answers from 7B or better, but slower answers from 13B, when this option was apparently added that delivers blistering speeds with the same models. I tried searching this sub, and the Ooba sub has gone dark, so I don't see much info about it.
+
+edit: Using a 3060 12GB, on a system with an i7 and 32GB RAM, by the way.
+
+And on the advice of the first 2 responders, I just installed and tried out ExLlama, and it's even faster. Getting 19-20 T/s on that same 13B model. This is insane. I was losing interest in trying out new models, because they were all so slow.
+
+edit2: Sorry, Thebloke, if you come to this thread because of the tag that was in OP. Removed.",https://www.reddit.com/r/LocalLLaMA/comments/14iz0p9/when_did_this_happen_re_oobabooga_atuogptq_vs/,14iz0p9,2023-06-25T22:13:32,pszemraj/LocalLLaMA-posts,98087,data/supplemental_scans/20261018-curation/rows-98000.json,cdfa354b051cdb66bcd83c4ab23e7f86b33e5fdf882fc6bfb6aa6e4c9a5bc3e6,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=98000&length=100,2026-10-18T23:03:56.299708+00:00
+"Bigger isn't always better: Smaller LLMs and quants can deliver better outputs
+
+I wanted to share an interesting observation I've made recently regarding the size of language models and quantization formats. While I used to believe that bigger models and quants are always better, my evaluations have shown otherwise.
+
+Contrary to popular belief, larger language models are not always superior. Through extensive experiments comparing different sizes and quants, I found that smaller models/quants can often deliver better outputs. The analogy I like to use is that the smartest person in the room isn't always the most eloquent or effective communicator, or the most fun person to talk to.
+
+In my evaluations, I compared various 33B and 65B models and their quants, by chatting for hours with them using the same script and deterministic settings to remove randomness.
+
+Here are the models and quants I compared in detail - these are some of the very best models (IMHO, after much testing and comparing, *the* best) and since they're available in multiple sizes and various quants, it's possible to compare their different versions directly:
+
+- TheBloke_airoboros-33B-gpt4-1.2-GGML/airoboros-33b-gpt4-1.2.ggmlv3.q3_K_M.bin
+- TheBloke_airoboros-65B-gpt4-1.2-GGML/airoboros-65B-gpt4-1.2.ggmlv3.q3_K_M.bin
+- TheBloke_airoboros-65B-gpt4-1.2-GGML/airoboros-65B-gpt4-1.2.ggmlv3.q4_K_M.bin
+- TheBloke_airoboros-65B-gpt4-1.2-GGML/airoboros-65B-gpt4-1.2.ggmlv3.q5_K_M.bin
+- TheBloke_guanaco-33B-GGML/guanaco-33B.ggmlv3.q3_K_M.bin
+- TheBloke_guanaco-33B-GGML/guanaco-33B.ggmlv3.q4_K_M.bin
+- TheBloke_guanaco-33B-GGML/guanaco-33B.ggmlv3.q5_K_M.bin
+- TheBloke_guanaco-65B-GGML/guanaco-65B.ggmlv3.q3_K_M.bin
+- TheBloke_guanaco-65B-GGML/guanaco-65B.ggmlv3.q4_0.bin
+
+**Observation 1:** Different quantization formats produce very different responses even when applied to the same model and prompt. Each quant I tested felt like a unique model in its own right.
+
+**Observation 2:** In my tests, both Airoboros and Guanaco 33B models with the q3_K_M quant outperformed even their larger model and quant counterparts.
+
+These findings were surprising to me, highlighting the variability in outputs between different quants and the effectiveness of smaller models/quants.
+
+It remains unclear whether this variability is due to inherent randomness caused by different model sizes and quantization in general, or possibly issues with these larger quants I tested. However, the key takeaway is that blindly opting for the largest model/quant isn't always the best approach. I recommend comparing different sizes/quants of your preferred model to determine if a smaller version can actually produce better results. Further testing with different models and quants is needed, and I encourage others to conduct their own evaluations.
+
+What are your thoughts and experiences on this matter? Have you, too, encountered instances where smaller models or quants outperformed their larger counterparts? Let's discuss and share our insights!
+
+**TL;DR:** My evaluations have shown that smaller LLMs and quants can deliver better outputs when chatting with the AI. While bigger models may be smarter, the smartest person isn't always the most eloquent. Evaluate models yourself by comparing different sizes/quants rather than assuming that bigger is always better!
+
+**UPDATE 2023-06-27:** So u/Evening_Ad6637 taught me that Mirostat sampling isn't as deterministic as I thought, and might actually have impacted the bigger models negatively. I'm now in the process of redoing my tests with a truly deterministic preset (temperature 0, top_p 0, top_k 1), which takes a long time.
+
+However, it's already become clear to me that the quantization differences persist, and **bigger still isn't always better**. That could be attributed to randomness, though, as even with a fully deterministic preset there's still the difference between models and even quants that affects generations, and by changing the prompt just slightly, the outcome is changed greatly.",https://www.reddit.com/r/LocalLLaMA/comments/14iw25d/bigger_isnt_always_better_smaller_llms_and_quants/,14iw25d,2023-06-25T20:16:12,pszemraj/LocalLLaMA-posts,98092,data/supplemental_scans/20261018-curation/rows-98000.json,cdfa354b051cdb66bcd83c4ab23e7f86b33e5fdf882fc6bfb6aa6e4c9a5bc3e6,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=98000&length=100,2026-10-18T23:03:56.299708+00:00
+"PSA: New Nvidia driver 536.23 still bad, don't waste your time
+
+The driver was just released and I tried it hoping the issue was resolved. No luck, it's still way slower than 531.79 when running close to max VRAM capacity (long context length).
+
+This was a quick test on a 4090, Win11, Windows installation of oobabooga (not WSL), AutoGPTQ.
+
+(I'm just a dabbler so maybe it's good if another user tests and confirms this)",https://www.reddit.com/r/LocalLLaMA/comments/1498gdr/psa_new_nvidia_driver_53623_still_bad_dont_waste/,1498gdr,2023-06-14T13:52:01,pszemraj/LocalLLaMA-posts,98500,data/supplemental_scans/20261018-curation/rows-98500.json,9730404c96c04516b22c6c46cd71e7d9e242f0bce0d6fd57101e27058233cbc0,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=98500&length=100,2026-10-18T23:03:56.299708+00:00
+"Local models on laptops: AMD 6900HS/32GB/Nvidia 3050TI 4GB vs. Apple M2/24GB vs.
+
+Dear respected community,
+
+In awe of recent developments I, like many, wonder how I can most effectively run models on end-user laptop hardware for personal use.
+
+I will be upgrading my laptop to either a
+
+Asus X13 with AMD 6900HS, 32GB RAM (LPDDR5 6400), Nvidia 3050TI or a   
+MacBook Air with M2, 24GB RAM, 8 GPU
+
+Given GGML has shown promise with GPU offloading, is it reasonable to assume I can run 30/33B models on the Asus X13? I suppose it would be preferable to the MacBook.
+
+By the way: Thank you for everything and everyone bringing forward local LLMs!
+
+**EDIT 2:** I actually got both laptops at very good prices for testing and will sell one - I'm still thinking about which one.
+
+**Testing the Asus X13, 32GB LPDDR5 6400, Nvidia 3050TI 4GB vs. the MacBook Air 13.6'', M2, 24GB, 10 Core GPU**
+
+* **In the end, the MacBook is clearly faster with 9.47 tokens per second. The Asus X13 runs at 5.2 tokens per second.**
+* **However, the MacBook only runs q4\_0 models at the moment and most 13B models can be run; on the Asus, 30/33B models can be run.**
+* **EDIT 3: smaller 33B models run on the MacBook as well using kobold.cpp - at the moment without GPU/Metal/OpenCL:**
+   * **vicuna-33b-preview.ggmlv3.q3\_K\_S.bin with 1.6 tokens per second**
+   * **It also runs models of other architectures not supported by llama.cpp on MacOS with Metal, e.g.,**
+      * **WizardCoder-15B-1.0.ggmlv3.q4\_0 with 4 tokens per second**
+      * **starchat-beta.ggmlv3.q4\_0 both with 4.3 tokens per second**
+* **With the 4GB Nvidia GPU the Asus is 16% faster compared to CPU only.**
+
+Note:
+
+* Testing with wizardlm-13b-v1.0-uncensored.ggmlv3.q4\_0.bin (reason: MacBook with llama.cpp and metal supports only q4\_0 (and certain others) at this time).
+* On the Asus X13 with CUDA max. 14 of 43 layers could be offloaded to the 4GB GPU
+* On the Asus X13 with OpenCL max. 19 of 43 layers could be offloaded to the 4GB GPU
+* OS: Pop OS / Ubuntu 22.04 and macOS 13.4.1
+* llama.cpp, compiled from Git repository on 2023-06-23
+
+Results for wizardlm-13b-v1.0-uncensored.ggmlv3.q4\_0:
+
+* Asus X13, CUDA, 14/43 layers: 5.0 tokens per second
+* **Asus X13, OpenCL, 19/43 layers: 5.2 tokens per second**
+* Asus X13, CPU only: 4.5 tokens per second
+* **MacBook M2, Metal: 9.47 tokens per second**
+
+Asus X13, CUDA, 14/43 layers:
+
+llama.cpp-cuda/main -t 16 -ngl 14 -m wizardlm-13b-v1.0-uncensored.ggmlv3.q4\_0.bin --color -c 2048 --temp 0.7 --repeat\_penalty 1.1 -n -1 -p ""### Instruction: Write a story about llamas\\n### Response:""
+
+llama\_print\_timings: prompt eval time =  1107.44 ms /    17 tokens (   65.14 ms per token,    15.35 tokens per second)
+
+llama\_print\_timings:        eval time = 80015.33 ms /   402 runs   (  199.04 ms per token,     5.02 tokens per second)
+
+llama\_print\_timings:       total time = 81372.60 ms
+
+Asus X13, CPU 6900HS:
+
+llama.cpp/main -t 16 -ngl 0 -m wizardlm-13b-v1.0-uncensored.ggmlv3.q4\_0.bin --color -c 2048 --temp 0.7 --repeat\_penalty 1.1 -n -1 -p ""### Instruction: Write a story about llamas\\n### Response:""
+
+llama\_print\_timings: prompt eval time =  1234.49 ms /    17 tokens (   72.62 ms per token,    13.77 tokens per second)
+
+llama\_print\_timings:        eval time = 74731.55 ms /   337 runs   (  221.76 ms per token,     4.51 tokens per second)
+
+llama\_print\_timings:       total time = 76175.37 ms
+
+X13, OpenGL, 19/43 Layers:
+
+llama.cpp/main -t 16 -ngl 19 -m wizardlm-13b-v1.0-uncensored.ggmlv3.q4\_0.bin --color -c 2048 --temp 0.7 --repeat\_penalty 1.1 -n -1 -p ""### Instruction: Write a story about llamas\\n### Response:""
+
+llama\_print\_timings: prompt eval time =  1303.10 ms /    17 tokens (   76.65 ms per token,    13.05 tokens per second)
+
+llama\_print\_timings:        eval time = 82414.65 ms /   430 runs   (  191.66 ms per token,     5.22 tokens per second)
+
+llama\_print\_timings:       total time = 83987.24 ms
+
+X13, CPU 6900HS, with OpenBLAS:
+
+llama.cpp/main -t 16 -b 512 -m wizardlm-13b-v1.0-uncensored.ggmlv3.q4\_0.bin --color -c 2048 --temp 0.7 --repeat\_penalty 1.1 -n -1 -p ""### Instruction: Write a story about llamas\\n### Response:""
+
+llama\_print\_timings: prompt eval time =  1215.86 ms /    17 tokens (   71.52 ms per token,    13.98 tokens per second)
+
+llama\_print\_timings:        eval time = 124515.19 ms /   564 runs   (  220.77 ms per token,     4.53 tokens per second)
+
+llama\_print\_timings:       total time = 126082.17 ms
+
+MBA, M2, Metal, 10c GPU
+
+llama.cpp/main -t 10 -ngl 1 -m wizardlm-13b-v1.0-uncensored.ggmlv3.q4\_0.bin --color -c 2048 --temp 0.7 --repeat\_penalty 1.1 -n -1 -p ""### Instruction: Write a story about llamas\\n### Response:""
+
+llama\_print\_timings: prompt eval time = 18236,60 ms /    17 tokens ( 1072,74 ms per token,     0,93 tokens per second)
+
+llama\_print\_timings:        eval time = 40985,60 ms /   388 runs   (  105,63 ms per token,     9,47 tokens per second)
+
+llama\_print\_timings:       total time = 59520,43 ms
+
+(**EDIT 1**: Summary of responses
+
+Thank you so much for all the comments and real-world performance measurements!
+
+I'm leaning towards the X13 since it does not seem to be slower in terms of processor and RAM performance compared to M2, has more RAM, has an additional GPU. Further, it seems the 4GB GPU will provide little performance benefit over the 6900HS alone, but it will be a few percent and the card is a nice addition in any case. The Asus X13 should run most models in GGML format with 13B or 30B and quantization. The MacBook Air should run most models in GGML format or other formats with 13B (and possibly with heavy quantization barely also larger models); i.e., not only GGML can be run as up to half of the integrated RAM can be utilized for the GPU (that is, the MacBook with 24GB of RAM is somewhat comparable to having \~12GB VRAM).
+
+Other suggestions, possibly very well suited, are the Asus G14 (more VRAM, faster GPU/CPU, however, larger and heavier than the small Asus X13), a MacBook with M1, M1 Pro, M1 Max or M2 32 GB (or even 64GB should be speedy for LLMs, in M1 Max especially due to very good memory bandwidth, possibly a used one is not that expensive), other 15 inch laptops (which are, for me, too large and heavy when traveling).
+
+All of the above assumes casual use (question, answer, question, ... scenario without batch queries, learning etc.) of models in GGML format. For other formats, either lots of VRAM or a MacBook with >= 32GB seem to be required at a minimum.
+
+Note also this is a rough characterization based on the current state - implementations could change and allow for better performance when using AMD, optimizations for Nvidia are not integrated everywhere at this point, and Macs could also see increases in performance with more flexible offloading / possibly being able to utilize more than 1/2 of RAM for GPU in the future.
+
+I will report back on the results once I have bought a laptop and have it up and running with Ubuntu 22.04 (or Pop!\_OS / Mint).)
+
+Regards
+
+Felix",https://www.reddit.com/r/LocalLLaMA/comments/1493fes/local_models_on_laptops_amd_6900hs32gbnvidia/,1493fes,2023-06-14T09:34:34,pszemraj/LocalLLaMA-posts,98506,data/supplemental_scans/20261018-curation/rows-98500.json,9730404c96c04516b22c6c46cd71e7d9e242f0bce0d6fd57101e27058233cbc0,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=98500&length=100,2026-10-18T23:03:56.299708+00:00
+"British/American spelling of one word changes the output on the same seed.
+
+LLaMA seems to deal well with alternate spellings and typos, but I wondered if using the British or American spellings of a word would change the output. It turns out it does.
+
+Using the Openblas version of llama.cpp (cublas doesn't give deterministic results still, afaik), I chose the seed 256 and used the same settings each time with the prompt:
+
+>write a story about a pigeon having a day out in the city centre
+
+tulu-30b.ggmlv3.q5_K_M.bin wrote a nice little kid's story and understood centre was the same as center, and used the word center in the story.
+
+Then I changed the prompt to:
+
+>write a story about a pigeon having a day out in the city center
+
+Totally different story although obviously in the same vein.",https://www.reddit.com/r/LocalLLaMA/comments/148df70/britishamerican_spelling_of_one_word_changes_the/,148df70,2023-06-13T11:42:21,pszemraj/LocalLLaMA-posts,98557,data/supplemental_scans/20261018-curation/rows-98500.json,9730404c96c04516b22c6c46cd71e7d9e242f0bce0d6fd57101e27058233cbc0,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=98500&length=100,2026-10-18T23:03:56.299708+00:00
+"My results using a Tesla P40
+
+TL;DR at bottom
+
+So like many of you, I feel down the AI text gen rabbit hole.  My wife has been severely addicted to all things chat AI, so it was only natural.  Our previous server was running a 3500 core i-5 from over a decade ago, so we figured this would be the best time to upgrade.  We got a P40 as well for gits and shiggles because if it works, great, if not, not a big investment loss and since we're upgrading the server, might as well see what we can do.
+
+For reference, mine and my wife's PCs are identical with the exception of GPU.
+
+Our home systems are:
+
+Ryzen 5 3800X, 64gb memory each.  My GPU is a RTX 4080, hers is a RTX 2080.
+
+Using the Alpaca 13b model, I can achieve \~16 tokens/sec when in instruct mode.  My wife can get \~5 tokens/sec (but she's having to use the 7b model because of VRAM limitations).  She also switched to mostly CPU so she can use larger models, so she hasn't been using her GPU.
+
+We initially plugged in the P40 on her system (couldn't pull the 2080 because the CPU didn't have integrated graphics and still needed a video out).  Nvidia griped because of the difference between datacenter drivers and typical drivers.  Once drivers were sorted, it worked like absolute crap.  Windows was forcing shared VRAM, and even though we could show via the command 'nvidia-smi' that the P40 was being used exclusively, either text gen or windows was forcing to try to share the load through the PCI bus.  Long story short, got \~2.5 tokens/sec with the 30b model.
+
+Finished building the new server this morning.  i7 13700 w/64g ram.  Since this was a dedicated box and with integrated graphics, we went solid datacenter drivers.  No issues whatsoever.  13b model achieved \~15 tokens/sec.  30b model achieved 8-9 tokens/sec.  When using text gen's streaming, it looked as fast as ChatGPT.
+
+TL;DR
+
+7b alpaca model on a 2080 : \~5 tokens/sec  
+13b alpaca model on a 4080: \~16 tokens/sec  
+13b alpaca model on a P40: \~15 tokens/sec  
+30b alpaca  model on a P40: \~8-9 tokens/sec
+
+Next step is attaching a blower via 3D printed cowling because the card gets HOT despite having some solid airflow in the server chassis then, picking up a second P40 and an NVLink bridge to then attempt to run a 65b model.",https://www.reddit.com/r/LocalLLaMA/comments/13n8bqh/my_results_using_a_tesla_p40/,13n8bqh,2023-05-20T20:47:26,pszemraj/LocalLLaMA-posts,99529,data/supplemental_scans/20261018-curation/rows-99500.json,7774c9ccd424523a24d82958050cee8fe3164addaa8c76e8007377ceb7b93bf9,https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=99500&length=100,2026-10-18T23:03:56.299708+00:00

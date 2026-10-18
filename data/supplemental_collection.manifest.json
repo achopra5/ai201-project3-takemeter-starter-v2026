@@ -1,0 +1,32 @@
+{
+  "collected_utc": "2026-10-18T23:06:19.599403+00:00",
+  "dataset": "pszemraj/LocalLLaMA-posts",
+  "license_as_dataset_card": "odc-by",
+  "supplemental_candidates": 15,
+  "raw_scan_rows": 1100,
+  "scan_manifests": [
+    "data/supplemental_scans/20261018-curation/scan_manifest.json",
+    "data/supplemental_scans/20261018-curation-extra/scan_manifest.json"
+  ],
+  "selected_archive_row_indices": [
+    "94530",
+    "94533",
+    "95052",
+    "96089",
+    "96521",
+    "97046",
+    "98018",
+    "98021",
+    "98058",
+    "98087",
+    "98092",
+    "98500",
+    "98506",
+    "98557",
+    "99529"
+  ],
+  "selection": "Title catalog used for retrieval only. Codex read the full title/body of each selected post and proposed technical_report using unchanged primary-purpose rules. No human verification claimed.",
+  "original_collection_rerun": false,
+  "full_text_policy": "Exact title + two newlines + full archived selftext, no truncation; exact API response bytes retained.",
+  "sampling_limit": "Targeted historical technical-report enrichment is not an estimate of organic subreddit prevalence. Same-author and related-topic leakage remains a split-time risk."
+}

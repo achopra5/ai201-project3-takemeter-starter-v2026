@@ -1,0 +1,10 @@
+{
+  "dataset": "pszemraj/LocalLLaMA-posts",
+  "archive_posts": 100679,
+  "pages_scanned": 9,
+  "n_candidates": 320,
+  "seed": 20261018,
+  "collected_utc": "2026-10-18T22:12:11.484992+00:00",
+  "labels": "NONE \u2014 all annotations remain pending",
+  "selection": "Full text only, complete title+body, no truncation, no link-only posts."
+}

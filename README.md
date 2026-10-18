@@ -104,48 +104,41 @@ TakeMeter is a text classifier for public **r/LocalLLaMA** submissions. Given th
 
 ## The Dataset
 
-<!-- Where you collected from, how you labelled, your counts, and three hard
-     cases. -->
+<!-- MILESTONE4_STATUS_START -->
+**Milestone 4 status: READY.** 0 selected AI proposals await a recorded review decision or attestation.
+Selected verified posts: 200, including all 20 unchanged cold annotations. Selected human-reviewed AI labels: 180, of which 180 are covered by offline batch attestation. Individual CLI review events: 0; offline attestation events: 1. No training has been started.
 
-**Where the posts came from:**
+**Curated distribution** (all selected labels review-verified):
 
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+- `technical_report`: 36 (18.00%).
+- `help_request`: 58 (29.00%).
+- `discussion`: 51 (25.50%).
+- `resource_share`: 55 (27.50%).
 
-**Counts per label:**
+Projected total: 200; projected balance: PASS. Retain all usable non-help posts; select 58 help requests, including 13 cold help requests, using seed 20261018.
+Supplemental candidates: 15. Help reserves: 128. Parked unreviewed proposals: 132 (including unselected help and proposed exclusions).
+Only selected rows require review for export. Unselected proposals remain in the audit; they are never marked verified or unsuitable just because they were not sampled.
+<!-- MILESTONE4_STATUS_END -->
 
-| Label | Count | Share |
-|---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+**Source and collection:** The frozen original pool contains 320 r/LocalLLaMA submissions from the [pszemraj/LocalLLaMA-posts archive](https://huggingface.co/datasets/pszemraj/LocalLLaMA-posts). Its collection script was **not rerun**, and the original queue, candidates, proposals, collection manifest, independent notes and exclusions remain unchanged. A separate supplemental search retrieved 11 archive pages (1,100 scan rows) from historical 2023 material, used titles only to locate leads, then read the full text of each selected candidate. This added **15 distinct proposed technical reports**, stored separately in [data/supplemental_candidates.csv](data/supplemental_candidates.csv) and [data/supplemental_proposals.csv](data/supplemental_proposals.csv). Full API response bytes, request URLs, retrieval times, row indices and SHA-256 checksums are retained under [data/supplemental_scans](data/supplemental_scans/). The selected candidates have complete stored title/body text and no API truncation flags. They are real archived submissions, not generated examples, but live Reddit availability/authorship was not independently reauthenticated.
 
-**Three hard cases**
+**Retention and help sampling:** Keep **every** usable `technical_report`, `discussion` and `resource_share`; do not impose a quota or cap on these categories. Preserve all 20 original cold rows, including all 13 cold help requests. Sample only the remaining `help_request` posts, using fixed seed **20261018** and ascending SHA-256 of `seed:source_id` as a stable pseudorandom rank. This is independent of post text, review order, perceived difficulty and model performance. Choose the **smallest help count** that produces at least 200 posts and satisfies the exact 15–40% limits for all four classes. If the retained classes require more than 200 posts, increase the total. If no help count works, report the conflict and obtain more genuine examples or finish resolving pending labels; do not drop or relabel non-help posts to force balance.
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
+**Curation and review provenance:** The selected composition is 36 technical reports, 51 discussions, 55 resource shares and 58 help requests (13 cold + 45 sampled), for 200 posts. The reviewer reports completing the 180 selected AI proposals offline with no corrections. Record that approval with `.venv/bin/python scripts/review_labels.py attest-offline --reviewer "Adi" --expected-count 180 --export`, which requires explicit terminal confirmation of the exact source/proposal snapshot. The status block above and audit show whether confirmation has actually been recorded; the user's report alone does not create an event. The other 128 help requests remain reserves, and four parked AI-proposed exclusions remain outside this exact batch and unreviewed. The original three exclusions stay unchanged. The balanced enrichment does not estimate organic subreddit prevalence.
 
-**1.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+**Preservation and AI assistance:** The original input backup is [data/backups/20261018T223001Z](data/backups/20261018T223001Z/sha256.json). Before updating curation, the prior data and workflow were backed up again in [data/backups/curation-20261018T230224Z](data/backups/curation-20261018T230224Z/sha256.json). All original annotations and acceptance thresholds remain unchanged. Codex previously read each of the 297 undecided original posts and now read each of the 15 added candidates in full. Every new annotation remains `ai_suggested`; none has been marked human-verified by the assistant. Real Reddit posts can themselves contain model-generated text, which does not imply independent human-authored source prose.
 
-**2.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+**Human review and recalculation:** Run `python3 scripts/review_labels.py review --curated --reviewer "Adi"`; see [REVIEWING.md](REVIEWING.md). The full post appears before the AI suggestion. The resumable queue reviews non-help categories first, then only currently selected help requests. Each actual acceptance, correction, exclusion or reopened decision triggers recalculation of the class counts, feasible total and help sample, and refreshes the saved queue, audit, validation report and status block. Replacements are drawn from the same seeded order. Any human-verified non-help post is retained even if it began as an unselected help proposal. Unselected help proposals remain unchanged in the audit; they are not deleted or relabeled as unsuitable.
 
-**3.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+**Audit and export:** [data/annotation_audit.csv](data/annotation_audit.csv) retains all 335 sources, original notes, proposed labels, current review decisions and selection reasons. [data/curation_selection.csv](data/curation_selection.csv) records the selected and reserve IDs, seed and ranks; [data/curated_review_queue.csv](data/curated_review_queue.csv) contains only pending intended inclusions. [data/curation_manifest.json](data/curation_manifest.json) fingerprints the supplemental inputs and records the strategy. [data/validation_report.md](data/validation_report.md) distinguishes full-pool, selected projected and selected verified distributions. Export with `python3 scripts/review_labels.py export` only after actual review; it refuses unreviewed selected rows or an infeasible/unbalanced set. It writes exactly `text,label,note` to a single unsplit `labels.csv`, preserving cold notes exactly and using `ai_suggested; human_verified` for individual CLI reviews or `ai_suggested; human_verified_offline` with an attestation ID for reviewer-attested offline approval. Unselected unreviewed help does not block export. Criteria 1–3 and 5 remain unevaluated. No split, baseline or training was run.
+
+**Three difficult real cases (original AI proposals; current review state is in the audit):**
+
+- [Discuss GPU configs | Why do I get 40 tokens / sec on a rtx 3060!?](https://www.reddit.com/r/LocalLLaMA/comments/137x4qg/discuss_gpu_configs_why_do_i_get_40_tokens_sec_on/) — `technical_report` versus `help_request`. Detailed working server configuration, model comparison and generation log remain informative beyond the closing speed question. Review provenance: see the audit and case log.
+- [Fatty Alpaca: alpaca-lora-65B GGML, quantised to 4bit and 2bit](https://www.reddit.com/r/LocalLLaMA/comments/12sqo3r/fatty_alpaca_alpacalora65b_ggml_quantised_to_4bit/) — `resource_share` versus `technical_report`. Announces quantized model artifacts; timings and sample outputs support the release. Review provenance: see the audit and case log.
+- [Speed difference between 8bit and 4bit](https://www.reddit.com/r/LocalLLaMA/comments/122218d/speed_difference_between_8bit_and_4bit/) — `help_request` versus `technical_report`. Timings and installation changes mainly diagnose an unresolved suspected CUDA/setup problem. Review provenance: see the audit and case log.
+
+More boundary cases and suitability decisions are documented in [data/ambiguous_cases.md](data/ambiguous_cases.md). Synthetic stress-test examples remain outside the real-post dataset.
 
 ---
 
@@ -178,17 +171,17 @@ of next unit's variance. -->
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* AI-assisted labeling of the remaining real posts using the existing primary-purpose taxonomy, preserving independent annotations.
+- *What came back:* 297 original individually reasoned proposals and 15 supplemental technical-report proposals, all stored separately with `ai_suggested` provenance and competing interpretations. The four original AI-proposed exclusions remain unreviewed.
+- *What I changed:* Review decisions and corrections are recorded in the audit and decision journal as I make them. At preparation, all proposals were pending. The original cold annotations and exclusions were preserved.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* A resumable human-review workflow and honest validation against the five existing criteria.
+- *What came back:* A curated review/export CLI that retains all usable non-help posts, samples help with a recorded seed, recalculates after every decision, and gates export on actual review and balance. The selected 200-post composition passes balance; the audit distinguishes individual CLI reviews from a reviewer-attested offline batch approval, subject to terminal confirmation.
+- *What I changed:* The status block and validation report track outstanding review and dataset construction decisions; no model training has been started for this milestone.
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** The first 20 usable posts were labeled independently before AI suggestions. The remaining 297 original decisions and 15 supplemental technical-report labels were proposed by Codex after reading each full stored post; none is an independent or human-verified annotation until actual review. Offline verification, if confirmed, records the reviewer’s completed-review attestation in one event, not an independently observed or individually timestamped CLI review. AI-assisted review does not establish inter-annotator agreement, and the separate staff-taxonomy exercise has not been performed here.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 

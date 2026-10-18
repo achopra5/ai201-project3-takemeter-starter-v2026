@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "created_utc": "2026-10-18T22:36:49.603473+00:00",
+  "backup_directory": "data/backups/20261018T223001Z",
+  "backup_sha256": {
+    "annotation_queue.csv": "1e0320bcbe00a004c11d24255863c616fa8e325f0a4944c9f68a663fa869bfef",
+    "candidate_posts.csv": "22546b263830c40bdd4d3d10214f7f2875dc908eac3f029d4a93d207c1f26cbe",
+    "candidate_posts.manifest.json": "a50c1a9d23c8d32383fe7c18ecff7ea45681e27434d0e22b9f8953fc8eb9b20d"
+  },
+  "pinned_files": {
+    "data/annotation_queue.csv": "1e0320bcbe00a004c11d24255863c616fa8e325f0a4944c9f68a663fa869bfef",
+    "data/candidate_posts.csv": "22546b263830c40bdd4d3d10214f7f2875dc908eac3f029d4a93d207c1f26cbe",
+    "data/candidate_posts.manifest.json": "a50c1a9d23c8d32383fe7c18ecff7ea45681e27434d0e22b9f8953fc8eb9b20d",
+    "data/proposed_annotations.csv": "77f70a6b9caf63c24770bb47a8f8e7d89255040e917a9d4810ffaa3c067d0bf2",
+    "criteria.md": "3c5a64ffffcd5bbda4962ab31eae82bf83c40faa4b12f66abdf2ad9ffe702af0",
+    "taxonomy_stress_test.md": "92ef686e2a8318671f1c8ea6f6b11c68d2a8aa7f7b67efd3154dce6e15a01c1d"
+  },
+  "taxonomy": "README.md Label Taxonomy: original definitions and ordered primary-purpose rules; unchanged in this milestone.",
+  "ai_assistance": "Codex AI assistant read every full stored title/body for queue rows 24–320 and proposed each decision individually. No flair or keyword-only assignment; no collection or training rerun.",
+  "review_policy": "Only original 20 annotations are cold. AI proposals are pending until an interactive human review decision. Human review is AI-assisted and is not independent agreement.",
+  "model_identifier": "Not separately recorded by this session",
+  "original_cold_queue_rows": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20,
+    21,
+    22,
+    23
+  ],
+  "original_excluded_queue_rows": [
+    1,
+    12,
+    19
+  ],
+  "taxonomy_sha256": "6e692ecd0cd8ec30c41af45af580438af42340795566e45766b9749b05871341"
+}

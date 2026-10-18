@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "help_seed": 20261018,
+  "minimum_total": 200,
+  "retain_labels": [
+    "technical_report",
+    "discussion",
+    "resource_share"
+  ],
+  "help_sampling": "Ascending SHA-256 of decimal seed + colon + source_id; all cold help rows forced in. Stable ranking independent of review order, post content and model difficulty.",
+  "backup_directory": "data/backups/curation-20261018T230224Z",
+  "original_pool_size": 320,
+  "supplemental_candidate_file": "data/supplemental_candidates.csv",
+  "supplemental_proposal_file": "data/supplemental_proposals.csv",
+  "pinned_files": {
+    "data/supplemental_candidates.csv": "c539fd69c28340733e2c0c86372a57fdb2670b4c352fc9ec664ee62f9e737ee8",
+    "data/supplemental_proposals.csv": "138ec0ce799567ee767a2bb510c5adf43dd235061d1a91702b53fc654f88a981",
+    "data/supplemental_collection.manifest.json": "3580abee1ae33bd4c230c10dbc2765a84f614e6d9030183a6ccc136c1548d8bd",
+    "data/supplemental_scans/20261018-curation-extra/scan_manifest.json": "490b5c18e79c61c7b50801327c4e061ceae0723ff08e8aad008635996ca519ab",
+    "data/supplemental_scans/20261018-curation/scan_manifest.json": "58e070f838af077df223b82ccddbafafdc01adb3571828cb4426e02540ba5177",
+    "data/supplemental_scans/20261018-curation-extra/rows-94500.json": "cf9e2e460559d30baf7aa995ea9295922ad4f65a96034b1cdd9bc1429b48e93e",
+    "data/supplemental_scans/20261018-curation-extra/rows-95500.json": "06fd50a55963315bcda2828beffe6be3e4cfbd55f00f8918375c8ff32f35c590",
+    "data/supplemental_scans/20261018-curation-extra/rows-96500.json": "0bde2c16c9a2d700af5e64bd1a2dbf5b548a364b8d263d928cd608dda932307e",
+    "data/supplemental_scans/20261018-curation-extra/rows-96000.json": "6378b9ecf735f298982802077f256e4eadfc3c21e99f6fd214dd933a378d28b6",
+    "data/supplemental_scans/20261018-curation-extra/rows-97000.json": "e58b36e4ffb36ca001133a19793d66f3b11ff6922630a0d0d96a9ca367c9468b",
+    "data/supplemental_scans/20261018-curation-extra/rows-95000.json": "b523d0bff51a060bc47d471e73498f80e1a085d669ea373eafea2b023b60e57b",
+    "data/supplemental_scans/20261018-curation/rows-98000.json": "cdfa354b051cdb66bcd83c4ab23e7f86b33e5fdf882fc6bfb6aa6e4c9a5bc3e6",
+    "data/supplemental_scans/20261018-curation/rows-99000.json": "cc3b25d8cb345a82e6a5ce191b2280586dd134dae838f5fa11aed1a0df441b2c",
+    "data/supplemental_scans/20261018-curation/rows-97500.json": "5c49cf55085c66773a2d780c680a1be656bf505f585cbe5edc6cbd2b307ad459",
+    "data/supplemental_scans/20261018-curation/rows-99500.json": "7774c9ccd424523a24d82958050cee8fe3164addaa8c76e8007377ceb7b93bf9",
+    "data/supplemental_scans/20261018-curation/rows-98500.json": "9730404c96c04516b22c6c46cd71e7d9e242f0bce0d6fd57101e27058233cbc0"
+  }
+}
