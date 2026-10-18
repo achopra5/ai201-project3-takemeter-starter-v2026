@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Label the first 20 TakeMeter candidates independently, without AI suggestions.
+"""Collect 20 independent TakeMeter annotations, skipping unsuitable posts.
 
-Run from project root:
+Run from the project root:
     python scripts/label_cold.py
 
-This reads data/annotation_queue.csv and updates ONLY its label and note columns.
-The post text and source information are preserved byte-for-byte as CSV values.
-Your answers are autosaved after every labeled post; rerunning resumes the task.
+Reads data/annotation_queue.csv. Preserves the post text and source columns,
+and updates only label and note. Every choice is atomically autosaved.
+The first 20 *usable* labeled posts count; skipped posts do not count.
+Never replace or regenerate annotation_queue.csv after labeling has begun.
 """
 
 import csv
@@ -21,7 +22,8 @@ LABELS = {
     "3": ("discussion", "Primarily expresses opinions, predictions, reactions, or debate."),
     "4": ("resource_share", "Primarily announces a resource, new artifact, or how-to guide."),
 }
-RESERVED = 20
+TARGET = 20
+VALID_LABELS = {label for label, _ in LABELS.values()}
 
 
 def load_queue():
@@ -35,13 +37,13 @@ def load_queue():
         if not fieldnames or not {"text", "label", "note"}.issubset(fieldnames):
             raise SystemExit("Expected CSV columns: text, label, note.")
         rows = list(reader)
-    if len(rows) < RESERVED:
-        raise SystemExit(f"Only {len(rows)} rows; expected at least {RESERVED}.")
+    if len(rows) < TARGET:
+        raise SystemExit(f"Only {len(rows)} candidates; expected at least {TARGET}.")
     return fieldnames, rows
 
 
 def save_queue(fieldnames, rows):
-    # Atomic replacement prevents a partial CSV if execution is interrupted.
+    """Save the whole queue atomically so interruptions do not corrupt it."""
     temp = QUEUE.with_name(QUEUE.name + ".tmp")
     with temp.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
@@ -52,69 +54,101 @@ def save_queue(fieldnames, rows):
     os.replace(temp, QUEUE)
 
 
+def is_cold(row):
+    return (
+        row.get("label", "").strip() in VALID_LABELS
+        and row.get("note", "").split(";", 1)[0].strip() == "cold"
+    )
+
+
+def is_excluded(row):
+    return row.get("note", "").startswith("excluded:")
+
+
 def print_rules():
-    print("\nLabel by PRIMARY PURPOSE (not subreddit flair or whether it has numbers).")
-    print("If a completed, informative test also asks for advice, prefer technical_report.")
-    print("If details only support an unresolved troubleshooting question, prefer help_request.")
-    print("If introducing a new tool/model/tutorial, prefer resource_share.")
-    print("Otherwise, substantial opinion/prediction/debate is discussion.")
-    for k, (name, desc) in LABELS.items():
-        print(f"  {k}: {name} — {desc}")
-    print("Commands: 1/2/3/4 = label; s = skip for now; q = save and quit; ? = repeat rules.")
+    print("\nChoose a single label based on the post's PRIMARY PURPOSE.")
+    print("Do not use subreddit flair as a label.")
+    print("A completed report with a closing advice request can be technical_report.")
+    print("A problem statement with numbers used only as context can be help_request.")
+    print("A release or tutorial primarily introducing a resource is resource_share.")
+    for key, (name, desc) in LABELS.items():
+        print(f"  {key}: {name} — {desc}")
+    print("  s: exclude unsuitable text post (missing image/link content, etc.)")
+    print("  q: save and quit; ?: show rules again")
+
+
+def summary(rows):
+    n_cold = sum(is_cold(row) for row in rows)
+    n_excluded = sum(is_excluded(row) for row in rows)
+    print(f"\nCold labeled: {n_cold}/{TARGET}; excluded: {n_excluded}.")
+    if n_cold >= TARGET:
+        print("Independent annotation complete. Preserve these original choices.")
+    else:
+        print("Run this script again to continue from saved progress.")
 
 
 def main():
-    fieldnames, rows = load_queue()
-    print("\nTakeMeter — independent annotation of the first 20 real posts")
-    print("Do these yourself, without AI pre-labeling. Keep ambiguous-case notes.")
+    fields, rows = load_queue()
+    print("\nTakeMeter — first 20 independent classifications")
+    print("You must choose the labels yourself without AI pre-labeling.")
+    print("Skipped posts do not count toward your 20 labels.")
     print_rules()
-    for index, row in enumerate(rows[:RESERVED], start=1):
-        if row.get("label", "").strip() in {v[0] for v in LABELS.values()}:
+
+    done = sum(is_cold(row) for row in rows)
+    for index, row in enumerate(rows, start=1):
+        if done >= TARGET:
+            break
+        if is_cold(row) or is_excluded(row):
+            continue
+        if row.get("label", "").strip():
+            # Never relabel a pre-annotated row as a fresh independent decision.
             continue
         print("\n" + "=" * 72)
-        print(f"POST {index} OF {RESERVED}")
+        print(f"CANDIDATE {index}/{len(rows)} — cold labels {done}/{TARGET}")
         print("Source:", row.get("source_url", "(not recorded)"))
         print("-" * 72)
         print(row.get("text", ""))
         print("-" * 72)
+
         while True:
             try:
-                choice = input(f"Post {index} — choose 1/2/3/4, s, q or ?: ").strip().lower()
+                choice = input("Choose 1/2/3/4, s, q or ?: ").strip().lower()
             except (KeyboardInterrupt, EOFError):
-                print("\nStopped. Previous labels were already saved.")
+                print("\nStopped; previous decisions are already saved.")
+                summary(rows)
                 return
             if choice == "?":
                 print_rules()
                 continue
             if choice == "q":
-                print("Stopped. Previous labels were already saved.")
+                print("Stopped; previous decisions are already saved.")
+                summary(rows)
                 return
             if choice == "s":
-                print("Skipped — this row remains unlabeled.")
+                try:
+                    reason = input("Why exclude? [insufficient readable text]: ").strip()
+                except (KeyboardInterrupt, EOFError):
+                    reason = ""
+                row["label"] = ""
+                row["note"] = "excluded: " + (reason or "insufficient readable text")
+                save_queue(fields, rows)
+                print(f"Excluded candidate {index}; it will not count as a cold label.")
                 break
             if choice not in LABELS:
-                print("Please enter 1, 2, 3, 4, s, q, or ?.")
+                print("Enter 1, 2, 3, 4, s, q, or ?.")
                 continue
-            label = LABELS[choice][0]
             try:
-                note = input("Optional ambiguity note (press Enter if clear): ").strip()
+                note = input("Optional ambiguity note (Enter if none): ").strip()
             except (KeyboardInterrupt, EOFError):
                 note = ""
+            label = LABELS[choice][0]
             row["label"] = label
             row["note"] = "cold" + (f"; {note}" if note else "")
-            save_queue(fieldnames, rows)
-            print(f"Saved post {index} as {label}.")
+            save_queue(fields, rows)
+            done += 1
+            print(f"Saved label '{label}' — cold progress {done}/{TARGET}.")
             break
-
-    done = sum(row.get("label", "").strip() in {v[0] for v in LABELS.values()}
-               and row.get("note", "").startswith("cold")
-               for row in rows[:RESERVED])
-    print(f"\nIndependent labels completed: {done}/{RESERVED}.")
-    if done == RESERVED:
-        print("Milestone 4 cold subset complete. Do not overwrite these decisions.")
-        print("Next: review and label additional real posts before exporting labels.csv.")
-    else:
-        print("Rerun this script to label skipped posts.")
+    summary(rows)
 
 
 if __name__ == "__main__":
