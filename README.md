@@ -39,50 +39,66 @@
 
 ## What This Does
 
-<!-- Your community, and what your classifier sorts posts into. Three or four
-     sentences. -->
-
-
+TakeMeter is a text classifier for public **r/LocalLLaMA** submissions. Given the full text of a post, it predicts its primary communicative role: `technical_report`, `help_request`, `discussion`, or `resource_share`. This is **not** a detector of factual truth or general post quality; the labels describe what the author is doing, not whether the post is good. See [exploration.md](exploration.md) for the 38-post community exploration that motivated the taxonomy.
 
 ---
 
 ## Label Taxonomy
 
-<!-- Each label: a one-sentence definition and two real examples from your
-     reading. Then your decision rule for the hardest boundary.
+**Annotation unit:** one public text-based r/LocalLLaMA submission, with its title and complete written body. Exclude posts whose useful meaning depends on missing images, an external page with no substantive authored text, or inaccessible content. Ignore subreddit flair when assigning the label.
 
-     The decision rule is worth a point on its own and it's the thing most
-     people leave out. Every taxonomy has a hardest boundary. Name yours. -->
+**Labeling objective:** choose the **primary communicative purpose**, not topic, positivity, factual correctness, word count, or whether a post contains numbers. Each row must have exactly one label from this map.
 
-### `label_one`
+### `technical_report`
 
-**Definition:**
+**Definition:** Primarily documents a completed firsthand technical experiment, build, or investigation with concrete configuration/method and observable findings that remain informative without a request for help.
 
-**Example 1:**
->
+**Example 1:** [Nine models, five coding tasks, one 16GB GPU](https://www.reddit.com/r/LocalLLaMA/comments/1x8qlvw/nine_models_five_coding_tasks_one_16gb_gpu/) — The author describes five coding tasks, nine tested models, a grading procedure, and measured outcomes.
 
-**Example 2:**
->
+**Example 2:** [You don’t need that expensive of a build for local llms](https://www.reddit.com/r/LocalLLaMA/comments/1x8s73i/you_dont_need_that_expensive_of_a_build_for_local/) — The author reports an actual hardware/software configuration and context-dependent token throughput, rather than requesting a solution.
 
-### `label_two`
+### `help_request`
 
-**Definition:**
+**Definition:** Primarily seeks a concrete recommendation or solution for the author's unresolved hardware, software, or usage decision, without a substantive completed report as the main contribution.
 
-**Example 1:**
->
+**Example 1:** [Buying Strix Halo right now?](https://www.reddit.com/r/LocalLLaMA/comments/1x8za17/buying_strix_halo_right_now/) — The author asks whether a particular used 128 GB computer is worth its asking price.
 
-**Example 2:**
->
+**Example 2:** [3xrtx8000 48gb... what to do?](https://www.reddit.com/r/LocalLLaMA/comments/1x8st56/3xrtx8000_48gb_what_to_do/) — The author lists purchased GPUs and requests advice on how to use them.
+
+### `discussion`
+
+**Definition:** Primarily offers an opinion, prediction, interpretation, reaction, or open-ended proposal for debate rather than a completed technical report, a concrete personal support request, or a resource introduction.
+
+**Example 1:** [What are the odds Qwen 4 models are going to think less?](https://www.reddit.com/r/LocalLLaMA/comments/1x8uqig/what_are_the_odds_qwen_4_models_are_going_to/) — The author speculates about future reasoning-token behavior while referring to a current model's speed.
+
+**Example 2:** [Anyone feel like reverse-engineering CUDA?](https://www.reddit.com/r/LocalLLaMA/comments/1x4n6sg/anyone_feel_like_reverseengineering_cuda/) — The author floats a speculative community project, not an actionable troubleshooting question.
+
+### `resource_share`
+
+**Definition:** Primarily announces, releases, links, or teaches access to a model, tool, guide, or other resource, with any benchmark claims serving the introduction or tutorial.
+
+**Example 1:** [Agens Volundr 32B v1: we fixed what you flagged in the Preview](https://www.reddit.com/r/LocalLLaMA/comments/1x8yc8d/agens_volundr_32b_v1_we_fixed_what_you_flagged_in/) — The team introduces a new model/engine version, supported by author-reported performance data.
+
+**Example 2:** [10 Things you maybe didn't know you can do with Qwen 3.6 27B right now](https://www.reddit.com/r/LocalLLaMA/comments/1x7sq8e/10_things_you_maybe_didnt_know_you_can_do_with/) — The author offers a multi-part tutorial for newcomers.
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `technical_report` and `help_request`.
 
-**The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+**Real borderline example:** [My 5070 ti/3070 Chimera build](https://www.reddit.com/r/LocalLLaMA/comments/1x8u6eg/my_5070_ti3070_chimera_build/) describes working hardware, model selection, actual throughput, and a remaining configuration question.
 
+**The decision rule I used every time:** If a post describes **a completed firsthand setup or test** with sufficiently specific method/configuration **and an actual outcome useful to another reader independently of the closing question**, label it `technical_report`, even when it asks for optimization suggestions. If the hardware details and symptoms mainly provide context for an **unresolved problem or buying/usage question**, label it `help_request`. The mixed-GPU example is `technical_report` under this rule.
 
+### Rules for other mixed-purpose posts (apply in order)
+
+1. **Release/guide precedence:** If the main contribution is a newly available artifact, linked resource, or instructional walkthrough, use `resource_share`, even if supporting numbers are included. An experiment *comparing* existing artifacts without primarily introducing one is not automatically a release.
+2. **Completed-results precedence:** Otherwise, if a substantive firsthand completed investigation and concrete outcome are reported, use `technical_report`; an optional request for optimization does not override the findings.
+3. **Actionable-help precedence:** Otherwise, if the author wants a specific solution, buying recommendation, or configuration advice for their situation, use `help_request`.
+4. **Discussion fallback:** Otherwise, if the post supplies substantial readable text consisting of interpretation, opinion, prediction, debate, or a proposal, use `discussion`. Do **not** use it as a dumping ground for empty, image-only, or link-only posts; those are excluded from text training.
+
+**Stress test:** Eight **synthetic** posts covering these boundaries, their predicted labels, and justifications are recorded in [taxonomy_stress_test.md](taxonomy_stress_test.md). Synthetic cases help detect gaps in definitions; they do not validate agreement on real posts.
+
+**Status:** Taxonomy drafted and stress-tested before labeling or model training. Revisit definitions if genuine examples expose unresolved ambiguity, and document any change before generating the training split.
 
 ---
 
