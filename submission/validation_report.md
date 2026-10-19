@@ -2,7 +2,7 @@
 
 **READY for Unit 5 submission.** This does not mean the model meets its performance targets.
 
-Checked UTC: 2026-10-19T00:18:38.605715+00:00. Existing evidence only: no training, collection, search or model inference.
+Checked UTC: 2026-10-19T00:21:07.794465+00:00. Existing evidence only: no training, collection, search or model inference.
 
 - Frozen evidence: 72 file hashes pass, including original data, annotations, acceptance criteria, original experiments and completed final results.
 - Dataset: 200 unique full-text archived posts;36 technical reports,58 help requests,51 discussions,55 resources. All four shares satisfy15–40%. No missing text or invalid labels. Export matches recorded reviews.

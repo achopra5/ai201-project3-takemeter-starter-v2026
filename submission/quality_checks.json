@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-10-19T00:16:02.901701+00:00",
+  "checked_utc": "2026-10-19T00:20:57.152660+00:00",
   "checks": {
     "environment": {
       "command": [
@@ -9,7 +9,7 @@
       "exit_code": 0,
       "output_tail": [
         "[PASS] Free disk space",
-        "         515.0 GB",
+        "         516.1 GB",
         "[PASS] Memory",
         "         24.0 GB",
         "[PASS] PyTorch",
@@ -40,28 +40,28 @@
         "tests",
         "-v"
       ],
-      "exit_code": 1,
+      "exit_code": 0,
       "output_tail": [
-        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/review_labels.py\", line 758, in review",
-        "    report = session.write_reports()",
-        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/review_labels.py\", line 532, in write_reports",
-        "    raise ValueError(\"README needs exactly one Milestone 4 status block\")",
-        "ValueError: README needs exactly one Milestone 4 status block",
+        "test_supplemental_evidence_tampering_fails (test_review_labels.ReviewTests.test_supplemental_evidence_tampering_fails) ... ok",
+        "test_taxonomy_change_invalidates_session (test_review_labels.ReviewTests.test_taxonomy_change_invalidates_session) ... ok",
+        "test_clean_clone_verifies_frozen_inputs_without_duplicate_original_backups (test_validation_experiment.ValidationExperimentTests.test_clean_clone_verifies_frozen_inputs_without_duplicate_original_backups) ... ok",
+        "test_closeout_detects_inconsistent_saved_metrics_without_running_model (test_validation_experiment.ValidationExperimentTests.test_closeout_detects_inconsistent_saved_metrics_without_running_model) ... ok",
+        "test_final_evaluation_cannot_silently_query_test_twice (test_validation_experiment.ValidationExperimentTests.test_final_evaluation_cannot_silently_query_test_twice) ... ok",
+        "test_final_evaluation_requires_explicit_confirmation_before_access (test_validation_experiment.ValidationExperimentTests.test_final_evaluation_requires_explicit_confirmation_before_access) ... ok",
+        "test_final_plan_refuses_unknown_candidate_without_inference (test_validation_experiment.ValidationExperimentTests.test_final_plan_refuses_unknown_candidate_without_inference) ... ok",
+        "test_final_plan_rejects_changed_validation_results_before_loading_model (test_validation_experiment.ValidationExperimentTests.test_final_plan_rejects_changed_validation_results_before_loading_model) ... ok",
+        "test_macro_f1_includes_unpredicted_classes (test_validation_experiment.ValidationExperimentTests.test_macro_f1_includes_unpredicted_classes) ... ok",
+        "test_prepare_final_locks_all_checkpoint_files_and_refuses_reselection (test_validation_experiment.ValidationExperimentTests.test_prepare_final_locks_all_checkpoint_files_and_refuses_reselection) ... ok",
+        "test_selection_tiebreak_is_precommitted_and_order_independent (test_validation_experiment.ValidationExperimentTests.test_selection_tiebreak_is_precommitted_and_order_independent) ... ok",
+        "test_selection_uses_validation_even_with_better_training_or_test_values (test_validation_experiment.ValidationExperimentTests.test_selection_uses_validation_even_with_better_training_or_test_values) ... ok",
+        "test_splits_match_notebook_and_partition_exactly (test_validation_experiment.ValidationExperimentTests.test_splits_match_notebook_and_partition_exactly) ... ok",
+        "test_truncation_counts_token_loss_and_exact_boundary (test_validation_experiment.ValidationExperimentTests.test_truncation_counts_token_loss_and_exact_boundary) ... ok",
+        "test_verify_rejects_changed_originals_and_dataset (test_validation_experiment.ValidationExperimentTests.test_verify_rejects_changed_originals_and_dataset) ... ok",
         "",
-        "======================================================================",
-        "ERROR: test_offline_export_and_audit_preserve_cold_and_unselected_rows (test_review_labels.ReviewTests.test_offline_export_and_audit_preserve_cold_and_unselected_rows)",
         "----------------------------------------------------------------------",
-        "Traceback (most recent call last):",
-        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/tests/test_review_labels.py\", line 85, in test_offline_export_and_audit_preserve_cold_and_unselected_rows",
-        "    report = self.session.export()",
-        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/review_labels.py\", line 549, in export",
-        "    raise ValueError(\"README needs exactly one Milestone 4 status block\")",
-        "ValueError: README needs exactly one Milestone 4 status block",
+        "Ran 55 tests in 3.075s",
         "",
-        "----------------------------------------------------------------------",
-        "Ran 55 tests in 2.884s",
-        "",
-        "FAILED (errors=4)"
+        "OK"
       ]
     },
     "submission": {
@@ -70,23 +70,28 @@
         "scripts/check_submission.py",
         "--write-report"
       ],
-      "exit_code": 1,
+      "exit_code": 0,
       "output_tail": [
-        "Traceback (most recent call last):",
-        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/check_submission.py\", line 224, in <module>",
-        "    main()",
-        "    ~~~~^^",
-        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/check_submission.py\", line 217, in main",
-        "    report = inspect()",
-        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/check_submission.py\", line 175, in inspect",
-        "    \"markdown\": markdown_checks(root), \"unit6_pending\": [\"zero-shot baseline\", \"personal/staff taxonomy agreement\"],",
-        "                ~~~~~~~~~~~~~~~^^^^^^",
-        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/check_submission.py\", line 63, in markdown_checks",
-        "    require((path.parent / target).exists(), f\"Broken local link in {path}: {target}\")",
-        "    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
-        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/check_submission.py\", line 20, in require",
-        "    raise ValueError(message)",
-        "ValueError: Broken local link in /Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/submission/validation_report.md: quality_checks.json"
+        "  },",
+        "  \"criteria_improved\": {",
+        "    \"1\": \"FAIL\",",
+        "    \"2\": \"FAIL\",",
+        "    \"3\": \"FAIL\",",
+        "    \"4\": \"PASS\",",
+        "    \"5\": \"NOT EVALUATED\"",
+        "  },",
+        "  \"markdown\": {",
+        "    \"files_checked\": 13,",
+        "    \"local_links_checked\": 56,",
+        "    \"readme_tables_and_placeholders\": \"PASS\",",
+        "    \"documented_python_entry_points\": \"PASS\"",
+        "  },",
+        "  \"unit6_pending\": [",
+        "    \"zero-shot baseline\",",
+        "    \"personal/staff taxonomy agreement\"",
+        "  ],",
+        "  \"submission_action\": \"Submit the existing GitHub repository URL in the Unit 5 course assignment\"",
+        "}"
       ]
     },
     "experiment_integrity": {
