@@ -1,0 +1,221 @@
+{
+  "candidate": "controlled-len256-epoch6",
+  "reviewer": "Adi",
+  "plan_sha256": "3096031a99dc70e6d69eaa4dfd445cd56dc6f554c1a5dbc97204cbe909ecb371",
+  "finished_utc": "2026-10-19T00:00:06.233626+00:00",
+  "seeds": [
+    {
+      "seed": 42,
+      "device": "mps",
+      "metrics": {
+        "accuracy": 0.6,
+        "f1_macro": 0.4735081851786657,
+        "per_label": {
+          "technical_report": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 5,
+            "predicted": 0
+          },
+          "help_request": {
+            "precision": 0.7,
+            "recall": 0.7777777777777778,
+            "f1": 0.7368421052631579,
+            "support": 9,
+            "predicted": 10
+          },
+          "discussion": {
+            "precision": 0.6,
+            "recall": 0.375,
+            "f1": 0.46153846153846156,
+            "support": 8,
+            "predicted": 5
+          },
+          "resource_share": {
+            "precision": 0.5333333333333333,
+            "recall": 1.0,
+            "f1": 0.6956521739130435,
+            "support": 8,
+            "predicted": 15
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            1,
+            3
+          ],
+          [
+            0,
+            7,
+            1,
+            1
+          ],
+          [
+            0,
+            2,
+            3,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            8
+          ]
+        ],
+        "loss": 1.087599515914917
+      },
+      "criterion1_accuracy_ge_070": false,
+      "criterion2_macro_f1_ge_060": false,
+      "criterion3_each_class_f1_ge_040": false
+    },
+    {
+      "seed": 7,
+      "device": "mps",
+      "metrics": {
+        "accuracy": 0.5,
+        "f1_macro": 0.3895256916996047,
+        "per_label": {
+          "technical_report": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 5,
+            "predicted": 0
+          },
+          "help_request": {
+            "precision": 0.42857142857142855,
+            "recall": 0.6666666666666666,
+            "f1": 0.5217391304347826,
+            "support": 9,
+            "predicted": 14
+          },
+          "discussion": {
+            "precision": 1.0,
+            "recall": 0.25,
+            "f1": 0.4,
+            "support": 8,
+            "predicted": 2
+          },
+          "resource_share": {
+            "precision": 0.5,
+            "recall": 0.875,
+            "f1": 0.6363636363636364,
+            "support": 8,
+            "predicted": 14
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            4,
+            0,
+            1
+          ],
+          [
+            0,
+            6,
+            0,
+            3
+          ],
+          [
+            0,
+            3,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            0,
+            7
+          ]
+        ],
+        "loss": 1.1593163013458252
+      },
+      "criterion1_accuracy_ge_070": false,
+      "criterion2_macro_f1_ge_060": false,
+      "criterion3_each_class_f1_ge_040": false
+    },
+    {
+      "seed": 2024,
+      "device": "mps",
+      "metrics": {
+        "accuracy": 0.4,
+        "f1_macro": 0.3058823529411765,
+        "per_label": {
+          "technical_report": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 5,
+            "predicted": 1
+          },
+          "help_request": {
+            "precision": 0.3125,
+            "recall": 0.5555555555555556,
+            "f1": 0.4,
+            "support": 9,
+            "predicted": 16
+          },
+          "discussion": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 8,
+            "predicted": 4
+          },
+          "resource_share": {
+            "precision": 0.7777777777777778,
+            "recall": 0.875,
+            "f1": 0.8235294117647058,
+            "support": 8,
+            "predicted": 9
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            4,
+            0,
+            1
+          ],
+          [
+            0,
+            5,
+            4,
+            0
+          ],
+          [
+            1,
+            6,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            7
+          ]
+        ],
+        "loss": 1.0800347328186035
+      },
+      "criterion1_accuracy_ge_070": false,
+      "criterion2_macro_f1_ge_060": false,
+      "criterion3_each_class_f1_ge_040": false
+    }
+  ],
+  "mean_accuracy": 0.5,
+  "mean_f1_macro": 0.38963874327314896,
+  "acceptance": {
+    "criterion1_accuracy_ge_070": false,
+    "criterion2_macro_f1_ge_060": false,
+    "criterion3_each_class_f1_ge_040": false
+  },
+  "criterion5": "Staff-taxonomy agreement is a separate exercise; not measured here",
+  "limitation": "Exploratory follow-up after known original test aggregates; no further tuning on these outcomes"
+}

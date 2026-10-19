@@ -1,0 +1,131 @@
+[
+  {
+    "epoch": 3,
+    "global_step": 27,
+    "learning_rate": 0.0,
+    "train": {
+      "accuracy": 0.539568345323741,
+      "f1_macro": 0.37823418841220696,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 25,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.45569620253164556,
+          "recall": 0.9,
+          "f1": 0.6050420168067226,
+          "support": 40,
+          "predicted": 79
+        },
+        "discussion": {
+          "precision": 1.0,
+          "recall": 0.08571428571428572,
+          "f1": 0.15789473684210525,
+          "support": 35,
+          "predicted": 3
+        },
+        "resource_share": {
+          "precision": 0.631578947368421,
+          "recall": 0.9230769230769231,
+          "f1": 0.75,
+          "support": 39,
+          "predicted": 57
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          12,
+          0,
+          13
+        ],
+        [
+          0,
+          36,
+          0,
+          4
+        ],
+        [
+          0,
+          28,
+          3,
+          4
+        ],
+        [
+          0,
+          3,
+          0,
+          36
+        ]
+      ],
+      "loss": 1.3013148307800293
+    },
+    "validation": {
+      "accuracy": 0.4838709677419355,
+      "f1_macro": 0.36018518518518516,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 6,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.3888888888888889,
+          "recall": 0.7777777777777778,
+          "f1": 0.5185185185185185,
+          "support": 9,
+          "predicted": 18
+        },
+        "discussion": {
+          "precision": 1.0,
+          "recall": 0.125,
+          "f1": 0.2222222222222222,
+          "support": 8,
+          "predicted": 1
+        },
+        "resource_share": {
+          "precision": 0.5833333333333334,
+          "recall": 0.875,
+          "f1": 0.7,
+          "support": 8,
+          "predicted": 12
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          3,
+          0,
+          3
+        ],
+        [
+          0,
+          7,
+          0,
+          2
+        ],
+        [
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          7
+        ]
+      ],
+      "loss": 1.335875391960144
+    },
+    "checkpoint": "runs/reference-len128-seed42/epoch-3",
+    "weights_sha256": "af08091bf860de9b6f79d0a6888491d0f9d638809d0fabd571bbb79ac8275d4c"
+  }
+]

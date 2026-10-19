@@ -1,0 +1,46 @@
+{
+  "dataset": "pszemraj/LocalLLaMA-posts",
+  "config": "default",
+  "split": "train",
+  "retrieved_utc": "2026-10-18T23:03:56.299708+00:00",
+  "sources": [
+    {
+      "offset": 97500,
+      "request_url": "https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=97500&length=100",
+      "file": "rows-97500.json",
+      "sha256": "5c49cf55085c66773a2d780c680a1be656bf505f585cbe5edc6cbd2b307ad459",
+      "rows": 100
+    },
+    {
+      "offset": 98000,
+      "request_url": "https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=98000&length=100",
+      "file": "rows-98000.json",
+      "sha256": "cdfa354b051cdb66bcd83c4ab23e7f86b33e5fdf882fc6bfb6aa6e4c9a5bc3e6",
+      "rows": 100
+    },
+    {
+      "offset": 98500,
+      "request_url": "https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=98500&length=100",
+      "file": "rows-98500.json",
+      "sha256": "9730404c96c04516b22c6c46cd71e7d9e242f0bce0d6fd57101e27058233cbc0",
+      "rows": 100
+    },
+    {
+      "offset": 99000,
+      "request_url": "https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=99000&length=100",
+      "file": "rows-99000.json",
+      "sha256": "cc3b25d8cb345a82e6a5ce191b2280586dd134dae838f5fa11aed1a0df441b2c",
+      "rows": 100
+    },
+    {
+      "offset": 99500,
+      "request_url": "https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=99500&length=100",
+      "file": "rows-99500.json",
+      "sha256": "7774c9ccd424523a24d82958050cee8fe3164addaa8c76e8007377ceb7b93bf9",
+      "rows": 100
+    }
+  ],
+  "purpose": "Targeted supplemental technical-report candidate search; no labels assigned by collection.",
+  "original_collection_rerun": false,
+  "truncation": "None: exact API response bytes retained"
+}

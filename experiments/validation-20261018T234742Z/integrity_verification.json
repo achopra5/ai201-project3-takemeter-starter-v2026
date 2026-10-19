@@ -1,0 +1,26 @@
+{
+  "verified_utc": "2026-10-18T23:57:01.256922+00:00",
+  "original_bytes_unchanged": {
+    "results.json": true,
+    "test_split.csv": true,
+    "results_three_seeds_before.json": true,
+    "labels.csv": true,
+    "criteria.md": true,
+    "takemeter.ipynb": true,
+    "label_definitions.txt": true
+  },
+  "taxonomy_unchanged": true,
+  "split_identities_unchanged": true,
+  "completed_fits": 9,
+  "actual_optimizer_updates_total": 513,
+  "validation_curve_rows": 57,
+  "training_runner_sha256": "ae0cf55ad6de807ace0c583553ecd013f8f306ffba7146a3eaa0febd0a02b9ad",
+  "all_run_source_hashes_match_archived_runner": true,
+  "test_evaluations_performed": 0,
+  "final_evaluation_status": "Scripts prepared; no reviewer-selected plan or test evaluation",
+  "unit_tests": {
+    "passed": 51,
+    "failed": 0,
+    "log": "tests.log"
+  }
+}

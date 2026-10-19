@@ -1,0 +1,53 @@
+{
+  "dataset": "pszemraj/LocalLLaMA-posts",
+  "config": "default",
+  "split": "train",
+  "retrieved_utc": "2026-10-18T23:04:55.196041+00:00",
+  "sources": [
+    {
+      "offset": 94500,
+      "request_url": "https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=94500&length=100",
+      "file": "rows-94500.json",
+      "sha256": "cf9e2e460559d30baf7aa995ea9295922ad4f65a96034b1cdd9bc1429b48e93e",
+      "rows": 100
+    },
+    {
+      "offset": 95000,
+      "request_url": "https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=95000&length=100",
+      "file": "rows-95000.json",
+      "sha256": "b523d0bff51a060bc47d471e73498f80e1a085d669ea373eafea2b023b60e57b",
+      "rows": 100
+    },
+    {
+      "offset": 95500,
+      "request_url": "https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=95500&length=100",
+      "file": "rows-95500.json",
+      "sha256": "06fd50a55963315bcda2828beffe6be3e4cfbd55f00f8918375c8ff32f35c590",
+      "rows": 100
+    },
+    {
+      "offset": 96000,
+      "request_url": "https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=96000&length=100",
+      "file": "rows-96000.json",
+      "sha256": "6378b9ecf735f298982802077f256e4eadfc3c21e99f6fd214dd933a378d28b6",
+      "rows": 100
+    },
+    {
+      "offset": 96500,
+      "request_url": "https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=96500&length=100",
+      "file": "rows-96500.json",
+      "sha256": "0bde2c16c9a2d700af5e64bd1a2dbf5b548a364b8d263d928cd608dda932307e",
+      "rows": 100
+    },
+    {
+      "offset": 97000,
+      "request_url": "https://datasets-server.huggingface.co/rows?dataset=pszemraj%2FLocalLLaMA-posts&config=default&split=train&offset=97000&length=100",
+      "file": "rows-97000.json",
+      "sha256": "e58b36e4ffb36ca001133a19793d66f3b11ff6922630a0d0d96a9ca367c9468b",
+      "rows": 100
+    }
+  ],
+  "purpose": "Targeted supplemental technical-report candidate search; no labels assigned by collection.",
+  "original_collection_rerun": false,
+  "truncation": "None: exact API response bytes retained"
+}

@@ -1,0 +1,63 @@
+{
+  "checked_utc": "2026-10-19T00:18:38.605715+00:00",
+  "unit5_submission_readiness": "READY",
+  "mode": "Existing evidence only: no training, collection, search or model inference",
+  "protected_evidence_files": 72,
+  "frozen_hashes": "PASS",
+  "dataset": {
+    "total": 200,
+    "counts": {
+      "technical_report": 36,
+      "help_request": 58,
+      "discussion": 51,
+      "resource_share": 55
+    },
+    "cold": 20,
+    "offline_attested": 180,
+    "offline_events": 1,
+    "interactive_events": 0,
+    "original_exclusions": 3
+  },
+  "experiment": {
+    "completed_fits": 9,
+    "optimizer_updates": 513,
+    "local_checkpoints_verified": 21,
+    "local_checkpoints_absent": 0,
+    "saved_test_seed_results_reconciled": 3,
+    "new_test_evaluations": 0,
+    "selected_candidate": "controlled-len256-epoch6"
+  },
+  "original_mean": {
+    "accuracy": 0.43333333333333335,
+    "f1_macro": 0.2976799954431533
+  },
+  "improved_mean": {
+    "accuracy": 0.5,
+    "f1_macro": 0.38963874327314896
+  },
+  "criteria_original": {
+    "1": "FAIL",
+    "2": "FAIL",
+    "3": "FAIL",
+    "4": "PASS",
+    "5": "NOT EVALUATED"
+  },
+  "criteria_improved": {
+    "1": "FAIL",
+    "2": "FAIL",
+    "3": "FAIL",
+    "4": "PASS",
+    "5": "NOT EVALUATED"
+  },
+  "markdown": {
+    "files_checked": 13,
+    "local_links_checked": 56,
+    "readme_tables_and_placeholders": "PASS",
+    "documented_python_entry_points": "PASS"
+  },
+  "unit6_pending": [
+    "zero-shot baseline",
+    "personal/staff taxonomy agreement"
+  ],
+  "submission_action": "Submit the existing GitHub repository URL in the Unit 5 course assignment"
+}

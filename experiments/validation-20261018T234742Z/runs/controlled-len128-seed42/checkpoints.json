@@ -1,0 +1,389 @@
+[
+  {
+    "epoch": 3,
+    "global_step": 27,
+    "learning_rate": 1.25e-05,
+    "train": {
+      "accuracy": 0.6258992805755396,
+      "f1_macro": 0.5158935481176983,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 25,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.5614035087719298,
+          "recall": 0.8,
+          "f1": 0.6597938144329897,
+          "support": 40,
+          "predicted": 57
+        },
+        "discussion": {
+          "precision": 0.95,
+          "recall": 0.5428571428571428,
+          "f1": 0.6909090909090909,
+          "support": 35,
+          "predicted": 20
+        },
+        "resource_share": {
+          "precision": 0.5806451612903226,
+          "recall": 0.9230769230769231,
+          "f1": 0.7128712871287128,
+          "support": 39,
+          "predicted": 62
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          11,
+          0,
+          14
+        ],
+        [
+          0,
+          32,
+          1,
+          7
+        ],
+        [
+          0,
+          11,
+          19,
+          5
+        ],
+        [
+          0,
+          3,
+          0,
+          36
+        ]
+      ],
+      "loss": 1.2011120319366455
+    },
+    "validation": {
+      "accuracy": 0.4838709677419355,
+      "f1_macro": 0.3825051759834368,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 6,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.35714285714285715,
+          "recall": 0.5555555555555556,
+          "f1": 0.43478260869565216,
+          "support": 9,
+          "predicted": 14
+        },
+        "discussion": {
+          "precision": 0.5,
+          "recall": 0.25,
+          "f1": 0.3333333333333333,
+          "support": 8,
+          "predicted": 4
+        },
+        "resource_share": {
+          "precision": 0.6153846153846154,
+          "recall": 1.0,
+          "f1": 0.7619047619047619,
+          "support": 8,
+          "predicted": 13
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          3,
+          0,
+          3
+        ],
+        [
+          0,
+          5,
+          2,
+          2
+        ],
+        [
+          0,
+          6,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "loss": 1.2629872560501099
+    },
+    "checkpoint": "runs/controlled-len128-seed42/epoch-3",
+    "weights_sha256": "62d062df92bd71469bb62a422ced1043517ff8e201b0b8107265a883e2673f00"
+  },
+  {
+    "epoch": 6,
+    "global_step": 54,
+    "learning_rate": 5e-06,
+    "train": {
+      "accuracy": 0.7266187050359713,
+      "f1_macro": 0.6038198757763975,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 25,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.75,
+          "recall": 0.825,
+          "f1": 0.7857142857142857,
+          "support": 40,
+          "predicted": 44
+        },
+        "discussion": {
+          "precision": 0.8823529411764706,
+          "recall": 0.8571428571428571,
+          "f1": 0.8695652173913043,
+          "support": 35,
+          "predicted": 34
+        },
+        "resource_share": {
+          "precision": 0.6229508196721312,
+          "recall": 0.9743589743589743,
+          "f1": 0.76,
+          "support": 39,
+          "predicted": 61
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          7,
+          1,
+          17
+        ],
+        [
+          0,
+          33,
+          3,
+          4
+        ],
+        [
+          0,
+          3,
+          30,
+          2
+        ],
+        [
+          0,
+          1,
+          0,
+          38
+        ]
+      ],
+      "loss": 0.9801068305969238
+    },
+    "validation": {
+      "accuracy": 0.41935483870967744,
+      "f1_macro": 0.33112373737373735,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 6,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.2222222222222222,
+          "recall": 0.2222222222222222,
+          "f1": 0.2222222222222222,
+          "support": 9,
+          "predicted": 9
+        },
+        "discussion": {
+          "precision": 0.375,
+          "recall": 0.375,
+          "f1": 0.375,
+          "support": 8,
+          "predicted": 8
+        },
+        "resource_share": {
+          "precision": 0.5714285714285714,
+          "recall": 1.0,
+          "f1": 0.7272727272727273,
+          "support": 8,
+          "predicted": 14
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          3,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          5,
+          2
+        ],
+        [
+          0,
+          4,
+          3,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "loss": 1.1472300291061401
+    },
+    "checkpoint": "runs/controlled-len128-seed42/epoch-6",
+    "weights_sha256": "363684941912410fb22af8609e91961728628aa7d8fddded4c3696a2bcc19a2f"
+  },
+  {
+    "epoch": 8,
+    "global_step": 72,
+    "learning_rate": 0.0,
+    "train": {
+      "accuracy": 0.762589928057554,
+      "f1_macro": 0.6470690231204828,
+      "per_label": {
+        "technical_report": {
+          "precision": 1.0,
+          "recall": 0.04,
+          "f1": 0.07692307692307693,
+          "support": 25,
+          "predicted": 1
+        },
+        "help_request": {
+          "precision": 0.7608695652173914,
+          "recall": 0.875,
+          "f1": 0.813953488372093,
+          "support": 40,
+          "predicted": 46
+        },
+        "discussion": {
+          "precision": 0.8648648648648649,
+          "recall": 0.9142857142857143,
+          "f1": 0.8888888888888888,
+          "support": 35,
+          "predicted": 37
+        },
+        "resource_share": {
+          "precision": 0.6909090909090909,
+          "recall": 0.9743589743589743,
+          "f1": 0.8085106382978723,
+          "support": 39,
+          "predicted": 55
+        }
+      },
+      "confusion_matrix": [
+        [
+          1,
+          7,
+          2,
+          15
+        ],
+        [
+          0,
+          35,
+          3,
+          2
+        ],
+        [
+          0,
+          3,
+          32,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          38
+        ]
+      ],
+      "loss": 0.9263179302215576
+    },
+    "validation": {
+      "accuracy": 0.41935483870967744,
+      "f1_macro": 0.34527863777089784,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 6,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.2,
+          "recall": 0.2222222222222222,
+          "f1": 0.21052631578947367,
+          "support": 9,
+          "predicted": 10
+        },
+        "discussion": {
+          "precision": 0.4444444444444444,
+          "recall": 0.5,
+          "f1": 0.47058823529411764,
+          "support": 8,
+          "predicted": 9
+        },
+        "resource_share": {
+          "precision": 0.5833333333333334,
+          "recall": 0.875,
+          "f1": 0.7,
+          "support": 8,
+          "predicted": 12
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          3,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          5,
+          2
+        ],
+        [
+          0,
+          4,
+          4,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          7
+        ]
+      ],
+      "loss": 1.1326735019683838
+    },
+    "checkpoint": "runs/controlled-len128-seed42/epoch-8",
+    "weights_sha256": "c14abef35c17a1578b44b3f5642198fbcedfe7408c22e10a6cbb01e3b9e69f32"
+  }
+]

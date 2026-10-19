@@ -21,6 +21,22 @@ models/
 # `git add -A` in Colab commits a model checkpoint to your repo.
 takemeter_out/
 
+# Separate validation experiments retain metrics/protocols; model weights are local.
+experiments/*/runs/**/epoch-*/
+experiments/*/runs/**/trainer/
+
+# Local preservation copies remain on disk; committed originals and hash
+# manifests provide compact verification in clean clones.
+data/backups/
+experiments/*/originals/
+experiments/*/training.log
+experiments/*/tests.log
+experiments/*/runs/*/train_predictions_epoch*.csv
+experiments/*/final_test_seed*.json
+# Search catalogs are retrieval intermediates; pinned response pages/manifests
+# are necessary source evidence and remain tracked.
+data/supplemental_scans/*/catalog.json
+
 # OS noise
 .DS_Store
 Thumbs.db

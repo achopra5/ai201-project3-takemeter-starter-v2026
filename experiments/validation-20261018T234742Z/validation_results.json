@@ -1,0 +1,2816 @@
+{
+  "status": "VALIDATION_RECOMMENDATION_ONLY; final test evaluation pending human selection",
+  "selection_rule": "Maximize mean validation macro F1 over seeds; ties (rounded12 decimals) use minimum seed macro F1, then lower mean validation loss, shorter input, fewer epochs, then candidate name. Original reference is also eligible.",
+  "protocol_sha256": "a9bb8c1b4d4368db24e3acc173cfb9b904e24f17f464a31930208388d0123a79",
+  "selected_candidate": "controlled-len256-epoch6",
+  "candidates": [
+    {
+      "name": "reference-len128-epoch3",
+      "kind": "reference",
+      "max_length": 128,
+      "epoch": 3,
+      "seeds": [
+        {
+          "seed": 42,
+          "epoch": 3,
+          "global_step": 27,
+          "learning_rate": 0.0,
+          "train": {
+            "accuracy": 0.539568345323741,
+            "f1_macro": 0.37823418841220696,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 25,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.45569620253164556,
+                "recall": 0.9,
+                "f1": 0.6050420168067226,
+                "support": 40,
+                "predicted": 79
+              },
+              "discussion": {
+                "precision": 1.0,
+                "recall": 0.08571428571428572,
+                "f1": 0.15789473684210525,
+                "support": 35,
+                "predicted": 3
+              },
+              "resource_share": {
+                "precision": 0.631578947368421,
+                "recall": 0.9230769230769231,
+                "f1": 0.75,
+                "support": 39,
+                "predicted": 57
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                12,
+                0,
+                13
+              ],
+              [
+                0,
+                36,
+                0,
+                4
+              ],
+              [
+                0,
+                28,
+                3,
+                4
+              ],
+              [
+                0,
+                3,
+                0,
+                36
+              ]
+            ],
+            "loss": 1.3013148307800293
+          },
+          "validation": {
+            "accuracy": 0.4838709677419355,
+            "f1_macro": 0.36018518518518516,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.3888888888888889,
+                "recall": 0.7777777777777778,
+                "f1": 0.5185185185185185,
+                "support": 9,
+                "predicted": 18
+              },
+              "discussion": {
+                "precision": 1.0,
+                "recall": 0.125,
+                "f1": 0.2222222222222222,
+                "support": 8,
+                "predicted": 1
+              },
+              "resource_share": {
+                "precision": 0.5833333333333334,
+                "recall": 0.875,
+                "f1": 0.7,
+                "support": 8,
+                "predicted": 12
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                3,
+                0,
+                3
+              ],
+              [
+                0,
+                7,
+                0,
+                2
+              ],
+              [
+                0,
+                7,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                7
+              ]
+            ],
+            "loss": 1.335875391960144
+          },
+          "checkpoint": "runs/reference-len128-seed42/epoch-3",
+          "weights_sha256": "af08091bf860de9b6f79d0a6888491d0f9d638809d0fabd571bbb79ac8275d4c"
+        },
+        {
+          "seed": 7,
+          "epoch": 3,
+          "global_step": 27,
+          "learning_rate": 0.0,
+          "train": {
+            "accuracy": 0.5107913669064749,
+            "f1_macro": 0.3373251748251748,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 25,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.4,
+                "recall": 0.9,
+                "f1": 0.5538461538461539,
+                "support": 40,
+                "predicted": 90
+              },
+              "discussion": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 35,
+                "predicted": 0
+              },
+              "resource_share": {
+                "precision": 0.7142857142857143,
+                "recall": 0.8974358974358975,
+                "f1": 0.7954545454545454,
+                "support": 39,
+                "predicted": 49
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                18,
+                0,
+                7
+              ],
+              [
+                0,
+                36,
+                0,
+                4
+              ],
+              [
+                0,
+                32,
+                0,
+                3
+              ],
+              [
+                0,
+                4,
+                0,
+                35
+              ]
+            ],
+            "loss": 1.279009461402893
+          },
+          "validation": {
+            "accuracy": 0.5161290322580645,
+            "f1_macro": 0.3555555555555555,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.38095238095238093,
+                "recall": 0.8888888888888888,
+                "f1": 0.5333333333333333,
+                "support": 9,
+                "predicted": 21
+              },
+              "discussion": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 8,
+                "predicted": 0
+              },
+              "resource_share": {
+                "precision": 0.8,
+                "recall": 1.0,
+                "f1": 0.8888888888888888,
+                "support": 8,
+                "predicted": 10
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                5,
+                0,
+                1
+              ],
+              [
+                0,
+                8,
+                0,
+                1
+              ],
+              [
+                0,
+                8,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.2962958812713623
+          },
+          "checkpoint": "runs/reference-len128-seed7/epoch-3",
+          "weights_sha256": "a2bcb9581d14af0e04f38a7f668de460ba60875e08331302c9da1086f55ff379"
+        },
+        {
+          "seed": 2024,
+          "epoch": 3,
+          "global_step": 27,
+          "learning_rate": 0.0,
+          "train": {
+            "accuracy": 0.5323741007194245,
+            "f1_macro": 0.43311973123464087,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 25,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.6428571428571429,
+                "recall": 0.45,
+                "f1": 0.5294117647058824,
+                "support": 40,
+                "predicted": 28
+              },
+              "discussion": {
+                "precision": 0.6923076923076923,
+                "recall": 0.5142857142857142,
+                "f1": 0.5901639344262295,
+                "support": 35,
+                "predicted": 26
+              },
+              "resource_share": {
+                "precision": 0.4470588235294118,
+                "recall": 0.9743589743589743,
+                "f1": 0.6129032258064516,
+                "support": 39,
+                "predicted": 85
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                1,
+                0,
+                24
+              ],
+              [
+                0,
+                18,
+                8,
+                14
+              ],
+              [
+                0,
+                8,
+                18,
+                9
+              ],
+              [
+                0,
+                1,
+                0,
+                38
+              ]
+            ],
+            "loss": 1.2607322931289673
+          },
+          "validation": {
+            "accuracy": 0.41935483870967744,
+            "f1_macro": 0.3249084249084249,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.3333333333333333,
+                "recall": 0.2222222222222222,
+                "f1": 0.26666666666666666,
+                "support": 9,
+                "predicted": 6
+              },
+              "discussion": {
+                "precision": 0.6,
+                "recall": 0.375,
+                "f1": 0.46153846153846156,
+                "support": 8,
+                "predicted": 5
+              },
+              "resource_share": {
+                "precision": 0.4,
+                "recall": 1.0,
+                "f1": 0.5714285714285714,
+                "support": 8,
+                "predicted": 20
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                2,
+                2,
+                5
+              ],
+              [
+                0,
+                4,
+                3,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.289721965789795
+          },
+          "checkpoint": "runs/reference-len128-seed2024/epoch-3",
+          "weights_sha256": "f3b25f4b98e6a3e863e68271419a6aaec527bbe72f1f749f26d6e56d222d0005"
+        }
+      ],
+      "mean_validation_f1_macro": 0.34688305521638857,
+      "mean_validation_accuracy": 0.4731182795698925,
+      "mean_validation_loss": 1.3072977463404338
+    },
+    {
+      "name": "controlled-len128-epoch3",
+      "kind": "controlled",
+      "max_length": 128,
+      "epoch": 3,
+      "seeds": [
+        {
+          "seed": 42,
+          "epoch": 3,
+          "global_step": 27,
+          "learning_rate": 1.25e-05,
+          "train": {
+            "accuracy": 0.6258992805755396,
+            "f1_macro": 0.5158935481176983,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 25,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.5614035087719298,
+                "recall": 0.8,
+                "f1": 0.6597938144329897,
+                "support": 40,
+                "predicted": 57
+              },
+              "discussion": {
+                "precision": 0.95,
+                "recall": 0.5428571428571428,
+                "f1": 0.6909090909090909,
+                "support": 35,
+                "predicted": 20
+              },
+              "resource_share": {
+                "precision": 0.5806451612903226,
+                "recall": 0.9230769230769231,
+                "f1": 0.7128712871287128,
+                "support": 39,
+                "predicted": 62
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                11,
+                0,
+                14
+              ],
+              [
+                0,
+                32,
+                1,
+                7
+              ],
+              [
+                0,
+                11,
+                19,
+                5
+              ],
+              [
+                0,
+                3,
+                0,
+                36
+              ]
+            ],
+            "loss": 1.2011120319366455
+          },
+          "validation": {
+            "accuracy": 0.4838709677419355,
+            "f1_macro": 0.3825051759834368,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.35714285714285715,
+                "recall": 0.5555555555555556,
+                "f1": 0.43478260869565216,
+                "support": 9,
+                "predicted": 14
+              },
+              "discussion": {
+                "precision": 0.5,
+                "recall": 0.25,
+                "f1": 0.3333333333333333,
+                "support": 8,
+                "predicted": 4
+              },
+              "resource_share": {
+                "precision": 0.6153846153846154,
+                "recall": 1.0,
+                "f1": 0.7619047619047619,
+                "support": 8,
+                "predicted": 13
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                3,
+                0,
+                3
+              ],
+              [
+                0,
+                5,
+                2,
+                2
+              ],
+              [
+                0,
+                6,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.2629872560501099
+          },
+          "checkpoint": "runs/controlled-len128-seed42/epoch-3",
+          "weights_sha256": "62d062df92bd71469bb62a422ced1043517ff8e201b0b8107265a883e2673f00"
+        },
+        {
+          "seed": 7,
+          "epoch": 3,
+          "global_step": 27,
+          "learning_rate": 1.25e-05,
+          "train": {
+            "accuracy": 0.5179856115107914,
+            "f1_macro": 0.33392751039809865,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 25,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.4430379746835443,
+                "recall": 0.875,
+                "f1": 0.5882352941176471,
+                "support": 40,
+                "predicted": 79
+              },
+              "discussion": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 35,
+                "predicted": 0
+              },
+              "resource_share": {
+                "precision": 0.6166666666666667,
+                "recall": 0.9487179487179487,
+                "f1": 0.7474747474747475,
+                "support": 39,
+                "predicted": 60
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                13,
+                0,
+                12
+              ],
+              [
+                0,
+                35,
+                0,
+                5
+              ],
+              [
+                0,
+                29,
+                0,
+                6
+              ],
+              [
+                0,
+                2,
+                0,
+                37
+              ]
+            ],
+            "loss": 1.1697901487350464
+          },
+          "validation": {
+            "accuracy": 0.5161290322580645,
+            "f1_macro": 0.3484573502722323,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.4,
+                "recall": 0.8888888888888888,
+                "f1": 0.5517241379310345,
+                "support": 9,
+                "predicted": 20
+              },
+              "discussion": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 8,
+                "predicted": 0
+              },
+              "resource_share": {
+                "precision": 0.7272727272727273,
+                "recall": 1.0,
+                "f1": 0.8421052631578947,
+                "support": 8,
+                "predicted": 11
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                4,
+                0,
+                2
+              ],
+              [
+                0,
+                8,
+                0,
+                1
+              ],
+              [
+                0,
+                8,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.2017043828964233
+          },
+          "checkpoint": "runs/controlled-len128-seed7/epoch-3",
+          "weights_sha256": "cb01c22aa6bfae316750df0f984efa6e019548c1b1a25fee78de4c99130a3d9a"
+        },
+        {
+          "seed": 2024,
+          "epoch": 3,
+          "global_step": 27,
+          "learning_rate": 1.25e-05,
+          "train": {
+            "accuracy": 0.5611510791366906,
+            "f1_macro": 0.45742128935532234,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 25,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.6,
+                "recall": 0.6,
+                "f1": 0.6,
+                "support": 40,
+                "predicted": 40
+              },
+              "discussion": {
+                "precision": 0.7391304347826086,
+                "recall": 0.4857142857142857,
+                "f1": 0.5862068965517241,
+                "support": 35,
+                "predicted": 23
+              },
+              "resource_share": {
+                "precision": 0.4868421052631579,
+                "recall": 0.9487179487179487,
+                "f1": 0.6434782608695652,
+                "support": 39,
+                "predicted": 76
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                2,
+                0,
+                23
+              ],
+              [
+                0,
+                24,
+                6,
+                10
+              ],
+              [
+                0,
+                12,
+                17,
+                6
+              ],
+              [
+                0,
+                2,
+                0,
+                37
+              ]
+            ],
+            "loss": 1.1536439657211304
+          },
+          "validation": {
+            "accuracy": 0.4838709677419355,
+            "f1_macro": 0.3763341921236658,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.5,
+                "recall": 0.5555555555555556,
+                "f1": 0.5263157894736842,
+                "support": 9,
+                "predicted": 10
+              },
+              "discussion": {
+                "precision": 0.6666666666666666,
+                "recall": 0.25,
+                "f1": 0.36363636363636365,
+                "support": 8,
+                "predicted": 3
+              },
+              "resource_share": {
+                "precision": 0.4444444444444444,
+                "recall": 1.0,
+                "f1": 0.6153846153846154,
+                "support": 8,
+                "predicted": 18
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                5,
+                1,
+                3
+              ],
+              [
+                0,
+                5,
+                2,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.2192448377609253
+          },
+          "checkpoint": "runs/controlled-len128-seed2024/epoch-3",
+          "weights_sha256": "d5b573772b00cb81e9ce124d736c30014559039a2e6d91dfc9bc348597b9cc38"
+        }
+      ],
+      "mean_validation_f1_macro": 0.36909890612644497,
+      "mean_validation_accuracy": 0.4946236559139785,
+      "mean_validation_loss": 1.2279788255691528
+    },
+    {
+      "name": "controlled-len128-epoch6",
+      "kind": "controlled",
+      "max_length": 128,
+      "epoch": 6,
+      "seeds": [
+        {
+          "seed": 42,
+          "epoch": 6,
+          "global_step": 54,
+          "learning_rate": 5e-06,
+          "train": {
+            "accuracy": 0.7266187050359713,
+            "f1_macro": 0.6038198757763975,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 25,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.75,
+                "recall": 0.825,
+                "f1": 0.7857142857142857,
+                "support": 40,
+                "predicted": 44
+              },
+              "discussion": {
+                "precision": 0.8823529411764706,
+                "recall": 0.8571428571428571,
+                "f1": 0.8695652173913043,
+                "support": 35,
+                "predicted": 34
+              },
+              "resource_share": {
+                "precision": 0.6229508196721312,
+                "recall": 0.9743589743589743,
+                "f1": 0.76,
+                "support": 39,
+                "predicted": 61
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                7,
+                1,
+                17
+              ],
+              [
+                0,
+                33,
+                3,
+                4
+              ],
+              [
+                0,
+                3,
+                30,
+                2
+              ],
+              [
+                0,
+                1,
+                0,
+                38
+              ]
+            ],
+            "loss": 0.9801068305969238
+          },
+          "validation": {
+            "accuracy": 0.41935483870967744,
+            "f1_macro": 0.33112373737373735,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.2222222222222222,
+                "recall": 0.2222222222222222,
+                "f1": 0.2222222222222222,
+                "support": 9,
+                "predicted": 9
+              },
+              "discussion": {
+                "precision": 0.375,
+                "recall": 0.375,
+                "f1": 0.375,
+                "support": 8,
+                "predicted": 8
+              },
+              "resource_share": {
+                "precision": 0.5714285714285714,
+                "recall": 1.0,
+                "f1": 0.7272727272727273,
+                "support": 8,
+                "predicted": 14
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                3,
+                0,
+                3
+              ],
+              [
+                0,
+                2,
+                5,
+                2
+              ],
+              [
+                0,
+                4,
+                3,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.1472300291061401
+          },
+          "checkpoint": "runs/controlled-len128-seed42/epoch-6",
+          "weights_sha256": "363684941912410fb22af8609e91961728628aa7d8fddded4c3696a2bcc19a2f"
+        },
+        {
+          "seed": 7,
+          "epoch": 6,
+          "global_step": 54,
+          "learning_rate": 5e-06,
+          "train": {
+            "accuracy": 0.7050359712230215,
+            "f1_macro": 0.5818018136705969,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 25,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.5967741935483871,
+                "recall": 0.925,
+                "f1": 0.7254901960784313,
+                "support": 40,
+                "predicted": 62
+              },
+              "discussion": {
+                "precision": 1.0,
+                "recall": 0.6285714285714286,
+                "f1": 0.7719298245614035,
+                "support": 35,
+                "predicted": 22
+              },
+              "resource_share": {
+                "precision": 0.7090909090909091,
+                "recall": 1.0,
+                "f1": 0.8297872340425532,
+                "support": 39,
+                "predicted": 55
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                14,
+                0,
+                11
+              ],
+              [
+                0,
+                37,
+                0,
+                3
+              ],
+              [
+                0,
+                11,
+                22,
+                2
+              ],
+              [
+                0,
+                0,
+                0,
+                39
+              ]
+            ],
+            "loss": 0.9505009055137634
+          },
+          "validation": {
+            "accuracy": 0.5161290322580645,
+            "f1_macro": 0.3555555555555555,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.38095238095238093,
+                "recall": 0.8888888888888888,
+                "f1": 0.5333333333333333,
+                "support": 9,
+                "predicted": 21
+              },
+              "discussion": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 8,
+                "predicted": 0
+              },
+              "resource_share": {
+                "precision": 0.8,
+                "recall": 1.0,
+                "f1": 0.8888888888888888,
+                "support": 8,
+                "predicted": 10
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                5,
+                0,
+                1
+              ],
+              [
+                0,
+                8,
+                0,
+                1
+              ],
+              [
+                0,
+                8,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.0442085266113281
+          },
+          "checkpoint": "runs/controlled-len128-seed7/epoch-6",
+          "weights_sha256": "2d2ce5ab7e1385ba555df78f7d7f4d59937555af6fcd0f9e7708376e5d8cc488"
+        },
+        {
+          "seed": 2024,
+          "epoch": 6,
+          "global_step": 54,
+          "learning_rate": 5e-06,
+          "train": {
+            "accuracy": 0.8129496402877698,
+            "f1_macro": 0.7897702158318942,
+            "per_label": {
+              "technical_report": {
+                "precision": 1.0,
+                "recall": 0.48,
+                "f1": 0.6486486486486487,
+                "support": 25,
+                "predicted": 12
+              },
+              "help_request": {
+                "precision": 0.782608695652174,
+                "recall": 0.9,
+                "f1": 0.8372093023255814,
+                "support": 40,
+                "predicted": 46
+              },
+              "discussion": {
+                "precision": 0.9285714285714286,
+                "recall": 0.7428571428571429,
+                "f1": 0.8253968253968254,
+                "support": 35,
+                "predicted": 28
+              },
+              "resource_share": {
+                "precision": 0.7358490566037735,
+                "recall": 1.0,
+                "f1": 0.8478260869565217,
+                "support": 39,
+                "predicted": 53
+              }
+            },
+            "confusion_matrix": [
+              [
+                12,
+                3,
+                0,
+                10
+              ],
+              [
+                0,
+                36,
+                2,
+                2
+              ],
+              [
+                0,
+                7,
+                26,
+                2
+              ],
+              [
+                0,
+                0,
+                0,
+                39
+              ]
+            ],
+            "loss": 0.9172818660736084
+          },
+          "validation": {
+            "accuracy": 0.45161290322580644,
+            "f1_macro": 0.3567193675889328,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.38461538461538464,
+                "recall": 0.5555555555555556,
+                "f1": 0.45454545454545453,
+                "support": 9,
+                "predicted": 13
+              },
+              "discussion": {
+                "precision": 0.6666666666666666,
+                "recall": 0.25,
+                "f1": 0.36363636363636365,
+                "support": 8,
+                "predicted": 3
+              },
+              "resource_share": {
+                "precision": 0.4666666666666667,
+                "recall": 0.875,
+                "f1": 0.6086956521739131,
+                "support": 8,
+                "predicted": 15
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                1,
+                0,
+                5
+              ],
+              [
+                0,
+                5,
+                1,
+                3
+              ],
+              [
+                0,
+                6,
+                2,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                7
+              ]
+            ],
+            "loss": 1.1170812845230103
+          },
+          "checkpoint": "runs/controlled-len128-seed2024/epoch-6",
+          "weights_sha256": "0ad00820b08cded8a1f9182383318c5a7dc5c64e30b0ecee6e7f9eaa4922f978"
+        }
+      ],
+      "mean_validation_f1_macro": 0.3477995535060752,
+      "mean_validation_accuracy": 0.4623655913978495,
+      "mean_validation_loss": 1.1028399467468262
+    },
+    {
+      "name": "controlled-len128-epoch8",
+      "kind": "controlled",
+      "max_length": 128,
+      "epoch": 8,
+      "seeds": [
+        {
+          "seed": 42,
+          "epoch": 8,
+          "global_step": 72,
+          "learning_rate": 0.0,
+          "train": {
+            "accuracy": 0.762589928057554,
+            "f1_macro": 0.6470690231204828,
+            "per_label": {
+              "technical_report": {
+                "precision": 1.0,
+                "recall": 0.04,
+                "f1": 0.07692307692307693,
+                "support": 25,
+                "predicted": 1
+              },
+              "help_request": {
+                "precision": 0.7608695652173914,
+                "recall": 0.875,
+                "f1": 0.813953488372093,
+                "support": 40,
+                "predicted": 46
+              },
+              "discussion": {
+                "precision": 0.8648648648648649,
+                "recall": 0.9142857142857143,
+                "f1": 0.8888888888888888,
+                "support": 35,
+                "predicted": 37
+              },
+              "resource_share": {
+                "precision": 0.6909090909090909,
+                "recall": 0.9743589743589743,
+                "f1": 0.8085106382978723,
+                "support": 39,
+                "predicted": 55
+              }
+            },
+            "confusion_matrix": [
+              [
+                1,
+                7,
+                2,
+                15
+              ],
+              [
+                0,
+                35,
+                3,
+                2
+              ],
+              [
+                0,
+                3,
+                32,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                38
+              ]
+            ],
+            "loss": 0.9263179302215576
+          },
+          "validation": {
+            "accuracy": 0.41935483870967744,
+            "f1_macro": 0.34527863777089784,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.2,
+                "recall": 0.2222222222222222,
+                "f1": 0.21052631578947367,
+                "support": 9,
+                "predicted": 10
+              },
+              "discussion": {
+                "precision": 0.4444444444444444,
+                "recall": 0.5,
+                "f1": 0.47058823529411764,
+                "support": 8,
+                "predicted": 9
+              },
+              "resource_share": {
+                "precision": 0.5833333333333334,
+                "recall": 0.875,
+                "f1": 0.7,
+                "support": 8,
+                "predicted": 12
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                3,
+                0,
+                3
+              ],
+              [
+                0,
+                2,
+                5,
+                2
+              ],
+              [
+                0,
+                4,
+                4,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                7
+              ]
+            ],
+            "loss": 1.1326735019683838
+          },
+          "checkpoint": "runs/controlled-len128-seed42/epoch-8",
+          "weights_sha256": "c14abef35c17a1578b44b3f5642198fbcedfe7408c22e10a6cbb01e3b9e69f32"
+        },
+        {
+          "seed": 7,
+          "epoch": 8,
+          "global_step": 72,
+          "learning_rate": 0.0,
+          "train": {
+            "accuracy": 0.7194244604316546,
+            "f1_macro": 0.6329719387755102,
+            "per_label": {
+              "technical_report": {
+                "precision": 1.0,
+                "recall": 0.12,
+                "f1": 0.21428571428571427,
+                "support": 25,
+                "predicted": 3
+              },
+              "help_request": {
+                "precision": 0.6379310344827587,
+                "recall": 0.925,
+                "f1": 0.7551020408163265,
+                "support": 40,
+                "predicted": 58
+              },
+              "discussion": {
+                "precision": 1.0,
+                "recall": 0.6,
+                "f1": 0.75,
+                "support": 35,
+                "predicted": 21
+              },
+              "resource_share": {
+                "precision": 0.6842105263157895,
+                "recall": 1.0,
+                "f1": 0.8125,
+                "support": 39,
+                "predicted": 57
+              }
+            },
+            "confusion_matrix": [
+              [
+                3,
+                9,
+                0,
+                13
+              ],
+              [
+                0,
+                37,
+                0,
+                3
+              ],
+              [
+                0,
+                12,
+                21,
+                2
+              ],
+              [
+                0,
+                0,
+                0,
+                39
+              ]
+            ],
+            "loss": 0.9038683772087097
+          },
+          "validation": {
+            "accuracy": 0.5161290322580645,
+            "f1_macro": 0.34285714285714286,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.42105263157894735,
+                "recall": 0.8888888888888888,
+                "f1": 0.5714285714285714,
+                "support": 9,
+                "predicted": 19
+              },
+              "discussion": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 8,
+                "predicted": 0
+              },
+              "resource_share": {
+                "precision": 0.6666666666666666,
+                "recall": 1.0,
+                "f1": 0.8,
+                "support": 8,
+                "predicted": 12
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                3,
+                0,
+                3
+              ],
+              [
+                0,
+                8,
+                0,
+                1
+              ],
+              [
+                0,
+                8,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.0186731815338135
+          },
+          "checkpoint": "runs/controlled-len128-seed7/epoch-8",
+          "weights_sha256": "56d14f2b1006bf5cf59f25853a3378ad4565009dc2055924cb6ce4be4526d7d6"
+        },
+        {
+          "seed": 2024,
+          "epoch": 8,
+          "global_step": 72,
+          "learning_rate": 0.0,
+          "train": {
+            "accuracy": 0.8345323741007195,
+            "f1_macro": 0.8282858943179667,
+            "per_label": {
+              "technical_report": {
+                "precision": 1.0,
+                "recall": 0.72,
+                "f1": 0.8372093023255814,
+                "support": 25,
+                "predicted": 18
+              },
+              "help_request": {
+                "precision": 0.7708333333333334,
+                "recall": 0.925,
+                "f1": 0.8409090909090909,
+                "support": 40,
+                "predicted": 48
+              },
+              "discussion": {
+                "precision": 0.9565217391304348,
+                "recall": 0.6285714285714286,
+                "f1": 0.7586206896551724,
+                "support": 35,
+                "predicted": 23
+              },
+              "resource_share": {
+                "precision": 0.78,
+                "recall": 1.0,
+                "f1": 0.8764044943820225,
+                "support": 39,
+                "predicted": 50
+              }
+            },
+            "confusion_matrix": [
+              [
+                18,
+                0,
+                0,
+                7
+              ],
+              [
+                0,
+                37,
+                1,
+                2
+              ],
+              [
+                0,
+                11,
+                22,
+                2
+              ],
+              [
+                0,
+                0,
+                0,
+                39
+              ]
+            ],
+            "loss": 0.8561261296272278
+          },
+          "validation": {
+            "accuracy": 0.4838709677419355,
+            "f1_macro": 0.3821969696969697,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.46153846153846156,
+                "recall": 0.6666666666666666,
+                "f1": 0.5454545454545454,
+                "support": 9,
+                "predicted": 13
+              },
+              "discussion": {
+                "precision": 1.0,
+                "recall": 0.25,
+                "f1": 0.4,
+                "support": 8,
+                "predicted": 2
+              },
+              "resource_share": {
+                "precision": 0.4375,
+                "recall": 0.875,
+                "f1": 0.5833333333333334,
+                "support": 8,
+                "predicted": 16
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                1,
+                0,
+                5
+              ],
+              [
+                0,
+                6,
+                0,
+                3
+              ],
+              [
+                0,
+                5,
+                2,
+                1
+              ],
+              [
+                0,
+                1,
+                0,
+                7
+              ]
+            ],
+            "loss": 1.099557638168335
+          },
+          "checkpoint": "runs/controlled-len128-seed2024/epoch-8",
+          "weights_sha256": "4b3b435f85f56be3bfa72ef523f1245c6a8cd6afb9b883cc7b2a35e9e23f2b07"
+        }
+      ],
+      "mean_validation_f1_macro": 0.35677758344167015,
+      "mean_validation_accuracy": 0.4731182795698925,
+      "mean_validation_loss": 1.0836347738901775
+    },
+    {
+      "name": "controlled-len256-epoch3",
+      "kind": "controlled",
+      "max_length": 256,
+      "epoch": 3,
+      "seeds": [
+        {
+          "seed": 42,
+          "epoch": 3,
+          "global_step": 27,
+          "learning_rate": 1.25e-05,
+          "train": {
+            "accuracy": 0.6258992805755396,
+            "f1_macro": 0.5106123819929163,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 25,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.5409836065573771,
+                "recall": 0.825,
+                "f1": 0.6534653465346535,
+                "support": 40,
+                "predicted": 61
+              },
+              "discussion": {
+                "precision": 0.9444444444444444,
+                "recall": 0.4857142857142857,
+                "f1": 0.6415094339622641,
+                "support": 35,
+                "predicted": 18
+              },
+              "resource_share": {
+                "precision": 0.6166666666666667,
+                "recall": 0.9487179487179487,
+                "f1": 0.7474747474747475,
+                "support": 39,
+                "predicted": 60
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                12,
+                0,
+                13
+              ],
+              [
+                0,
+                33,
+                1,
+                6
+              ],
+              [
+                0,
+                14,
+                17,
+                4
+              ],
+              [
+                0,
+                2,
+                0,
+                37
+              ]
+            ],
+            "loss": 1.1933600902557373
+          },
+          "validation": {
+            "accuracy": 0.5483870967741935,
+            "f1_macro": 0.44591097308488614,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.42857142857142855,
+                "recall": 0.6666666666666666,
+                "f1": 0.5217391304347826,
+                "support": 9,
+                "predicted": 14
+              },
+              "discussion": {
+                "precision": 0.75,
+                "recall": 0.375,
+                "f1": 0.5,
+                "support": 8,
+                "predicted": 4
+              },
+              "resource_share": {
+                "precision": 0.6153846153846154,
+                "recall": 1.0,
+                "f1": 0.7619047619047619,
+                "support": 8,
+                "predicted": 13
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                4,
+                0,
+                2
+              ],
+              [
+                0,
+                6,
+                1,
+                2
+              ],
+              [
+                0,
+                4,
+                3,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.2498103380203247
+          },
+          "checkpoint": "runs/controlled-len256-seed42/epoch-3",
+          "weights_sha256": "9b3c4ee20de9944cd0fce679afe194c479fe821a40dbf29c2b3d4af9248a0971"
+        },
+        {
+          "seed": 7,
+          "epoch": 3,
+          "global_step": 27,
+          "learning_rate": 1.25e-05,
+          "train": {
+            "accuracy": 0.5323741007194245,
+            "f1_macro": 0.3483010752688172,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 25,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.4235294117647059,
+                "recall": 0.9,
+                "f1": 0.576,
+                "support": 40,
+                "predicted": 85
+              },
+              "discussion": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 35,
+                "predicted": 0
+              },
+              "resource_share": {
+                "precision": 0.7037037037037037,
+                "recall": 0.9743589743589743,
+                "f1": 0.8172043010752689,
+                "support": 39,
+                "predicted": 54
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                18,
+                0,
+                7
+              ],
+              [
+                0,
+                36,
+                0,
+                4
+              ],
+              [
+                0,
+                30,
+                0,
+                5
+              ],
+              [
+                0,
+                1,
+                0,
+                38
+              ]
+            ],
+            "loss": 1.1433457136154175
+          },
+          "validation": {
+            "accuracy": 0.5161290322580645,
+            "f1_macro": 0.3356643356643357,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.47058823529411764,
+                "recall": 0.8888888888888888,
+                "f1": 0.6153846153846154,
+                "support": 9,
+                "predicted": 17
+              },
+              "discussion": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 8,
+                "predicted": 0
+              },
+              "resource_share": {
+                "precision": 0.5714285714285714,
+                "recall": 1.0,
+                "f1": 0.7272727272727273,
+                "support": 8,
+                "predicted": 14
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                1,
+                0,
+                5
+              ],
+              [
+                0,
+                8,
+                0,
+                1
+              ],
+              [
+                0,
+                8,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.176512360572815
+          },
+          "checkpoint": "runs/controlled-len256-seed7/epoch-3",
+          "weights_sha256": "64697053eb717e0882112172d0f8493d5ac89071e9a12d74466016ef476c6227"
+        },
+        {
+          "seed": 2024,
+          "epoch": 3,
+          "global_step": 27,
+          "learning_rate": 1.25e-05,
+          "train": {
+            "accuracy": 0.5755395683453237,
+            "f1_macro": 0.46426414768806074,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 25,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.6206896551724138,
+                "recall": 0.45,
+                "f1": 0.5217391304347826,
+                "support": 40,
+                "predicted": 29
+              },
+              "discussion": {
+                "precision": 0.6216216216216216,
+                "recall": 0.6571428571428571,
+                "f1": 0.6388888888888888,
+                "support": 35,
+                "predicted": 37
+              },
+              "resource_share": {
+                "precision": 0.5342465753424658,
+                "recall": 1.0,
+                "f1": 0.6964285714285714,
+                "support": 39,
+                "predicted": 73
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                5,
+                0,
+                20
+              ],
+              [
+                0,
+                18,
+                14,
+                8
+              ],
+              [
+                0,
+                6,
+                23,
+                6
+              ],
+              [
+                0,
+                0,
+                0,
+                39
+              ]
+            ],
+            "loss": 1.135128378868103
+          },
+          "validation": {
+            "accuracy": 0.41935483870967744,
+            "f1_macro": 0.3116096866096866,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.25,
+                "recall": 0.1111111111111111,
+                "f1": 0.15384615384615385,
+                "support": 9,
+                "predicted": 4
+              },
+              "discussion": {
+                "precision": 0.5,
+                "recall": 0.5,
+                "f1": 0.5,
+                "support": 8,
+                "predicted": 8
+              },
+              "resource_share": {
+                "precision": 0.42105263157894735,
+                "recall": 1.0,
+                "f1": 0.5925925925925926,
+                "support": 8,
+                "predicted": 19
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                1,
+                4,
+                4
+              ],
+              [
+                0,
+                3,
+                4,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.2345322370529175
+          },
+          "checkpoint": "runs/controlled-len256-seed2024/epoch-3",
+          "weights_sha256": "4a085fd42123a4613a71e8ba26c9014f0067080ee7133266bb3f13d70048c5a4"
+        }
+      ],
+      "mean_validation_f1_macro": 0.36439499845296947,
+      "mean_validation_accuracy": 0.4946236559139785,
+      "mean_validation_loss": 1.2202849785486858
+    },
+    {
+      "name": "controlled-len256-epoch6",
+      "kind": "controlled",
+      "max_length": 256,
+      "epoch": 6,
+      "seeds": [
+        {
+          "seed": 42,
+          "epoch": 6,
+          "global_step": 54,
+          "learning_rate": 5e-06,
+          "train": {
+            "accuracy": 0.7769784172661871,
+            "f1_macro": 0.7112722011881676,
+            "per_label": {
+              "technical_report": {
+                "precision": 1.0,
+                "recall": 0.2,
+                "f1": 0.3333333333333333,
+                "support": 25,
+                "predicted": 5
+              },
+              "help_request": {
+                "precision": 0.7777777777777778,
+                "recall": 0.875,
+                "f1": 0.8235294117647058,
+                "support": 40,
+                "predicted": 45
+              },
+              "discussion": {
+                "precision": 0.9666666666666667,
+                "recall": 0.8285714285714286,
+                "f1": 0.8923076923076924,
+                "support": 35,
+                "predicted": 30
+              },
+              "resource_share": {
+                "precision": 0.6610169491525424,
+                "recall": 1.0,
+                "f1": 0.7959183673469388,
+                "support": 39,
+                "predicted": 59
+              }
+            },
+            "confusion_matrix": [
+              [
+                5,
+                4,
+                0,
+                16
+              ],
+              [
+                0,
+                35,
+                1,
+                4
+              ],
+              [
+                0,
+                6,
+                29,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                39
+              ]
+            ],
+            "loss": 0.9766837954521179
+          },
+          "validation": {
+            "accuracy": 0.4838709677419355,
+            "f1_macro": 0.38896103896103895,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.36363636363636365,
+                "recall": 0.4444444444444444,
+                "f1": 0.4,
+                "support": 9,
+                "predicted": 11
+              },
+              "discussion": {
+                "precision": 0.5,
+                "recall": 0.375,
+                "f1": 0.42857142857142855,
+                "support": 8,
+                "predicted": 6
+              },
+              "resource_share": {
+                "precision": 0.5714285714285714,
+                "recall": 1.0,
+                "f1": 0.7272727272727273,
+                "support": 8,
+                "predicted": 14
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                2,
+                0,
+                4
+              ],
+              [
+                0,
+                4,
+                3,
+                2
+              ],
+              [
+                0,
+                5,
+                3,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.1137349605560303
+          },
+          "checkpoint": "runs/controlled-len256-seed42/epoch-6",
+          "weights_sha256": "2eb80b830292cb840e62166d3585f0dd1819ecf1c90e8a4a5a2018b156f0cfdf"
+        },
+        {
+          "seed": 7,
+          "epoch": 6,
+          "global_step": 54,
+          "learning_rate": 5e-06,
+          "train": {
+            "accuracy": 0.6834532374100719,
+            "f1_macro": 0.6136025898711654,
+            "per_label": {
+              "technical_report": {
+                "precision": 1.0,
+                "recall": 0.24,
+                "f1": 0.3870967741935484,
+                "support": 25,
+                "predicted": 6
+              },
+              "help_request": {
+                "precision": 0.5428571428571428,
+                "recall": 0.95,
+                "f1": 0.6909090909090909,
+                "support": 40,
+                "predicted": 70
+              },
+              "discussion": {
+                "precision": 0.9230769230769231,
+                "recall": 0.34285714285714286,
+                "f1": 0.5,
+                "support": 35,
+                "predicted": 13
+              },
+              "resource_share": {
+                "precision": 0.78,
+                "recall": 1.0,
+                "f1": 0.8764044943820225,
+                "support": 39,
+                "predicted": 50
+              }
+            },
+            "confusion_matrix": [
+              [
+                6,
+                11,
+                1,
+                7
+              ],
+              [
+                0,
+                38,
+                0,
+                2
+              ],
+              [
+                0,
+                21,
+                12,
+                2
+              ],
+              [
+                0,
+                0,
+                0,
+                39
+              ]
+            ],
+            "loss": 0.9222877621650696
+          },
+          "validation": {
+            "accuracy": 0.5806451612903226,
+            "f1_macro": 0.4222222222222222,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "support": 9,
+                "predicted": 18
+              },
+              "discussion": {
+                "precision": 1.0,
+                "recall": 0.125,
+                "f1": 0.2222222222222222,
+                "support": 8,
+                "predicted": 1
+              },
+              "resource_share": {
+                "precision": 0.6666666666666666,
+                "recall": 1.0,
+                "f1": 0.8,
+                "support": 8,
+                "predicted": 12
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                2,
+                0,
+                4
+              ],
+              [
+                0,
+                9,
+                0,
+                0
+              ],
+              [
+                0,
+                7,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.0086647272109985
+          },
+          "checkpoint": "runs/controlled-len256-seed7/epoch-6",
+          "weights_sha256": "dc9cd01056e3466bb9a22189c83d479ae825c38857c2e1462441f8885c26519c"
+        },
+        {
+          "seed": 2024,
+          "epoch": 6,
+          "global_step": 54,
+          "learning_rate": 5e-06,
+          "train": {
+            "accuracy": 0.8129496402877698,
+            "f1_macro": 0.7993879783347437,
+            "per_label": {
+              "technical_report": {
+                "precision": 1.0,
+                "recall": 0.56,
+                "f1": 0.717948717948718,
+                "support": 25,
+                "predicted": 14
+              },
+              "help_request": {
+                "precision": 0.7906976744186046,
+                "recall": 0.85,
+                "f1": 0.8192771084337349,
+                "support": 40,
+                "predicted": 43
+              },
+              "discussion": {
+                "precision": 0.896551724137931,
+                "recall": 0.7428571428571429,
+                "f1": 0.8125,
+                "support": 35,
+                "predicted": 29
+              },
+              "resource_share": {
+                "precision": 0.7358490566037735,
+                "recall": 1.0,
+                "f1": 0.8478260869565217,
+                "support": 39,
+                "predicted": 53
+              }
+            },
+            "confusion_matrix": [
+              [
+                14,
+                3,
+                0,
+                8
+              ],
+              [
+                0,
+                34,
+                3,
+                3
+              ],
+              [
+                0,
+                6,
+                26,
+                3
+              ],
+              [
+                0,
+                0,
+                0,
+                39
+              ]
+            ],
+            "loss": 0.8935799598693848
+          },
+          "validation": {
+            "accuracy": 0.5483870967741935,
+            "f1_macro": 0.5340909090909091,
+            "per_label": {
+              "technical_report": {
+                "precision": 1.0,
+                "recall": 0.3333333333333333,
+                "f1": 0.5,
+                "support": 6,
+                "predicted": 2
+              },
+              "help_request": {
+                "precision": 0.45454545454545453,
+                "recall": 0.5555555555555556,
+                "f1": 0.5,
+                "support": 9,
+                "predicted": 11
+              },
+              "discussion": {
+                "precision": 0.75,
+                "recall": 0.375,
+                "f1": 0.5,
+                "support": 8,
+                "predicted": 4
+              },
+              "resource_share": {
+                "precision": 0.5,
+                "recall": 0.875,
+                "f1": 0.6363636363636364,
+                "support": 8,
+                "predicted": 14
+              }
+            },
+            "confusion_matrix": [
+              [
+                2,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                5,
+                1,
+                3
+              ],
+              [
+                0,
+                5,
+                3,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                7
+              ]
+            ],
+            "loss": 1.141662836074829
+          },
+          "checkpoint": "runs/controlled-len256-seed2024/epoch-6",
+          "weights_sha256": "7498b2bd161f1d37e869e052f785af07c73932998103192458c75c056a3f6aa7"
+        }
+      ],
+      "mean_validation_f1_macro": 0.4484247234247234,
+      "mean_validation_accuracy": 0.5376344086021505,
+      "mean_validation_loss": 1.0880208412806194
+    },
+    {
+      "name": "controlled-len256-epoch8",
+      "kind": "controlled",
+      "max_length": 256,
+      "epoch": 8,
+      "seeds": [
+        {
+          "seed": 42,
+          "epoch": 8,
+          "global_step": 72,
+          "learning_rate": 0.0,
+          "train": {
+            "accuracy": 0.8057553956834532,
+            "f1_macro": 0.7536755910498171,
+            "per_label": {
+              "technical_report": {
+                "precision": 1.0,
+                "recall": 0.28,
+                "f1": 0.4375,
+                "support": 25,
+                "predicted": 7
+              },
+              "help_request": {
+                "precision": 0.8,
+                "recall": 0.9,
+                "f1": 0.8470588235294118,
+                "support": 40,
+                "predicted": 45
+              },
+              "discussion": {
+                "precision": 0.967741935483871,
+                "recall": 0.8571428571428571,
+                "f1": 0.9090909090909091,
+                "support": 35,
+                "predicted": 31
+              },
+              "resource_share": {
+                "precision": 0.6964285714285714,
+                "recall": 1.0,
+                "f1": 0.8210526315789474,
+                "support": 39,
+                "predicted": 56
+              }
+            },
+            "confusion_matrix": [
+              [
+                7,
+                4,
+                0,
+                14
+              ],
+              [
+                0,
+                36,
+                1,
+                3
+              ],
+              [
+                0,
+                5,
+                30,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                39
+              ]
+            ],
+            "loss": 0.9234656691551208
+          },
+          "validation": {
+            "accuracy": 0.45161290322580644,
+            "f1_macro": 0.36547619047619045,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.2727272727272727,
+                "recall": 0.3333333333333333,
+                "f1": 0.3,
+                "support": 9,
+                "predicted": 11
+              },
+              "discussion": {
+                "precision": 0.42857142857142855,
+                "recall": 0.375,
+                "f1": 0.4,
+                "support": 8,
+                "predicted": 7
+              },
+              "resource_share": {
+                "precision": 0.6153846153846154,
+                "recall": 1.0,
+                "f1": 0.7619047619047619,
+                "support": 8,
+                "predicted": 13
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                3,
+                0,
+                3
+              ],
+              [
+                0,
+                3,
+                4,
+                2
+              ],
+              [
+                0,
+                5,
+                3,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 1.0916131734848022
+          },
+          "checkpoint": "runs/controlled-len256-seed42/epoch-8",
+          "weights_sha256": "c51574ab7ea6e3a7ab5e6d1fb9c1368477c18802fc14c79b557f558a8c97b38e"
+        },
+        {
+          "seed": 7,
+          "epoch": 8,
+          "global_step": 72,
+          "learning_rate": 0.0,
+          "train": {
+            "accuracy": 0.7194244604316546,
+            "f1_macro": 0.68007378616784,
+            "per_label": {
+              "technical_report": {
+                "precision": 1.0,
+                "recall": 0.48,
+                "f1": 0.6486486486486487,
+                "support": 25,
+                "predicted": 12
+              },
+              "help_request": {
+                "precision": 0.5757575757575758,
+                "recall": 0.95,
+                "f1": 0.7169811320754716,
+                "support": 40,
+                "predicted": 66
+              },
+              "discussion": {
+                "precision": 1.0,
+                "recall": 0.3142857142857143,
+                "f1": 0.4782608695652174,
+                "support": 35,
+                "predicted": 11
+              },
+              "resource_share": {
+                "precision": 0.78,
+                "recall": 1.0,
+                "f1": 0.8764044943820225,
+                "support": 39,
+                "predicted": 50
+              }
+            },
+            "confusion_matrix": [
+              [
+                12,
+                6,
+                0,
+                7
+              ],
+              [
+                0,
+                38,
+                0,
+                2
+              ],
+              [
+                0,
+                22,
+                11,
+                2
+              ],
+              [
+                0,
+                0,
+                0,
+                39
+              ]
+            ],
+            "loss": 0.8761526942253113
+          },
+          "validation": {
+            "accuracy": 0.5806451612903226,
+            "f1_macro": 0.4222222222222222,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 6,
+                "predicted": 0
+              },
+              "help_request": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "support": 9,
+                "predicted": 18
+              },
+              "discussion": {
+                "precision": 1.0,
+                "recall": 0.125,
+                "f1": 0.2222222222222222,
+                "support": 8,
+                "predicted": 1
+              },
+              "resource_share": {
+                "precision": 0.6666666666666666,
+                "recall": 1.0,
+                "f1": 0.8,
+                "support": 8,
+                "predicted": 12
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                2,
+                0,
+                4
+              ],
+              [
+                0,
+                9,
+                0,
+                0
+              ],
+              [
+                0,
+                7,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "loss": 0.979051411151886
+          },
+          "checkpoint": "runs/controlled-len256-seed7/epoch-8",
+          "weights_sha256": "1633cbca8db9cf977fa48f8d38fd7c429a29a73e910afd8a6468393c484376e3"
+        },
+        {
+          "seed": 2024,
+          "epoch": 8,
+          "global_step": 72,
+          "learning_rate": 0.0,
+          "train": {
+            "accuracy": 0.841726618705036,
+            "f1_macro": 0.8362401988908014,
+            "per_label": {
+              "technical_report": {
+                "precision": 1.0,
+                "recall": 0.68,
+                "f1": 0.8095238095238095,
+                "support": 25,
+                "predicted": 17
+              },
+              "help_request": {
+                "precision": 0.813953488372093,
+                "recall": 0.875,
+                "f1": 0.8433734939759037,
+                "support": 40,
+                "predicted": 43
+              },
+              "discussion": {
+                "precision": 0.9285714285714286,
+                "recall": 0.7428571428571429,
+                "f1": 0.8253968253968254,
+                "support": 35,
+                "predicted": 28
+              },
+              "resource_share": {
+                "precision": 0.7647058823529411,
+                "recall": 1.0,
+                "f1": 0.8666666666666667,
+                "support": 39,
+                "predicted": 51
+              }
+            },
+            "confusion_matrix": [
+              [
+                17,
+                2,
+                0,
+                6
+              ],
+              [
+                0,
+                35,
+                2,
+                3
+              ],
+              [
+                0,
+                6,
+                26,
+                3
+              ],
+              [
+                0,
+                0,
+                0,
+                39
+              ]
+            ],
+            "loss": 0.8316094279289246
+          },
+          "validation": {
+            "accuracy": 0.5483870967741935,
+            "f1_macro": 0.5267809675704412,
+            "per_label": {
+              "technical_report": {
+                "precision": 0.6666666666666666,
+                "recall": 0.3333333333333333,
+                "f1": 0.4444444444444444,
+                "support": 6,
+                "predicted": 3
+              },
+              "help_request": {
+                "precision": 0.5,
+                "recall": 0.5555555555555556,
+                "f1": 0.5263157894736842,
+                "support": 9,
+                "predicted": 10
+              },
+              "discussion": {
+                "precision": 0.75,
+                "recall": 0.375,
+                "f1": 0.5,
+                "support": 8,
+                "predicted": 4
+              },
+              "resource_share": {
+                "precision": 0.5,
+                "recall": 0.875,
+                "f1": 0.6363636363636364,
+                "support": 8,
+                "predicted": 14
+              }
+            },
+            "confusion_matrix": [
+              [
+                2,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                5,
+                1,
+                3
+              ],
+              [
+                1,
+                4,
+                3,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                7
+              ]
+            ],
+            "loss": 1.1201680898666382
+          },
+          "checkpoint": "runs/controlled-len256-seed2024/epoch-8",
+          "weights_sha256": "b3633f01cbf1c4785798971864518aed58cd62888f7f6b84b081e3e4dda14845"
+        }
+      ],
+      "mean_validation_f1_macro": 0.4381597934229513,
+      "mean_validation_accuracy": 0.5268817204301075,
+      "mean_validation_loss": 1.0636108915011089
+    }
+  ],
+  "test_evaluations_performed": 0
+}

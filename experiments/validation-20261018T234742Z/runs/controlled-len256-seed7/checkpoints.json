@@ -1,0 +1,389 @@
+[
+  {
+    "epoch": 3,
+    "global_step": 27,
+    "learning_rate": 1.25e-05,
+    "train": {
+      "accuracy": 0.5323741007194245,
+      "f1_macro": 0.3483010752688172,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 25,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.4235294117647059,
+          "recall": 0.9,
+          "f1": 0.576,
+          "support": 40,
+          "predicted": 85
+        },
+        "discussion": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 35,
+          "predicted": 0
+        },
+        "resource_share": {
+          "precision": 0.7037037037037037,
+          "recall": 0.9743589743589743,
+          "f1": 0.8172043010752689,
+          "support": 39,
+          "predicted": 54
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          18,
+          0,
+          7
+        ],
+        [
+          0,
+          36,
+          0,
+          4
+        ],
+        [
+          0,
+          30,
+          0,
+          5
+        ],
+        [
+          0,
+          1,
+          0,
+          38
+        ]
+      ],
+      "loss": 1.1433457136154175
+    },
+    "validation": {
+      "accuracy": 0.5161290322580645,
+      "f1_macro": 0.3356643356643357,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 6,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.47058823529411764,
+          "recall": 0.8888888888888888,
+          "f1": 0.6153846153846154,
+          "support": 9,
+          "predicted": 17
+        },
+        "discussion": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 8,
+          "predicted": 0
+        },
+        "resource_share": {
+          "precision": 0.5714285714285714,
+          "recall": 1.0,
+          "f1": 0.7272727272727273,
+          "support": 8,
+          "predicted": 14
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          1,
+          0,
+          5
+        ],
+        [
+          0,
+          8,
+          0,
+          1
+        ],
+        [
+          0,
+          8,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "loss": 1.176512360572815
+    },
+    "checkpoint": "runs/controlled-len256-seed7/epoch-3",
+    "weights_sha256": "64697053eb717e0882112172d0f8493d5ac89071e9a12d74466016ef476c6227"
+  },
+  {
+    "epoch": 6,
+    "global_step": 54,
+    "learning_rate": 5e-06,
+    "train": {
+      "accuracy": 0.6834532374100719,
+      "f1_macro": 0.6136025898711654,
+      "per_label": {
+        "technical_report": {
+          "precision": 1.0,
+          "recall": 0.24,
+          "f1": 0.3870967741935484,
+          "support": 25,
+          "predicted": 6
+        },
+        "help_request": {
+          "precision": 0.5428571428571428,
+          "recall": 0.95,
+          "f1": 0.6909090909090909,
+          "support": 40,
+          "predicted": 70
+        },
+        "discussion": {
+          "precision": 0.9230769230769231,
+          "recall": 0.34285714285714286,
+          "f1": 0.5,
+          "support": 35,
+          "predicted": 13
+        },
+        "resource_share": {
+          "precision": 0.78,
+          "recall": 1.0,
+          "f1": 0.8764044943820225,
+          "support": 39,
+          "predicted": 50
+        }
+      },
+      "confusion_matrix": [
+        [
+          6,
+          11,
+          1,
+          7
+        ],
+        [
+          0,
+          38,
+          0,
+          2
+        ],
+        [
+          0,
+          21,
+          12,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          39
+        ]
+      ],
+      "loss": 0.9222877621650696
+    },
+    "validation": {
+      "accuracy": 0.5806451612903226,
+      "f1_macro": 0.4222222222222222,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 6,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "support": 9,
+          "predicted": 18
+        },
+        "discussion": {
+          "precision": 1.0,
+          "recall": 0.125,
+          "f1": 0.2222222222222222,
+          "support": 8,
+          "predicted": 1
+        },
+        "resource_share": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 8,
+          "predicted": 12
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          2,
+          0,
+          4
+        ],
+        [
+          0,
+          9,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "loss": 1.0086647272109985
+    },
+    "checkpoint": "runs/controlled-len256-seed7/epoch-6",
+    "weights_sha256": "dc9cd01056e3466bb9a22189c83d479ae825c38857c2e1462441f8885c26519c"
+  },
+  {
+    "epoch": 8,
+    "global_step": 72,
+    "learning_rate": 0.0,
+    "train": {
+      "accuracy": 0.7194244604316546,
+      "f1_macro": 0.68007378616784,
+      "per_label": {
+        "technical_report": {
+          "precision": 1.0,
+          "recall": 0.48,
+          "f1": 0.6486486486486487,
+          "support": 25,
+          "predicted": 12
+        },
+        "help_request": {
+          "precision": 0.5757575757575758,
+          "recall": 0.95,
+          "f1": 0.7169811320754716,
+          "support": 40,
+          "predicted": 66
+        },
+        "discussion": {
+          "precision": 1.0,
+          "recall": 0.3142857142857143,
+          "f1": 0.4782608695652174,
+          "support": 35,
+          "predicted": 11
+        },
+        "resource_share": {
+          "precision": 0.78,
+          "recall": 1.0,
+          "f1": 0.8764044943820225,
+          "support": 39,
+          "predicted": 50
+        }
+      },
+      "confusion_matrix": [
+        [
+          12,
+          6,
+          0,
+          7
+        ],
+        [
+          0,
+          38,
+          0,
+          2
+        ],
+        [
+          0,
+          22,
+          11,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          39
+        ]
+      ],
+      "loss": 0.8761526942253113
+    },
+    "validation": {
+      "accuracy": 0.5806451612903226,
+      "f1_macro": 0.4222222222222222,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 6,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "support": 9,
+          "predicted": 18
+        },
+        "discussion": {
+          "precision": 1.0,
+          "recall": 0.125,
+          "f1": 0.2222222222222222,
+          "support": 8,
+          "predicted": 1
+        },
+        "resource_share": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 8,
+          "predicted": 12
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          2,
+          0,
+          4
+        ],
+        [
+          0,
+          9,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "loss": 0.979051411151886
+    },
+    "checkpoint": "runs/controlled-len256-seed7/epoch-8",
+    "weights_sha256": "1633cbca8db9cf977fa48f8d38fd7c429a29a73e910afd8a6468393c484376e3"
+  }
+]

@@ -118,7 +118,14 @@ class Session:
             raise ValueError("Taxonomy changed since proposals; reconcile the annotation session before review.")
         backup = self.root / self.manifest["backup_directory"]
         for name, expected in self.manifest["backup_sha256"].items():
-            if hashlib.sha256((backup / name).read_bytes()).hexdigest() != expected:
+            snapshot = backup / name
+            if not snapshot.exists():
+                # Clean clones omit redundant local backups. These original files
+                # are themselves frozen and tracked, with the identical byte hash.
+                snapshot = self.data / name
+                if self.manifest["pinned_files"].get(f"data/{name}") != expected:
+                    raise ValueError(f"Missing backup without identical frozen original: {name}")
+            if hashlib.sha256(snapshot.read_bytes()).hexdigest() != expected:
                 raise ValueError(f"Backup changed: {name}")
         self.queue = read_csv(self.data / "annotation_queue.csv")
         candidates = read_csv(self.data / "candidate_posts.csv")
@@ -471,8 +478,8 @@ class Session:
             pool_verified=distribution(self.labeled_rows(curated=False)),
             minimum_additional_examples_at_200={label: max(0, 30 - distribution(projected)["counts"][label]) for label in LABELS},
             provenance_limit="Archive and Reddit IDs/URLs checked locally against original candidates; live Reddit availability and authorship not independently reauthenticated.",
-            criteria={"1": "not evaluated: training deferred", "2": "not evaluated: training deferred",
-                      "3": "not evaluated: training deferred", "4": "pending recorded review/attestation" if pending else "met" if distribution(verified)["balance_pass"] else "missed",
+            criteria={"1": "outside dataset validator; see README model verdicts", "2": "outside dataset validator; see README model verdicts",
+                      "3": "outside dataset validator; see README model verdicts", "4": "pending recorded review/attestation" if pending else "met" if distribution(verified)["balance_pass"] else "missed",
                       "5": "not evaluated: separate personal staff-taxonomy exercise"})
         report["ready"] = (source_pass and cold_ok and cold_selected and non_help_retained
                            and verified_non_help_retained and plan["cold_help_selected"] == 13
@@ -556,7 +563,7 @@ def readme_status(r):
              f"Selected verified posts: {r['verified']['total']}, including all {r['cold_annotations']} unchanged cold annotations. "
              f"Selected human-reviewed AI labels: {r['selected_human_verified']}, of which {r['selected_offline_verified']} "
              f"are covered by offline batch attestation. Individual CLI review events: {r['interactive_review_events']}; "
-             f"offline attestation events: {r['offline_attestation_events']}. No training has been started.",
+             f"offline attestation events: {r['offline_attestation_events']}. This block reports dataset review only; model outcomes appear below.",
              "", ("**Curated distribution** (all selected labels review-verified):" if r['pending_reviews'] == 0
                      else "**Projected curated distribution** (pending proposals included; not a verified training set):"), ""]
     for label in LABELS:
@@ -577,7 +584,7 @@ def report_markdown(r):
              f"Collection: {r['original_pool_size']} frozen originals + {r['supplemental_candidates']} supplemental candidates. "
              f"{r['source_checks']['archive_matches']} locally archive-matched posts; {r['source_checks']['unique_source_ids']} unique IDs "
              f"and {r['source_checks']['unique_normalized_texts']} unique normalized texts.",
-             f"Source integrity: {'PASS' if r['source_checks']['passed'] else 'FAIL'}. Original source files and backups retain pinned byte hashes. "
+             f"Source integrity: {'PASS' if r['source_checks']['passed'] else 'FAIL'}. Frozen original files match snapshot byte hashes; available local backups are also checked. "
              "Supplemental text is also reconstructed from checksummed raw API evidence, with no truncated cells.",
              f"Missing text rows: {len(r['source_checks']['missing_text_rows'])}; invalid verified labels: {len(r['source_checks']['invalid_labels'])}. "
              "Every proposal is checked against the four taxonomy labels and must have ai_suggested provenance.",
@@ -623,7 +630,7 @@ def report_markdown(r):
               f"- Stored source dates: {r['source_date_range']}; missing timestamps: {r['missing_source_dates']}. Original URLs and IDs are retained even when timestamps are absent.",
               "- Original posts are historical spring-2023 submissions. Supplemental reports were deliberately retrieved from later 2023 archive pages. This enrichment and help downsampling change prevalence; the result does not represent organic subreddit traffic.",
               "- Full raw scan pages include retrieval leads that were not registered as supplemental candidates. Only the selected full-text candidates enter the annotation pool. Retrieval terms and titles are not a labeling rule.",
-              "- Unique IDs/texts do not rule out related experiments or same-author leakage. Inspect related threads before eventual splitting; no split or training has started.",
+              "- Unique IDs/texts do not rule out related experiments or same-author leakage. The existing splits and model outcomes are documented in README; this dataset validator does not train or evaluate models.",
               "- Real submissions may quote or disclose model-authored text (e.g. original rows 137 and 242); this is not a claim that all source prose is independently human-written.",
               "", "## Five precommitted criteria", ""]
     lines += [f"- Criterion {key}: {value}." for key, value in r["criteria"].items()]
@@ -632,7 +639,7 @@ def report_markdown(r):
         lines += [f"- {e['attestation_id']}: reviewer {e['reviewer']}; attested at {e['attested_at']}; "
                   f"{e['scope_count']} exact proposals ({e['classifications']} classifications, {e['exclusions']} exclusions); "
                   f"snapshot SHA-256 {e['snapshot_sha256']}." for e in r["offline_attestations"]]
-    lines += ["", "Numeric targets in criteria.md remain unchanged. No training, model evaluation or staff-answer comparison was performed.", ""]
+    lines += ["", "Numeric targets in criteria.md remain unchanged. This command performs dataset checks only; it does not run training, model inference or staff-answer comparison. See README for completed model evaluations.", ""]
     return "\n".join(lines)
 
 

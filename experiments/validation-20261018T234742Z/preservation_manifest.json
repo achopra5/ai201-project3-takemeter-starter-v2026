@@ -1,0 +1,14 @@
+{
+  "created_utc": "2026-10-18T23:47:42.176006+00:00",
+  "sha256": {
+    "results.json": "5f93dc3250406af976fa1178bedf6e78bed47666b8e9d8ad53ba19ae6379c04d",
+    "test_split.csv": "fa835a4837c7c22c4eac95020ce9d9b2d3402ef71f607540b321407e47e5d771",
+    "results_three_seeds_before.json": "12b97bd525d80703f700fcd798d57980eae92371844eed8c128f4a8d2dbe4a7b",
+    "labels.csv": "5aa72edad914880836057bb3be2e499658b253930a3f4de956c1c0cfe6ba3ec6",
+    "criteria.md": "3c5a64ffffcd5bbda4962ab31eae82bf83c40faa4b12f66abdf2ad9ffe702af0",
+    "README.md": "5ef61d46d264438448999df8bada074f2e7f587b25506c93bd68089245edb660",
+    "takemeter.ipynb": "c338a4961e25da1a47bfdb914a0c11bf58d5707770398b0c42a76f1451f64425",
+    "label_definitions.txt": "d108e0537ed10bdc01f39b700022c11877c531f272b987ad8d69fc1e3ed263c9"
+  },
+  "policy": "Original result files copied and hashed without interpreting held-out test metrics. No original artifacts may be overwritten."
+}

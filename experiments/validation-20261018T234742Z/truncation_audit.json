@@ -1,0 +1,1028 @@
+{
+  "42": {
+    "train": {
+      "128": {
+        "overall": {
+          "posts": 139,
+          "truncated_posts": 98,
+          "truncated_fraction": 0.7050359712230215,
+          "discarded_tokens": 38211,
+          "retained_token_fraction": 0.2965703871430938,
+          "length_quantiles": {
+            "0": 26.0,
+            "0.25": 120.5,
+            "0.5": 229.0,
+            "0.75": 526.5,
+            "0.9": 1065.2000000000003,
+            "0.95": 1281.7999999999993,
+            "1": 2329.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 25,
+            "truncated_posts": 24,
+            "truncated_fraction": 0.96,
+            "discarded_tokens": 13358,
+            "retained_token_fraction": 0.19291885686665458,
+            "length_quantiles": {
+              "0": 121.0,
+              "0.25": 284.0,
+              "0.5": 607.0,
+              "0.75": 722.0,
+              "0.9": 1140.0,
+              "0.95": 1411.1999999999991,
+              "1": 2329.0
+            }
+          },
+          "help_request": {
+            "posts": 40,
+            "truncated_posts": 20,
+            "truncated_fraction": 0.5,
+            "discarded_tokens": 4570,
+            "retained_token_fraction": 0.48829918262232674,
+            "length_quantiles": {
+              "0": 56.0,
+              "0.25": 83.75,
+              "0.5": 132.0,
+              "0.75": 230.0,
+              "0.9": 393.2,
+              "0.95": 909.1999999999996,
+              "1": 1242.0
+            }
+          },
+          "discussion": {
+            "posts": 35,
+            "truncated_posts": 20,
+            "truncated_fraction": 0.5714285714285714,
+            "discarded_tokens": 6317,
+            "retained_token_fraction": 0.3754819574888779,
+            "length_quantiles": {
+              "0": 26.0,
+              "0.25": 91.5,
+              "0.5": 151.0,
+              "0.75": 236.5,
+              "0.9": 651.8000000000003,
+              "0.95": 1401.5,
+              "1": 1442.0
+            }
+          },
+          "resource_share": {
+            "posts": 39,
+            "truncated_posts": 34,
+            "truncated_fraction": 0.8717948717948718,
+            "discarded_tokens": 13966,
+            "retained_token_fraction": 0.2541123691518906,
+            "length_quantiles": {
+              "0": 48.0,
+              "0.25": 181.5,
+              "0.5": 333.0,
+              "0.75": 562.5,
+              "0.9": 1251.0,
+              "0.95": 1317.4000000000008,
+              "1": 1779.0
+            }
+          }
+        }
+      },
+      "256": {
+        "overall": {
+          "posts": 139,
+          "truncated_posts": 61,
+          "truncated_fraction": 0.43884892086330934,
+          "discarded_tokens": 28037,
+          "retained_token_fraction": 0.48386443548535557,
+          "length_quantiles": {
+            "0": 26.0,
+            "0.25": 120.5,
+            "0.5": 229.0,
+            "0.75": 526.5,
+            "0.9": 1065.2000000000003,
+            "0.95": 1281.7999999999993,
+            "1": 2329.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 25,
+            "truncated_posts": 20,
+            "truncated_fraction": 0.8,
+            "discarded_tokens": 10485,
+            "retained_token_fraction": 0.3665035345296357,
+            "length_quantiles": {
+              "0": 121.0,
+              "0.25": 284.0,
+              "0.5": 607.0,
+              "0.75": 722.0,
+              "0.9": 1140.0,
+              "0.95": 1411.1999999999991,
+              "1": 2329.0
+            }
+          },
+          "help_request": {
+            "posts": 40,
+            "truncated_posts": 8,
+            "truncated_fraction": 0.2,
+            "discarded_tokens": 2807,
+            "retained_token_fraction": 0.685701489194939,
+            "length_quantiles": {
+              "0": 56.0,
+              "0.25": 83.75,
+              "0.5": 132.0,
+              "0.75": 230.0,
+              "0.9": 393.2,
+              "0.95": 909.1999999999996,
+              "1": 1242.0
+            }
+          },
+          "discussion": {
+            "posts": 35,
+            "truncated_posts": 8,
+            "truncated_fraction": 0.22857142857142856,
+            "discarded_tokens": 4535,
+            "retained_token_fraction": 0.5516559565002471,
+            "length_quantiles": {
+              "0": 26.0,
+              "0.25": 91.5,
+              "0.5": 151.0,
+              "0.75": 236.5,
+              "0.9": 651.8000000000003,
+              "0.95": 1401.5,
+              "1": 1442.0
+            }
+          },
+          "resource_share": {
+            "posts": 39,
+            "truncated_posts": 25,
+            "truncated_fraction": 0.6410256410256411,
+            "discarded_tokens": 10210,
+            "retained_token_fraction": 0.4547105319376202,
+            "length_quantiles": {
+              "0": 48.0,
+              "0.25": 181.5,
+              "0.5": 333.0,
+              "0.75": 562.5,
+              "0.9": 1251.0,
+              "0.95": 1317.4000000000008,
+              "1": 1779.0
+            }
+          }
+        }
+      }
+    },
+    "validation": {
+      "128": {
+        "overall": {
+          "posts": 31,
+          "truncated_posts": 22,
+          "truncated_fraction": 0.7096774193548387,
+          "discarded_tokens": 10793,
+          "retained_token_fraction": 0.2507982784950715,
+          "length_quantiles": {
+            "0": 52.0,
+            "0.25": 121.5,
+            "0.5": 172.0,
+            "0.75": 354.5,
+            "0.9": 1522.0,
+            "0.95": 1962.0,
+            "1": 2324.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 6,
+            "truncated_posts": 6,
+            "truncated_fraction": 1.0,
+            "discarded_tokens": 4778,
+            "retained_token_fraction": 0.13847818247385504,
+            "length_quantiles": {
+              "0": 176.0,
+              "0.25": 311.0,
+              "0.5": 492.0,
+              "0.75": 1481.5,
+              "0.9": 2045.5,
+              "0.95": 2184.75,
+              "1": 2324.0
+            }
+          },
+          "help_request": {
+            "posts": 9,
+            "truncated_posts": 5,
+            "truncated_fraction": 0.5555555555555556,
+            "discarded_tokens": 452,
+            "retained_token_fraction": 0.6904109589041096,
+            "length_quantiles": {
+              "0": 68.0,
+              "0.25": 93.0,
+              "0.5": 130.0,
+              "0.75": 152.0,
+              "0.9": 330.8,
+              "0.95": 340.4,
+              "1": 350.0
+            }
+          },
+          "discussion": {
+            "posts": 8,
+            "truncated_posts": 4,
+            "truncated_fraction": 0.5,
+            "discarded_tokens": 243,
+            "retained_token_fraction": 0.7853356890459364,
+            "length_quantiles": {
+              "0": 68.0,
+              "0.25": 102.75,
+              "0.5": 134.0,
+              "0.75": 160.75,
+              "0.9": 214.6,
+              "0.95": 243.29999999999995,
+              "1": 272.0
+            }
+          },
+          "resource_share": {
+            "posts": 8,
+            "truncated_posts": 7,
+            "truncated_fraction": 0.875,
+            "discarded_tokens": 5320,
+            "retained_token_fraction": 0.15124441608168473,
+            "length_quantiles": {
+              "0": 52.0,
+              "0.25": 166.25,
+              "0.5": 409.5,
+              "0.75": 1428.25,
+              "0.9": 1712.5,
+              "0.95": 1934.7499999999995,
+              "1": 2157.0
+            }
+          }
+        }
+      },
+      "256": {
+        "overall": {
+          "posts": 31,
+          "truncated_posts": 12,
+          "truncated_fraction": 0.3870967741935484,
+          "discarded_tokens": 8892,
+          "retained_token_fraction": 0.3827571845064556,
+          "length_quantiles": {
+            "0": 52.0,
+            "0.25": 121.5,
+            "0.5": 172.0,
+            "0.75": 354.5,
+            "0.9": 1522.0,
+            "0.95": 1962.0,
+            "1": 2324.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 6,
+            "truncated_posts": 5,
+            "truncated_fraction": 0.8333333333333334,
+            "discarded_tokens": 4090,
+            "retained_token_fraction": 0.2625315542733502,
+            "length_quantiles": {
+              "0": 176.0,
+              "0.25": 311.0,
+              "0.5": 492.0,
+              "0.75": 1481.5,
+              "0.9": 2045.5,
+              "0.95": 2184.75,
+              "1": 2324.0
+            }
+          },
+          "help_request": {
+            "posts": 9,
+            "truncated_posts": 2,
+            "truncated_fraction": 0.2222222222222222,
+            "discarded_tokens": 164,
+            "retained_token_fraction": 0.8876712328767123,
+            "length_quantiles": {
+              "0": 68.0,
+              "0.25": 93.0,
+              "0.5": 130.0,
+              "0.75": 152.0,
+              "0.9": 330.8,
+              "0.95": 340.4,
+              "1": 350.0
+            }
+          },
+          "discussion": {
+            "posts": 8,
+            "truncated_posts": 1,
+            "truncated_fraction": 0.125,
+            "discarded_tokens": 16,
+            "retained_token_fraction": 0.9858657243816255,
+            "length_quantiles": {
+              "0": 68.0,
+              "0.25": 102.75,
+              "0.5": 134.0,
+              "0.75": 160.75,
+              "0.9": 214.6,
+              "0.95": 243.29999999999995,
+              "1": 272.0
+            }
+          },
+          "resource_share": {
+            "posts": 8,
+            "truncated_posts": 4,
+            "truncated_fraction": 0.5,
+            "discarded_tokens": 4622,
+            "retained_token_fraction": 0.2626037013401404,
+            "length_quantiles": {
+              "0": 52.0,
+              "0.25": 166.25,
+              "0.5": 409.5,
+              "0.75": 1428.25,
+              "0.9": 1712.5,
+              "0.95": 1934.7499999999995,
+              "1": 2157.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "7": {
+    "train": {
+      "128": {
+        "overall": {
+          "posts": 139,
+          "truncated_posts": 94,
+          "truncated_fraction": 0.6762589928057554,
+          "discarded_tokens": 42317,
+          "retained_token_fraction": 0.2712132954447602,
+          "length_quantiles": {
+            "0": 32.0,
+            "0.25": 110.5,
+            "0.5": 238.0,
+            "0.75": 494.0,
+            "0.9": 1139.2,
+            "0.95": 1482.3999999999996,
+            "1": 2329.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 25,
+            "truncated_posts": 24,
+            "truncated_fraction": 0.96,
+            "discarded_tokens": 15947,
+            "retained_token_fraction": 0.1668234064785789,
+            "length_quantiles": {
+              "0": 121.0,
+              "0.25": 284.0,
+              "0.5": 625.0,
+              "0.75": 1053.0,
+              "0.9": 1651.4000000000003,
+              "0.95": 2212.5999999999985,
+              "1": 2329.0
+            }
+          },
+          "help_request": {
+            "posts": 40,
+            "truncated_posts": 19,
+            "truncated_fraction": 0.475,
+            "discarded_tokens": 3008,
+            "retained_token_fraction": 0.5839557399723375,
+            "length_quantiles": {
+              "0": 56.0,
+              "0.25": 81.25,
+              "0.5": 122.5,
+              "0.75": 235.0,
+              "0.9": 328.40000000000003,
+              "0.95": 393.1,
+              "1": 1046.0
+            }
+          },
+          "discussion": {
+            "posts": 35,
+            "truncated_posts": 20,
+            "truncated_fraction": 0.5714285714285714,
+            "discarded_tokens": 7631,
+            "retained_token_fraction": 0.32760595647193586,
+            "length_quantiles": {
+              "0": 32.0,
+              "0.25": 77.0,
+              "0.5": 151.0,
+              "0.75": 297.0,
+              "0.9": 1038.2000000000007,
+              "0.95": 1401.5,
+              "1": 1608.0
+            }
+          },
+          "resource_share": {
+            "posts": 39,
+            "truncated_posts": 31,
+            "truncated_fraction": 0.7948717948717948,
+            "discarded_tokens": 15731,
+            "retained_token_fraction": 0.2268259117271208,
+            "length_quantiles": {
+              "0": 48.0,
+              "0.25": 180.5,
+              "0.5": 335.0,
+              "0.75": 599.5,
+              "0.9": 1254.6000000000001,
+              "0.95": 1547.7000000000003,
+              "1": 2157.0
+            }
+          }
+        }
+      },
+      "256": {
+        "overall": {
+          "posts": 139,
+          "truncated_posts": 65,
+          "truncated_fraction": 0.4676258992805755,
+          "discarded_tokens": 32332,
+          "retained_token_fraction": 0.4431757513131835,
+          "length_quantiles": {
+            "0": 32.0,
+            "0.25": 110.5,
+            "0.5": 238.0,
+            "0.75": 494.0,
+            "0.9": 1139.2,
+            "0.95": 1482.3999999999996,
+            "1": 2329.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 25,
+            "truncated_posts": 20,
+            "truncated_fraction": 0.8,
+            "discarded_tokens": 13122,
+            "retained_token_fraction": 0.31442006269592476,
+            "length_quantiles": {
+              "0": 121.0,
+              "0.25": 284.0,
+              "0.5": 625.0,
+              "0.75": 1053.0,
+              "0.9": 1651.4000000000003,
+              "0.95": 2212.5999999999985,
+              "1": 2329.0
+            }
+          },
+          "help_request": {
+            "posts": 40,
+            "truncated_posts": 9,
+            "truncated_fraction": 0.225,
+            "discarded_tokens": 1370,
+            "retained_token_fraction": 0.8105117565698479,
+            "length_quantiles": {
+              "0": 56.0,
+              "0.25": 81.25,
+              "0.5": 122.5,
+              "0.75": 235.0,
+              "0.9": 328.40000000000003,
+              "0.95": 393.1,
+              "1": 1046.0
+            }
+          },
+          "discussion": {
+            "posts": 35,
+            "truncated_posts": 11,
+            "truncated_fraction": 0.3142857142857143,
+            "discarded_tokens": 5776,
+            "retained_token_fraction": 0.4910564807472024,
+            "length_quantiles": {
+              "0": 32.0,
+              "0.25": 77.0,
+              "0.5": 151.0,
+              "0.75": 297.0,
+              "0.9": 1038.2000000000007,
+              "0.95": 1401.5,
+              "1": 1608.0
+            }
+          },
+          "resource_share": {
+            "posts": 39,
+            "truncated_posts": 25,
+            "truncated_fraction": 0.6410256410256411,
+            "discarded_tokens": 12064,
+            "retained_token_fraction": 0.4070578983583997,
+            "length_quantiles": {
+              "0": 48.0,
+              "0.25": 180.5,
+              "0.5": 335.0,
+              "0.75": 599.5,
+              "0.9": 1254.6000000000001,
+              "0.95": 1547.7000000000003,
+              "1": 2157.0
+            }
+          }
+        }
+      }
+    },
+    "validation": {
+      "128": {
+        "overall": {
+          "posts": 31,
+          "truncated_posts": 22,
+          "truncated_fraction": 0.7096774193548387,
+          "discarded_tokens": 8500,
+          "retained_token_fraction": 0.29850623091524303,
+          "length_quantiles": {
+            "0": 26.0,
+            "0.25": 120.0,
+            "0.5": 190.0,
+            "0.75": 493.5,
+            "0.9": 1251.0,
+            "0.95": 1371.0,
+            "1": 1753.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 6,
+            "truncated_posts": 6,
+            "truncated_fraction": 1.0,
+            "discarded_tokens": 2656,
+            "retained_token_fraction": 0.22429906542056074,
+            "length_quantiles": {
+              "0": 194.0,
+              "0.25": 380.5,
+              "0.5": 493.5,
+              "0.75": 573.5,
+              "0.9": 940.5,
+              "0.95": 1120.25,
+              "1": 1300.0
+            }
+          },
+          "help_request": {
+            "posts": 9,
+            "truncated_posts": 4,
+            "truncated_fraction": 0.4444444444444444,
+            "discarded_tokens": 407,
+            "retained_token_fraction": 0.7033527696793003,
+            "length_quantiles": {
+              "0": 71.0,
+              "0.25": 90.0,
+              "0.5": 126.0,
+              "0.75": 137.0,
+              "0.9": 272.0,
+              "0.95": 343.99999999999994,
+              "1": 416.0
+            }
+          },
+          "discussion": {
+            "posts": 8,
+            "truncated_posts": 4,
+            "truncated_fraction": 0.5,
+            "discarded_tokens": 1484,
+            "retained_token_fraction": 0.36689419795221845,
+            "length_quantiles": {
+              "0": 26.0,
+              "0.25": 108.0,
+              "0.5": 128.0,
+              "0.75": 198.0,
+              "0.9": 587.9999999999998,
+              "0.95": 1014.9999999999993,
+              "1": 1442.0
+            }
+          },
+          "resource_share": {
+            "posts": 8,
+            "truncated_posts": 8,
+            "truncated_fraction": 1.0,
+            "discarded_tokens": 3953,
+            "retained_token_fraction": 0.20574643359453487,
+            "length_quantiles": {
+              "0": 134.0,
+              "0.25": 146.25,
+              "0.5": 425.0,
+              "0.75": 839.25,
+              "0.9": 1401.6,
+              "0.95": 1577.2999999999997,
+              "1": 1753.0
+            }
+          }
+        }
+      },
+      "256": {
+        "overall": {
+          "posts": 31,
+          "truncated_posts": 11,
+          "truncated_fraction": 0.3548387096774194,
+          "discarded_tokens": 6575,
+          "retained_token_fraction": 0.45737393744326155,
+          "length_quantiles": {
+            "0": 26.0,
+            "0.25": 120.0,
+            "0.5": 190.0,
+            "0.75": 493.5,
+            "0.9": 1251.0,
+            "0.95": 1371.0,
+            "1": 1753.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 6,
+            "truncated_posts": 5,
+            "truncated_fraction": 0.8333333333333334,
+            "discarded_tokens": 1950,
+            "retained_token_fraction": 0.4304906542056075,
+            "length_quantiles": {
+              "0": 194.0,
+              "0.25": 380.5,
+              "0.5": 493.5,
+              "0.75": 573.5,
+              "0.9": 940.5,
+              "0.95": 1120.25,
+              "1": 1300.0
+            }
+          },
+          "help_request": {
+            "posts": 9,
+            "truncated_posts": 1,
+            "truncated_fraction": 0.1111111111111111,
+            "discarded_tokens": 160,
+            "retained_token_fraction": 0.8833819241982507,
+            "length_quantiles": {
+              "0": 71.0,
+              "0.25": 90.0,
+              "0.5": 126.0,
+              "0.75": 137.0,
+              "0.9": 272.0,
+              "0.95": 343.99999999999994,
+              "1": 416.0
+            }
+          },
+          "discussion": {
+            "posts": 8,
+            "truncated_posts": 1,
+            "truncated_fraction": 0.125,
+            "discarded_tokens": 1186,
+            "retained_token_fraction": 0.49402730375426623,
+            "length_quantiles": {
+              "0": 26.0,
+              "0.25": 108.0,
+              "0.5": 128.0,
+              "0.75": 198.0,
+              "0.9": 587.9999999999998,
+              "0.95": 1014.9999999999993,
+              "1": 1442.0
+            }
+          },
+          "resource_share": {
+            "posts": 8,
+            "truncated_posts": 4,
+            "truncated_fraction": 0.5,
+            "discarded_tokens": 3279,
+            "retained_token_fraction": 0.3411693791440627,
+            "length_quantiles": {
+              "0": 134.0,
+              "0.25": 146.25,
+              "0.5": 425.0,
+              "0.75": 839.25,
+              "0.9": 1401.6,
+              "0.95": 1577.2999999999997,
+              "1": 1753.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "2024": {
+    "train": {
+      "128": {
+        "overall": {
+          "posts": 139,
+          "truncated_posts": 98,
+          "truncated_fraction": 0.7050359712230215,
+          "discarded_tokens": 40066,
+          "retained_token_fraction": 0.2859383354125824,
+          "length_quantiles": {
+            "0": 32.0,
+            "0.25": 117.0,
+            "0.5": 236.0,
+            "0.75": 530.5,
+            "0.9": 1118.0,
+            "0.95": 1401.4999999999998,
+            "1": 2324.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 25,
+            "truncated_posts": 24,
+            "truncated_fraction": 0.96,
+            "discarded_tokens": 12950,
+            "retained_token_fraction": 0.19779470978132938,
+            "length_quantiles": {
+              "0": 121.0,
+              "0.25": 295.0,
+              "0.5": 551.0,
+              "0.75": 716.0,
+              "0.9": 1233.6000000000001,
+              "0.95": 1442.3999999999994,
+              "1": 2324.0
+            }
+          },
+          "help_request": {
+            "posts": 40,
+            "truncated_posts": 21,
+            "truncated_fraction": 0.525,
+            "discarded_tokens": 3435,
+            "retained_token_fraction": 0.5597846981930027,
+            "length_quantiles": {
+              "0": 56.0,
+              "0.25": 84.75,
+              "0.5": 133.0,
+              "0.75": 220.5,
+              "0.9": 296.9000000000001,
+              "0.95": 440.2999999999986,
+              "1": 1046.0
+            }
+          },
+          "discussion": {
+            "posts": 35,
+            "truncated_posts": 19,
+            "truncated_fraction": 0.5428571428571428,
+            "discarded_tokens": 7387,
+            "retained_token_fraction": 0.3313721940622737,
+            "length_quantiles": {
+              "0": 32.0,
+              "0.25": 77.0,
+              "0.5": 146.0,
+              "0.75": 267.0,
+              "0.9": 1106.6000000000004,
+              "0.95": 1410.4999999999998,
+              "1": 1608.0
+            }
+          },
+          "resource_share": {
+            "posts": 39,
+            "truncated_posts": 34,
+            "truncated_fraction": 0.8717948717948718,
+            "discarded_tokens": 16294,
+            "retained_token_fraction": 0.22835764349308582,
+            "length_quantiles": {
+              "0": 62.0,
+              "0.25": 211.0,
+              "0.5": 356.0,
+              "0.75": 583.5,
+              "0.9": 1280.2000000000005,
+              "0.95": 1547.7000000000003,
+              "1": 2157.0
+            }
+          }
+        }
+      },
+      "256": {
+        "overall": {
+          "posts": 139,
+          "truncated_posts": 62,
+          "truncated_fraction": 0.4460431654676259,
+          "discarded_tokens": 29911,
+          "retained_token_fraction": 0.4669221172696489,
+          "length_quantiles": {
+            "0": 32.0,
+            "0.25": 117.0,
+            "0.5": 236.0,
+            "0.75": 530.5,
+            "0.9": 1118.0,
+            "0.95": 1401.4999999999998,
+            "1": 2324.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 25,
+            "truncated_posts": 21,
+            "truncated_fraction": 0.84,
+            "discarded_tokens": 10058,
+            "retained_token_fraction": 0.37694356687108965,
+            "length_quantiles": {
+              "0": 121.0,
+              "0.25": 295.0,
+              "0.5": 551.0,
+              "0.75": 716.0,
+              "0.9": 1233.6000000000001,
+              "0.95": 1442.3999999999994,
+              "1": 2324.0
+            }
+          },
+          "help_request": {
+            "posts": 40,
+            "truncated_posts": 7,
+            "truncated_fraction": 0.175,
+            "discarded_tokens": 1773,
+            "retained_token_fraction": 0.7727797001153403,
+            "length_quantiles": {
+              "0": 56.0,
+              "0.25": 84.75,
+              "0.5": 133.0,
+              "0.75": 220.5,
+              "0.9": 296.9000000000001,
+              "0.95": 440.2999999999986,
+              "1": 1046.0
+            }
+          },
+          "discussion": {
+            "posts": 35,
+            "truncated_posts": 10,
+            "truncated_fraction": 0.2857142857142857,
+            "discarded_tokens": 5600,
+            "retained_token_fraction": 0.49312092686459086,
+            "length_quantiles": {
+              "0": 32.0,
+              "0.25": 77.0,
+              "0.5": 146.0,
+              "0.75": 267.0,
+              "0.9": 1106.6000000000004,
+              "0.95": 1410.4999999999998,
+              "1": 1608.0
+            }
+          },
+          "resource_share": {
+            "posts": 39,
+            "truncated_posts": 24,
+            "truncated_fraction": 0.6153846153846154,
+            "discarded_tokens": 12480,
+            "retained_token_fraction": 0.4089789732903959,
+            "length_quantiles": {
+              "0": 62.0,
+              "0.25": 211.0,
+              "0.5": 356.0,
+              "0.75": 583.5,
+              "0.9": 1280.2000000000005,
+              "0.95": 1547.7000000000003,
+              "1": 2157.0
+            }
+          }
+        }
+      }
+    },
+    "validation": {
+      "128": {
+        "overall": {
+          "posts": 31,
+          "truncated_posts": 21,
+          "truncated_fraction": 0.6774193548387096,
+          "discarded_tokens": 7772,
+          "retained_token_fraction": 0.3110539845758355,
+          "length_quantiles": {
+            "0": 26.0,
+            "0.25": 114.5,
+            "0.5": 190.0,
+            "0.75": 480.0,
+            "0.9": 737.0,
+            "0.95": 1021.0,
+            "1": 1767.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 6,
+            "truncated_posts": 6,
+            "truncated_fraction": 1.0,
+            "discarded_tokens": 3137,
+            "retained_token_fraction": 0.1966709346991037,
+            "length_quantiles": {
+              "0": 176.0,
+              "0.25": 247.75,
+              "0.5": 527.5,
+              "0.75": 696.25,
+              "0.9": 1244.5,
+              "0.95": 1505.75,
+              "1": 1767.0
+            }
+          },
+          "help_request": {
+            "posts": 9,
+            "truncated_posts": 4,
+            "truncated_fraction": 0.4444444444444444,
+            "discarded_tokens": 1583,
+            "retained_token_fraction": 0.37480252764612954,
+            "length_quantiles": {
+              "0": 63.0,
+              "0.25": 90.0,
+              "0.5": 126.0,
+              "0.75": 326.0,
+              "0.9": 562.8000000000002,
+              "0.95": 902.3999999999996,
+              "1": 1242.0
+            }
+          },
+          "discussion": {
+            "posts": 8,
+            "truncated_posts": 5,
+            "truncated_fraction": 0.625,
+            "discarded_tokens": 1180,
+            "retained_token_fraction": 0.43132530120481927,
+            "length_quantiles": {
+              "0": 26.0,
+              "0.25": 118.75,
+              "0.5": 166.0,
+              "0.75": 301.25,
+              "0.9": 587.9,
+              "0.95": 662.4499999999999,
+              "1": 737.0
+            }
+          },
+          "resource_share": {
+            "posts": 8,
+            "truncated_posts": 6,
+            "truncated_fraction": 0.75,
+            "discarded_tokens": 1872,
+            "retained_token_fraction": 0.323943661971831,
+            "length_quantiles": {
+              "0": 52.0,
+              "0.25": 122.75,
+              "0.5": 295.0,
+              "0.75": 483.0,
+              "0.9": 731.4,
+              "0.95": 765.6999999999999,
+              "1": 800.0
+            }
+          }
+        }
+      },
+      "256": {
+        "overall": {
+          "posts": 31,
+          "truncated_posts": 14,
+          "truncated_fraction": 0.45161290322580644,
+          "discarded_tokens": 5684,
+          "retained_token_fraction": 0.4961439588688946,
+          "length_quantiles": {
+            "0": 26.0,
+            "0.25": 114.5,
+            "0.5": 190.0,
+            "0.75": 480.0,
+            "0.9": 737.0,
+            "0.95": 1021.0,
+            "1": 1767.0
+          }
+        },
+        "per_class": {
+          "technical_report": {
+            "posts": 6,
+            "truncated_posts": 4,
+            "truncated_fraction": 0.6666666666666666,
+            "discarded_tokens": 2520,
+            "retained_token_fraction": 0.3546734955185659,
+            "length_quantiles": {
+              "0": 176.0,
+              "0.25": 247.75,
+              "0.5": 527.5,
+              "0.75": 696.25,
+              "0.9": 1244.5,
+              "0.95": 1505.75,
+              "1": 1767.0
+            }
+          },
+          "help_request": {
+            "posts": 9,
+            "truncated_posts": 3,
+            "truncated_fraction": 0.3333333333333333,
+            "discarded_tokens": 1193,
+            "retained_token_fraction": 0.5288309636650869,
+            "length_quantiles": {
+              "0": 63.0,
+              "0.25": 90.0,
+              "0.5": 126.0,
+              "0.75": 326.0,
+              "0.9": 562.8000000000002,
+              "0.95": 902.3999999999996,
+              "1": 1242.0
+            }
+          },
+          "discussion": {
+            "posts": 8,
+            "truncated_posts": 2,
+            "truncated_fraction": 0.25,
+            "discarded_tokens": 749,
+            "retained_token_fraction": 0.6390361445783133,
+            "length_quantiles": {
+              "0": 26.0,
+              "0.25": 118.75,
+              "0.5": 166.0,
+              "0.75": 301.25,
+              "0.9": 587.9,
+              "0.95": 662.4499999999999,
+              "1": 737.0
+            }
+          },
+          "resource_share": {
+            "posts": 8,
+            "truncated_posts": 5,
+            "truncated_fraction": 0.625,
+            "discarded_tokens": 1222,
+            "retained_token_fraction": 0.5586854460093896,
+            "length_quantiles": {
+              "0": 52.0,
+              "0.25": 122.75,
+              "0.5": 295.0,
+              "0.75": 483.0,
+              "0.9": 731.4,
+              "0.95": 765.6999999999999,
+              "1": 800.0
+            }
+          }
+        }
+      }
+    }
+  }
+}

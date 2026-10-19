@@ -2,6 +2,12 @@
 
 Everything about how the starter works.
 
+**Submission closeout:** Unit 5 work and the existing exploratory follow-up are
+complete. Use the read-only checks in [README](README.md) and the
+[reproducibility notes](submission/REPRODUCIBILITY.md). The training, collection,
+baseline and evaluation commands below explain the course workflow; do not rerun
+them for closeout or overwrite the saved results.
+
 This pair is different from the last two: **you train a model.** It runs on
 your own machine, in a notebook, from inside this repo. No accounts, no keys,
 nothing hosted.
@@ -10,9 +16,9 @@ nothing hosted.
 
 ## Before your first class
 
-One setup, one virtual environment, everything in this repo. The
-[environment setup page](../pages/ide_setup) has the per-operating-system
-commands.
+One setup, one virtual environment, everything in this repo. For this standalone
+repository, use the commands below; the original course-relative setup page is
+not included here.
 
 ```bash
 python3 -m venv .venv

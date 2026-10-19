@@ -1,0 +1,389 @@
+[
+  {
+    "epoch": 3,
+    "global_step": 27,
+    "learning_rate": 1.25e-05,
+    "train": {
+      "accuracy": 0.5179856115107914,
+      "f1_macro": 0.33392751039809865,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 25,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.4430379746835443,
+          "recall": 0.875,
+          "f1": 0.5882352941176471,
+          "support": 40,
+          "predicted": 79
+        },
+        "discussion": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 35,
+          "predicted": 0
+        },
+        "resource_share": {
+          "precision": 0.6166666666666667,
+          "recall": 0.9487179487179487,
+          "f1": 0.7474747474747475,
+          "support": 39,
+          "predicted": 60
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          13,
+          0,
+          12
+        ],
+        [
+          0,
+          35,
+          0,
+          5
+        ],
+        [
+          0,
+          29,
+          0,
+          6
+        ],
+        [
+          0,
+          2,
+          0,
+          37
+        ]
+      ],
+      "loss": 1.1697901487350464
+    },
+    "validation": {
+      "accuracy": 0.5161290322580645,
+      "f1_macro": 0.3484573502722323,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 6,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.4,
+          "recall": 0.8888888888888888,
+          "f1": 0.5517241379310345,
+          "support": 9,
+          "predicted": 20
+        },
+        "discussion": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 8,
+          "predicted": 0
+        },
+        "resource_share": {
+          "precision": 0.7272727272727273,
+          "recall": 1.0,
+          "f1": 0.8421052631578947,
+          "support": 8,
+          "predicted": 11
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          4,
+          0,
+          2
+        ],
+        [
+          0,
+          8,
+          0,
+          1
+        ],
+        [
+          0,
+          8,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "loss": 1.2017043828964233
+    },
+    "checkpoint": "runs/controlled-len128-seed7/epoch-3",
+    "weights_sha256": "cb01c22aa6bfae316750df0f984efa6e019548c1b1a25fee78de4c99130a3d9a"
+  },
+  {
+    "epoch": 6,
+    "global_step": 54,
+    "learning_rate": 5e-06,
+    "train": {
+      "accuracy": 0.7050359712230215,
+      "f1_macro": 0.5818018136705969,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 25,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.5967741935483871,
+          "recall": 0.925,
+          "f1": 0.7254901960784313,
+          "support": 40,
+          "predicted": 62
+        },
+        "discussion": {
+          "precision": 1.0,
+          "recall": 0.6285714285714286,
+          "f1": 0.7719298245614035,
+          "support": 35,
+          "predicted": 22
+        },
+        "resource_share": {
+          "precision": 0.7090909090909091,
+          "recall": 1.0,
+          "f1": 0.8297872340425532,
+          "support": 39,
+          "predicted": 55
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          14,
+          0,
+          11
+        ],
+        [
+          0,
+          37,
+          0,
+          3
+        ],
+        [
+          0,
+          11,
+          22,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          39
+        ]
+      ],
+      "loss": 0.9505009055137634
+    },
+    "validation": {
+      "accuracy": 0.5161290322580645,
+      "f1_macro": 0.3555555555555555,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 6,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.38095238095238093,
+          "recall": 0.8888888888888888,
+          "f1": 0.5333333333333333,
+          "support": 9,
+          "predicted": 21
+        },
+        "discussion": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 8,
+          "predicted": 0
+        },
+        "resource_share": {
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.8888888888888888,
+          "support": 8,
+          "predicted": 10
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          5,
+          0,
+          1
+        ],
+        [
+          0,
+          8,
+          0,
+          1
+        ],
+        [
+          0,
+          8,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "loss": 1.0442085266113281
+    },
+    "checkpoint": "runs/controlled-len128-seed7/epoch-6",
+    "weights_sha256": "2d2ce5ab7e1385ba555df78f7d7f4d59937555af6fcd0f9e7708376e5d8cc488"
+  },
+  {
+    "epoch": 8,
+    "global_step": 72,
+    "learning_rate": 0.0,
+    "train": {
+      "accuracy": 0.7194244604316546,
+      "f1_macro": 0.6329719387755102,
+      "per_label": {
+        "technical_report": {
+          "precision": 1.0,
+          "recall": 0.12,
+          "f1": 0.21428571428571427,
+          "support": 25,
+          "predicted": 3
+        },
+        "help_request": {
+          "precision": 0.6379310344827587,
+          "recall": 0.925,
+          "f1": 0.7551020408163265,
+          "support": 40,
+          "predicted": 58
+        },
+        "discussion": {
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1": 0.75,
+          "support": 35,
+          "predicted": 21
+        },
+        "resource_share": {
+          "precision": 0.6842105263157895,
+          "recall": 1.0,
+          "f1": 0.8125,
+          "support": 39,
+          "predicted": 57
+        }
+      },
+      "confusion_matrix": [
+        [
+          3,
+          9,
+          0,
+          13
+        ],
+        [
+          0,
+          37,
+          0,
+          3
+        ],
+        [
+          0,
+          12,
+          21,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          39
+        ]
+      ],
+      "loss": 0.9038683772087097
+    },
+    "validation": {
+      "accuracy": 0.5161290322580645,
+      "f1_macro": 0.34285714285714286,
+      "per_label": {
+        "technical_report": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 6,
+          "predicted": 0
+        },
+        "help_request": {
+          "precision": 0.42105263157894735,
+          "recall": 0.8888888888888888,
+          "f1": 0.5714285714285714,
+          "support": 9,
+          "predicted": 19
+        },
+        "discussion": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 8,
+          "predicted": 0
+        },
+        "resource_share": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 8,
+          "predicted": 12
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          3,
+          0,
+          3
+        ],
+        [
+          0,
+          8,
+          0,
+          1
+        ],
+        [
+          0,
+          8,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "loss": 1.0186731815338135
+    },
+    "checkpoint": "runs/controlled-len128-seed7/epoch-8",
+    "weights_sha256": "56d14f2b1006bf5cf59f25853a3378ad4565009dc2055924cb6ce4be4526d7d6"
+  }
+]

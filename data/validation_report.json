@@ -351,9 +351,9 @@
   },
   "provenance_limit": "Archive and Reddit IDs/URLs checked locally against original candidates; live Reddit availability and authorship not independently reauthenticated.",
   "criteria": {
-    "1": "not evaluated: training deferred",
-    "2": "not evaluated: training deferred",
-    "3": "not evaluated: training deferred",
+    "1": "outside dataset validator; see README model verdicts",
+    "2": "outside dataset validator; see README model verdicts",
+    "3": "outside dataset validator; see README model verdicts",
     "4": "met",
     "5": "not evaluated: separate personal staff-taxonomy exercise"
   },

@@ -1,0 +1,77 @@
+{
+  "created_utc": "2026-10-18T23:51:22.653321+00:00",
+  "purpose": "Validation-only selection. No test predictions, metrics or test truncation.",
+  "base_model": "distilbert-base-uncased",
+  "seeds": [
+    42,
+    7,
+    2024
+  ],
+  "label_order": [
+    "technical_report",
+    "help_request",
+    "discussion",
+    "resource_share"
+  ],
+  "learning_rate": 2e-05,
+  "batch_size": 16,
+  "weight_decay": 0,
+  "gradient_accumulation_steps": 1,
+  "drop_last": false,
+  "warmup_steps": 0,
+  "optimizer": "adamw_torch_fused (notebook installed default)",
+  "scheduler": "linear; original reference horizon=27, controlled horizon=72",
+  "max_lengths": [
+    128,
+    256
+  ],
+  "candidate_epochs": [
+    3,
+    6,
+    8
+  ],
+  "length_rule": {
+    "trunc128_min_fraction": 0.2,
+    "retention_gain_min": 0.1,
+    "observed_mean_trunc128": 0.6971841881333644,
+    "observed_mean_retention_gain": 0.1693594788167022
+  },
+  "design": "3-epoch original reference at128 plus shared 8-epoch trajectory per length/seed. Compare checkpoints3/6/8 within each trajectory to control scheduler history. Reference3 uses the original shorter scheduler, so duration alone is not isolated against it.",
+  "selection": "Maximize mean validation macro F1 over seeds; ties (rounded12 decimals) use minimum seed macro F1, then lower mean validation loss, shorter input, fewer epochs, then candidate name. Original reference is also eligible.",
+  "protected_sha256": {
+    "results.json": "5f93dc3250406af976fa1178bedf6e78bed47666b8e9d8ad53ba19ae6379c04d",
+    "test_split.csv": "fa835a4837c7c22c4eac95020ce9d9b2d3402ef71f607540b321407e47e5d771",
+    "results_three_seeds_before.json": "12b97bd525d80703f700fcd798d57980eae92371844eed8c128f4a8d2dbe4a7b",
+    "labels.csv": "5aa72edad914880836057bb3be2e499658b253930a3f4de956c1c0cfe6ba3ec6",
+    "criteria.md": "3c5a64ffffcd5bbda4962ab31eae82bf83c40faa4b12f66abdf2ad9ffe702af0",
+    "takemeter.ipynb": "c338a4961e25da1a47bfdb914a0c11bf58d5707770398b0c42a76f1451f64425",
+    "label_definitions.txt": "d108e0537ed10bdc01f39b700022c11877c531f272b987ad8d69fc1e3ed263c9",
+    "data/annotation_session.json": "f678a2997f4f7cab30d5eef0786d1866e7fae1cbc7f4629b99a73c5bd33e461d",
+    "data/curation_manifest.json": "5658bbd6a48b566ffae40a3b4ba1dc7ef038e4a8958949f15694f2bdf36a4898",
+    "taxonomy_stress_test.md": "92ef686e2a8318671f1c8ea6f6b11c68d2a8aa7f7b67efd3154dce6e15a01c1d"
+  },
+  "artifact_sha256": {
+    "splits.json": "12639bdc311a90bc3832a4800758710950ac118162edbbb140a24db20e64c50b",
+    "truncation_audit.json": "40b9f6bc976f9ccdfcd81096bb11edfd787c7fad9a894880b2e1ee9c1bedcad7",
+    "token_lengths_train_validation.csv": "62f69403778a43fb6fd57ef20dc1d49417d3eaf2fffd026c6ab8e393cb7dab79",
+    "dataset_identities.json": "358b5fea164f94ec2f1c34d3551b86e632e63dd9d552b77ed23823c24be0b485"
+  },
+  "test42_identity_match": true,
+  "split_sizes": {
+    "42": {
+      "train": 139,
+      "validation": 31,
+      "test": 30
+    },
+    "7": {
+      "train": 139,
+      "validation": 31,
+      "test": 30
+    },
+    "2024": {
+      "train": 139,
+      "validation": 31,
+      "test": 30
+    }
+  }
+}

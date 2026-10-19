@@ -1,11 +1,11 @@
 # TakeMeter Milestone 4 curated human review
 
 The curated set contains **200 posts**: 36 technical reports, 51 discussions,
-55 resource shares and 58 help requests. The reviewer reports having completed
-offline review of the 180 selected AI proposals with no corrections. Until an
-explicit attestation is confirmed in the terminal, these remain unverified in
-the repository. The report records the current state. All 20 cold annotations
-are preserved exactly.
+55 resource shares and 58 help requests. Adi's offline approval of the 180
+selected AI proposals was terminal-confirmed and recorded in one batch event.
+The current selected review queue is empty; all 20 cold annotations remain
+unchanged. The commands below document the workflow, not outstanding review
+tasks. Do not create another attestation or change the frozen submitted dataset.
 
 Run from the repository root after activating the project environment (the
 review script itself uses only the standard library):
@@ -156,11 +156,16 @@ This targeted enrichment and help sampling do not estimate natural prevalence.
 - `data/validation_report.md` and `.json`: full-pool and curated projections,
   verified counts, preservation/retention checks and readiness.
 
-The program validates frozen source/proposal hashes and original backups;
+The program validates frozen source/proposal hashes and any available local backups;
 supplemental text must additionally match the saved raw evidence without API
 truncation flags. If integrity checks fail, it stops rather than resetting
 progress. Do not bypass hashes to reuse decisions on changed text. Taxonomy
 changes require an explicitly reconciled, versioned annotation session.
+
+Redundant backups stay local and are not required in a clean clone: the validator
+checks the identically hashed committed original source files instead. It still
+rejects any present backup with a mismatched hash. Pinned supplemental response
+pages remain committed because reconstructing their source text requires them.
 
 ## Export after reviewing the selected queue
 

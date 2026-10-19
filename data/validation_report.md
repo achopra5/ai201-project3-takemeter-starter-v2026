@@ -3,7 +3,7 @@
 **READY** — 0 selected proposals await recorded verification.
 
 Collection: 320 frozen originals + 15 supplemental candidates. 335 locally archive-matched posts; 335 unique IDs and 335 unique normalized texts.
-Source integrity: PASS. Original source files and backups retain pinned byte hashes. Supplemental text is also reconstructed from checksummed raw API evidence, with no truncated cells.
+Source integrity: PASS. Frozen original files match snapshot byte hashes; available local backups are also checked. Supplemental text is also reconstructed from checksummed raw API evidence, with no truncated cells.
 Missing text rows: 0; invalid verified labels: 0. Every proposal is checked against the four taxonomy labels and must have ai_suggested provenance.
 Preserved cold annotations: 20; original exclusions: 3.
 Human-reviewed AI labels across the pool: 180; selected: 180; human exclusions: 0. Unselected help is a reserve, not a suitability exclusion.
@@ -68,14 +68,14 @@ At this denominator, each class needs 50–131 examples.
 - Stored source dates: ['2023-04-01T04:30:41', '2023-09-13T22:35:20']; missing timestamps: 49. Original URLs and IDs are retained even when timestamps are absent.
 - Original posts are historical spring-2023 submissions. Supplemental reports were deliberately retrieved from later 2023 archive pages. This enrichment and help downsampling change prevalence; the result does not represent organic subreddit traffic.
 - Full raw scan pages include retrieval leads that were not registered as supplemental candidates. Only the selected full-text candidates enter the annotation pool. Retrieval terms and titles are not a labeling rule.
-- Unique IDs/texts do not rule out related experiments or same-author leakage. Inspect related threads before eventual splitting; no split or training has started.
+- Unique IDs/texts do not rule out related experiments or same-author leakage. The existing splits and model outcomes are documented in README; this dataset validator does not train or evaluate models.
 - Real submissions may quote or disclose model-authored text (e.g. original rows 137 and 242); this is not a claim that all source prose is independently human-written.
 
 ## Five precommitted criteria
 
-- Criterion 1: not evaluated: training deferred.
-- Criterion 2: not evaluated: training deferred.
-- Criterion 3: not evaluated: training deferred.
+- Criterion 1: outside dataset validator; see README model verdicts.
+- Criterion 2: outside dataset validator; see README model verdicts.
+- Criterion 3: outside dataset validator; see README model verdicts.
 - Criterion 4: met.
 - Criterion 5: not evaluated: separate personal staff-taxonomy exercise.
 
@@ -83,4 +83,4 @@ At this denominator, each class needs 50–131 examples.
 
 - offline-dd35e6add7ac2f1144f5553a61c46b099b15219db9713ce6bd9e93890b371ef8: reviewer Adi; attested at 2026-10-18T23:31:08.660993+00:00; 180 exact proposals (180 classifications, 0 exclusions); snapshot SHA-256 9cfc140cc2f30228a55d3fbca9a7060729ba25c5a0452ca672b191d422f6a4c3.
 
-Numeric targets in criteria.md remain unchanged. No training, model evaluation or staff-answer comparison was performed.
+Numeric targets in criteria.md remain unchanged. This command performs dataset checks only; it does not run training, model inference or staff-answer comparison. See README for completed model evaluations.

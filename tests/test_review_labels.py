@@ -23,7 +23,8 @@ class ReviewTests(unittest.TestCase):
         files = set(manifest["pinned_files"]) | set(curation["pinned_files"]) | {
             "data/annotation_session.json", "data/curation_manifest.json", "README.md",
             "data/ambiguous_cases.md", "data/supplemental_cases.md"}
-        files |= {str(Path(manifest["backup_directory"]) / name) for name in manifest["backup_sha256"]}
+        files |= {str(Path(manifest["backup_directory"]) / name) for name in manifest["backup_sha256"]
+                  if (ROOT / manifest["backup_directory"] / name).exists()}
         for name in files:
             target = self.root / name
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -215,6 +216,21 @@ class ReviewTests(unittest.TestCase):
         queue = self.root / "data/annotation_queue.csv"
         queue.write_bytes(queue.read_bytes() + b"\n")
         with self.assertRaisesRegex(ValueError, "Integrity check"):
+            Session(self.root)
+
+    def test_clean_clone_without_redundant_backups_uses_identical_frozen_sources(self):
+        shutil.rmtree(self.root / "data/backups", ignore_errors=True)
+        report = Session(self.root).report()
+        self.assertTrue(report["source_checks"]["passed"])
+        self.assertEqual(report["cold_annotations"], 20)
+        self.assertEqual(report["pending_reviews"], 180)
+
+    def test_present_corrupt_backup_is_never_ignored(self):
+        manifest = json.loads((self.root / "data/annotation_session.json").read_text())
+        backup = self.root / manifest["backup_directory"] / "annotation_queue.csv"
+        backup.parent.mkdir(parents=True, exist_ok=True)
+        backup.write_bytes((self.root / "data/annotation_queue.csv").read_bytes() + b"\n")
+        with self.assertRaisesRegex(ValueError, "Backup changed"):
             Session(self.root)
 
     def test_taxonomy_change_invalidates_session(self):

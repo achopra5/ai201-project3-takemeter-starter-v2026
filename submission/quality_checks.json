@@ -1,0 +1,115 @@
+{
+  "checked_utc": "2026-10-19T00:16:02.901701+00:00",
+  "checks": {
+    "environment": {
+      "command": [
+        "python",
+        "test.py"
+      ],
+      "exit_code": 0,
+      "output_tail": [
+        "[PASS] Free disk space",
+        "         515.0 GB",
+        "[PASS] Memory",
+        "         24.0 GB",
+        "[PASS] PyTorch",
+        "         2.14.1, Apple Silicon GPU (MPS) \u2014 training will use it",
+        "[PASS] Training packages",
+        "         datasets and accelerate both import",
+        "[PASS] Transformers",
+        "         imports cleanly",
+        "[WARN] Baseline model",
+        "         Not downloaded yet (~1.6 GB). It downloads on your first run of",
+        "         baseline.py. Do that BEFORE the unit 6 session, not during it.",
+        "[PASS] Project files",
+        "         notebook, scripts and practice data all present",
+        "------------------------------------------------------------",
+        "9 passed, 0 failed, 1 to look at, 0 skipped",
+        "",
+        "You're set. See you in class.",
+        ""
+      ]
+    },
+    "unit_tests": {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 1,
+      "output_tail": [
+        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/review_labels.py\", line 758, in review",
+        "    report = session.write_reports()",
+        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/review_labels.py\", line 532, in write_reports",
+        "    raise ValueError(\"README needs exactly one Milestone 4 status block\")",
+        "ValueError: README needs exactly one Milestone 4 status block",
+        "",
+        "======================================================================",
+        "ERROR: test_offline_export_and_audit_preserve_cold_and_unselected_rows (test_review_labels.ReviewTests.test_offline_export_and_audit_preserve_cold_and_unselected_rows)",
+        "----------------------------------------------------------------------",
+        "Traceback (most recent call last):",
+        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/tests/test_review_labels.py\", line 85, in test_offline_export_and_audit_preserve_cold_and_unselected_rows",
+        "    report = self.session.export()",
+        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/review_labels.py\", line 549, in export",
+        "    raise ValueError(\"README needs exactly one Milestone 4 status block\")",
+        "ValueError: README needs exactly one Milestone 4 status block",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 55 tests in 2.884s",
+        "",
+        "FAILED (errors=4)"
+      ]
+    },
+    "submission": {
+      "command": [
+        "python",
+        "scripts/check_submission.py",
+        "--write-report"
+      ],
+      "exit_code": 1,
+      "output_tail": [
+        "Traceback (most recent call last):",
+        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/check_submission.py\", line 224, in <module>",
+        "    main()",
+        "    ~~~~^^",
+        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/check_submission.py\", line 217, in main",
+        "    report = inspect()",
+        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/check_submission.py\", line 175, in inspect",
+        "    \"markdown\": markdown_checks(root), \"unit6_pending\": [\"zero-shot baseline\", \"personal/staff taxonomy agreement\"],",
+        "                ~~~~~~~~~~~~~~~^^^^^^",
+        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/check_submission.py\", line 63, in markdown_checks",
+        "    require((path.parent / target).exists(), f\"Broken local link in {path}: {target}\")",
+        "    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"/Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/scripts/check_submission.py\", line 20, in require",
+        "    raise ValueError(message)",
+        "ValueError: Broken local link in /Users/adi/code/codePath_201/ai201-project3-takemeter-starter-v2026/submission/validation_report.md: quality_checks.json"
+      ]
+    },
+    "experiment_integrity": {
+      "command": [
+        "python",
+        "scripts/validation_experiment.py",
+        "verify",
+        "--experiment",
+        "experiments/validation-20261018T234742Z"
+      ],
+      "exit_code": 0,
+      "output_tail": [
+        "Frozen files and split identities verified; no test outcomes accessed"
+      ]
+    },
+    "whitespace": {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_tail": []
+    }
+  }
+}
