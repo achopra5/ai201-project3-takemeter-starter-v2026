@@ -1,10 +1,13 @@
 # Running TakeMeter
 
-**Unit 6 update:** Automated evaluation is complete. For personal staff labeling,
-open `staff_review.xlsx`, fill the yellow label dropdowns and return the saved
-workbook as described in [STAFF_REVIEW_INSTRUCTIONS.md](STAFF_REVIEW_INSTRUCTIONS.md).
+**Unit 6 update:** Automated evaluation is complete. The student has supplied
+all 30 personal labels in chat; those selections are saved in `my_staff_labels.csv`
+with exact original text and source provenance under `data/staff_review/`.
+The original blank `staff_review.xlsx` remains available as a template, as described
+in [STAFF_REVIEW_INSTRUCTIONS.md](STAFF_REVIEW_INSTRUCTIONS.md).
 There is no interactive or terminal review interface. `scripts/import_staff_review.py`
-is an agent-operated file converter after the workbook is returned.
+is an agent-operated converter for returned workbooks or explicit ID/label selections.
+The next input is the authentic staff reference file from the TF.
 `scripts/check_unit6.py` validates current saved evidence without inference.
 `scripts/unit6_experiment.py` records the completed fresh three-epoch,
 256-token runs; do not rerun or overwrite them. Original Unit 5 evidence and

@@ -1,8 +1,8 @@
 {
-  "checked_utc": "2026-10-22T00:26:03.775704+00:00",
+  "checked_utc": "2026-10-22T00:33:32.518679+00:00",
   "unit_tests": {
     "command": ".venv/bin/python -m unittest discover -s tests -v",
-    "passed": 68,
+    "passed": 71,
     "failed": 0,
     "scope": "Synthetic decisions only in temporary fixture directories."
   },
@@ -41,5 +41,17 @@
     "csv_policy": "Allow standard CRLF CSV records without altering pinned evidence bytes"
   },
   "course_portal_submitted": false,
-  "pending": "Personal labels, authentic TF reference and human-approved adjudications"
+  "pending": "Personal labels, authentic TF reference and human-approved adjudications",
+  "staff_selection_import": {
+    "source": "Explicit user labels and reasons supplied in chat",
+    "validated_selections": 30,
+    "counts": {
+      "analysis": 10,
+      "hot_take": 10,
+      "reaction": 10
+    },
+    "original_texts_exact": true,
+    "completed_workbook_supplied": false,
+    "agreement": "Not evaluated; authentic TF reference not supplied"
+  }
 }

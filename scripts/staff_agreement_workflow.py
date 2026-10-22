@@ -28,11 +28,17 @@ def write_csv(path, rows, fields):
     path.write_bytes(out.getvalue().encode())
 
 
-def inputs(root):
+def label_inputs(root):
     record = json.loads((root / 'data/staff_review/label_import.json').read_text())
-    for name, key in [('my_staff_labels.csv', 'csv_sha256'), ('data/staff_posts.csv', 'posts_sha256'),
-                      ('data/staff_taxonomy.md', 'taxonomy_sha256'),
-                      ('data/staff_review/completed_review.xlsx', 'workbook_sha256')]:
+    sources = [('my_staff_labels.csv', 'csv_sha256'), ('data/staff_posts.csv', 'posts_sha256'),
+               ('data/staff_taxonomy.md', 'taxonomy_sha256')]
+    if record.get('source_kind') == 'user_message_transcription':
+        if record.get('source_file') != 'data/staff_review/submitted_labels.csv':
+            raise ValueError('Unexpected submitted-selection evidence path')
+        sources.append((record['source_file'], 'source_sha256'))
+    else:
+        sources.append(('data/staff_review/completed_review.xlsx', 'workbook_sha256'))
+    for name, key in sources:
         if sha(root / name) != record[key]:
             raise ValueError(f'Independent labeling evidence changed: {name}')
     posts = list(csv.DictReader((root / 'data/staff_posts.csv').open(newline='')))
@@ -41,6 +47,22 @@ def inputs(root):
         raise ValueError('Exactly 30 unchanged human-labeled texts are required')
     if any(r['label'] not in LABELS for r in mine):
         raise ValueError('Missing or invalid independent label')
+    if record.get('source_kind') == 'user_message_transcription':
+        supplied = list(csv.DictReader((root / record['source_file']).open(newline='')))
+        if len(supplied) != 30 or len({r['id'] for r in supplied}) != 30:
+            raise ValueError('Submitted selections must cover 30 unique IDs')
+        by_id = {r['id']: r['my_label'] for r in supplied}
+        if by_id != {p['id']: r['label'] for p,r in zip(posts,mine)}:
+            raise ValueError('CSV labels differ from the user-supplied selections')
+    else:
+        from import_staff_review import validate_workbook
+        if validate_workbook(root / 'data/staff_review/completed_review.xlsx', root) != mine:
+            raise ValueError('CSV labels differ from the returned workbook')
+    return posts, mine
+
+
+def inputs(root):
+    posts, mine = label_inputs(root)
     # Only after validating complete independent labels do we read staff answers.
     staff_rows = list(csv.DictReader((root / 'data/staff_labels.csv').open(newline='', encoding='utf-8-sig')))
     staff = {}

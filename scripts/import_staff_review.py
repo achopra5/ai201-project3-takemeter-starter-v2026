@@ -136,12 +136,69 @@ def convert(path, root=ROOT):
     return output
 
 
+def convert_id_labels(path, root=ROOT):
+    """Import explicit user-supplied IDs/labels without inventing a workbook."""
+    with Path(path).open(newline='', encoding='utf-8-sig') as stream:
+        reader = csv.DictReader(stream)
+        if not {'id', 'my_label'} <= set(reader.fieldnames or []):
+            raise ValueError('Submitted selections need id and my_label columns')
+        supplied = list(reader)
+    original = list(csv.DictReader((root / 'data/staff_posts.csv').open(newline='')))
+    by_id = {r['id']: r for r in original}
+    selections = {}
+    for row in supplied:
+        post_id, label = row.get('id'), row.get('my_label')
+        if post_id not in by_id or post_id in selections:
+            raise ValueError('Submitted IDs must be original, unique and complete')
+        if label not in LABELS:
+            raise ValueError('Choose exactly analysis, hot_take or reaction for every ID')
+        selections[post_id] = label
+    if len(original) != 30 or len(supplied) != 30 or set(selections) != set(by_id):
+        raise ValueError('Exactly all 30 original staff IDs are required')
+    out = io.StringIO(newline='')
+    writer = csv.DictWriter(out, fieldnames=['text', 'label'])
+    writer.writeheader()
+    writer.writerows({'text': r['text'], 'label': selections[r['id']]} for r in original)
+    output = root / 'my_staff_labels.csv'
+    if output.exists() and output.read_bytes() != out.getvalue().encode():
+        raise ValueError('A different my_staff_labels.csv exists; preserve original decisions first')
+    directory = root / 'data/staff_review'
+    record = directory / 'label_import.json'
+    if record.exists():
+        previous = json.loads(record.read_text())
+        if previous.get('source_kind') != 'user_message_transcription' or previous.get('source_sha256') != sha(path):
+            raise ValueError('Different original selections are already recorded')
+        if not output.exists() or sha(output) != previous['csv_sha256']:
+            raise ValueError('Imported CSV changed after conversion')
+        return output
+    directory.mkdir(parents=True, exist_ok=True)
+    snapshot = directory / 'submitted_labels.csv'
+    if Path(path).resolve() != snapshot.resolve():
+        shutil.copyfile(path, snapshot)
+    output.write_bytes(out.getvalue().encode())
+    record.write_text(json.dumps({
+        'imported_utc': datetime.now(timezone.utc).isoformat(),
+        'source_kind': 'user_message_transcription',
+        'source_file': 'data/staff_review/submitted_labels.csv',
+        'source_sha256': sha(snapshot), 'csv_sha256': sha(output),
+        'posts_sha256': sha(root / 'data/staff_posts.csv'),
+        'taxonomy_sha256': sha(root / 'data/staff_taxonomy.md'), 'count': 30,
+        'provenance': 'Labels and reasons explicitly supplied by the user in chat and transcribed without changing choices. No completed workbook was supplied or fabricated. The time records import, not when labeling occurred.'
+    }, indent=2) + '\n')
+    return output
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('workbook', type=Path)
     parser.add_argument('--validate-template', action='store_true')
+    parser.add_argument('--id-labels', action='store_true', help='Import explicit user-supplied id,my_label CSV selections')
     args = parser.parse_args()
-    if args.validate_template:
+    if args.id_labels and args.validate_template:
+        parser.error('Choose either template validation or ID-label import')
+    if args.id_labels:
+        print(convert_id_labels(args.workbook))
+    elif args.validate_template:
         validate_workbook(args.workbook, template=True)
         print('Verified: 30 exact original posts, blank labels, three-choice dropdowns and unchanged full taxonomy.')
     else:

@@ -1,5 +1,10 @@
 # Label the 30 staff posts
 
+**Current status:** The student supplied all 30 labels and reasons in chat.
+They have been imported into `my_staff_labels.csv`; no workbook return is required
+for those saved selections. The instructions below remain available for the original
+blank template. Next, obtain the authentic reference labels from the TF.
+
 1. Open **staff_review.xlsx** in Excel.
 2. Read the complete **Staff taxonomy** sheet. These are the staff's three running-forum labels, separate from TakeMeter's four labels.
 3. On **Staff posts**, fill each yellow **my_label** cell using its dropdown: `analysis`, `hot_take` or `reaction`. All 30 cells start blank.

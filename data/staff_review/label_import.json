@@ -1,0 +1,11 @@
+{
+  "imported_utc": "2026-10-22T00:31:59.106580+00:00",
+  "source_kind": "user_message_transcription",
+  "source_file": "data/staff_review/submitted_labels.csv",
+  "source_sha256": "7fe9f2dba0be43c9cbfece48a955d07099c5ce1966ff84364d0fab67f49fc891",
+  "csv_sha256": "259334653bef75ecaaf002c79421ba54280878f3a888af9ab513b5f8620280cf",
+  "posts_sha256": "543caeee0c3ddcd920f9330caff502606bf651f66c50e6d1f49a159a76f82035",
+  "taxonomy_sha256": "49ffb40b207f4d36b4bb1a7165340cd98dc357f0d96ba969f29800eda5d44603",
+  "count": 30,
+  "provenance": "Labels and reasons explicitly supplied by the user in chat and transcribed without changing choices. No completed workbook was supplied or fabricated. The time records import, not when labeling occurred."
+}

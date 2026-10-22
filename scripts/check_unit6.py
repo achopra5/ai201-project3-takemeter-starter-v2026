@@ -84,6 +84,11 @@ def inspect(root=ROOT):
     validate_workbook(root / 'staff_review.xlsx', root=root, template=True)
     pending = ['Return independently completed staff_review.xlsx', 'Obtain authentic staff labels from TF', 'Adjudicate each disagreement and approve final decisions']
     staff_status = 'PENDING PERSONAL LABELS AND AUTHENTIC REFERENCE'
+    if (root / 'data/staff_review/label_import.json').exists():
+        from staff_agreement_workflow import label_inputs
+        label_inputs(root)
+        staff_status = 'PERSONAL SELECTIONS SAVED; AUTHENTIC TF REFERENCE PENDING'
+        pending = pending[1:]
     if (root / 'agreement_results.json').exists():
         from staff_agreement_workflow import inputs, validate_adjudications
         posts, mine, reference = inputs(root)

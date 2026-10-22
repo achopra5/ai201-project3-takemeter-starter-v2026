@@ -1,0 +1,31 @@
+id,my_label,reason
+sp_001,analysis,Uses historical race times to support a claim about field depth.
+sp_002,analysis,Uses 11 weeks of sleep and performance data to support a conclusion.
+sp_003,analysis,Connects a scoring-rule change to observed team results.
+sp_004,analysis,Tests an explanation using two groups of runners.
+sp_005,analysis,Uses performance and training-volume comparisons to challenge a claim about shoes.
+sp_006,analysis,Uses entry-list percentages to explain changes in race participation.
+sp_007,analysis,Uses a specific temperature and pace comparison to support a claim about heat.
+sp_008,analysis,Uses historical nonstarter percentages to establish a base rate.
+sp_009,analysis,Uses course remeasurement data to explain differences in race times.
+sp_010,analysis,"Uses a specific running comparison to argue about the size of shoe effects, although the evidence is weak."
+sp_011,hot_take,Broad judgment about frequent racers without evidence.
+sp_012,hot_take,Dismisses heart-rate zones without supporting evidence.
+sp_013,hot_take,Confident assertion about club sessions without evidence.
+sp_014,hot_take,Cites a 3% change but does not establish that shoes caused the entire change.
+sp_015,hot_take,Sweeping generalization about marathon training plans.
+sp_016,hot_take,Confident fueling claim without supporting evidence.
+sp_017,hot_take,Broad claim about the decline of road racing.
+sp_018,hot_take,General training recommendation without evidence.
+sp_019,hot_take,Generalizes about everyone's enjoyment of long runs.
+sp_020,hot_take,Exaggerated generalization about injury discussions.
+sp_021,reaction,Immediate excitement about achieving a personal best.
+sp_022,reaction,Personal frustration following a cancellation.
+sp_023,reaction,Emotional response to returning after an injury break.
+sp_024,reaction,Immediate excitement while watching a race.
+sp_025,reaction,Personal disappointment after struggling during a race.
+sp_026,reaction,Emotional response to a meaningful race moment.
+sp_027,reaction,Personal experience of difficult wind conditions during a run.
+sp_028,reaction,Emotional response to another DNF.
+sp_029,reaction,Immediate realization about accidentally purchased shoes.
+sp_030,reaction,Immediate regret after registering for an event.

@@ -98,6 +98,54 @@ class StaffSpreadsheetTests(unittest.TestCase):
                 workflow.inputs(root)
             self.assertIn('label_import.json', str(error.exception))
 
+    def test_explicit_message_selections_import_without_fabricating_workbook(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            fixture(root)
+            posts = list(csv.DictReader((root / 'data/staff_posts.csv').open(newline='')))
+            source = root / 'TEST_ONLY_selections.csv'
+            workflow.write_csv(source, [{'id': p['id'], 'my_label': importer.LABELS[i%3],
+                                        'reason': 'TEST FIXTURE ONLY'} for i,p in enumerate(posts)], ['id','my_label','reason'])
+            output = importer.convert_id_labels(source, root)
+            saved_posts, saved_labels = workflow.label_inputs(root)
+            self.assertEqual([r['text'] for r in saved_labels], [p['text'] for p in posts])
+            self.assertEqual([r['label'] for r in saved_labels], [importer.LABELS[i%3] for i in range(30)])
+            self.assertFalse((root / 'data/staff_review/completed_review.xlsx').exists())
+            self.assertFalse((root / 'agreement_results.json').exists())
+            record = json.loads((root / 'data/staff_review/label_import.json').read_text())
+            self.assertEqual(record['source_kind'], 'user_message_transcription')
+            self.assertNotIn('workbook_sha256', record)
+            self.assertEqual(importer.convert_id_labels(source, root), output)
+
+    def test_message_selection_import_rejects_partial_duplicate_and_wrong_taxonomy(self):
+        for mode in ['partial','duplicate','wrong_taxonomy']:
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as temp:
+                root = Path(temp)
+                fixture(root)
+                posts = list(csv.DictReader((root / 'data/staff_posts.csv').open(newline='')))
+                rows = [{'id': p['id'], 'my_label': 'analysis'} for p in posts]
+                if mode == 'partial': rows.pop()
+                elif mode == 'duplicate': rows[-1]['id'] = rows[0]['id']
+                else: rows[0]['my_label'] = 'technical_report'
+                source = root / 'TEST_ONLY.csv'
+                workflow.write_csv(source, rows, ['id','my_label'])
+                with self.assertRaises(ValueError):
+                    importer.convert_id_labels(source, root)
+                self.assertFalse((root / 'my_staff_labels.csv').exists())
+
+    def test_changed_message_evidence_is_rejected_before_reference_is_read(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            fixture(root)
+            posts = list(csv.DictReader((root / 'data/staff_posts.csv').open(newline='')))
+            source = root / 'TEST_ONLY.csv'
+            workflow.write_csv(source, [{'id': p['id'], 'my_label': 'analysis'} for p in posts], ['id','my_label'])
+            importer.convert_id_labels(source, root)
+            snapshot = root / 'data/staff_review/submitted_labels.csv'
+            snapshot.write_text(snapshot.read_text().replace('analysis','reaction',1))
+            with self.assertRaisesRegex(ValueError,'labeling evidence changed'):
+                workflow.inputs(root)
+
     def test_complete_file_workflow_preserves_original_decisions_and_needs_approvals(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

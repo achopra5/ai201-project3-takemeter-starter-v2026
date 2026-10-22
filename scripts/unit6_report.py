@@ -97,7 +97,7 @@ def experiment_section():
         [2, 'Macro F1 ≥ 0.60 for every seed', 'FAIL', 'FAIL', 'Best after macro F1 is 0.344322; all three seeds fall short.'],
         [3, 'Every class F1 ≥ 0.40 for every seed', 'FAIL', 'FAIL', 'Technical-report F1 is zero at every seed; discussions also remain weak.'],
         [4, 'Each full-dataset class share 15–40%', 'PASS', 'PASS', 'Dataset unchanged: 36/58/51/55 posts out of 200. Balance does not imply reliable classification.'],
-        [5, 'Independent staff-taxonomy agreement ≥ 23/30', 'NOT EVALUATED', 'NOT EVALUATED', 'Requires the student’s workbook and authentic TF reference; no personal decisions are fabricated.']])
+        [5, 'Independent staff-taxonomy agreement ≥ 23/30', 'NOT EVALUATED', 'NOT EVALUATED', 'Requires original student selections and the authentic TF reference; no personal decisions are fabricated.']])
     lines += ['', 'Criterion 5 concerns `analysis`, `hot_take`, `reaction` under the staff rules. '
               'All model metrics above concern only `technical_report`, `help_request`, `discussion`, `resource_share`. '
               'There is no justified direct confusion-pair mapping across the two independent tasks. '
