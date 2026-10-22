@@ -1,0 +1,3 @@
+# Python's CSV writer uses CRLF record separators. Accept those separators
+# without normalizing or changing the bytes pinned by evidence manifests.
+*.csv whitespace=trailing-space,space-before-tab,cr-at-eol
