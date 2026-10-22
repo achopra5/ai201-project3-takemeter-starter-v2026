@@ -50,6 +50,7 @@ for _stream in (sys.stdout, sys.stderr):
         pass
 
 LABEL_COLUMNS = ("label", "staff_label", "my_label", "your_label")
+VALID_LABELS = {"analysis", "hot_take", "reaction"}
 
 
 def normalise(text):
@@ -94,7 +95,10 @@ def load(path, pd):
     column = label_column(df, path)
     rows = {}
     for text, label in zip(df["text"], df[column]):
-        rows[normalise(text)] = (str(text), str(label).strip())
+        key, value = normalise(text), str(label).strip()
+        if key in rows or not key or value not in VALID_LABELS:
+            raise ValueError(f"{path}: duplicate/empty text or missing/invalid label")
+        rows[key] = (str(text), value)
     return rows
 
 
@@ -121,6 +125,12 @@ def load_pair(posts_path, labels_path, pd):
             sys.exit(1)
 
     column = label_column(labels, labels_path)
+    if posts['id'].duplicated().any() or labels['id'].duplicated().any():
+        raise ValueError("Staff post/reference IDs must be unique")
+    if set(posts['id']) != set(labels['id']) or len(posts) != 30:
+        raise ValueError("Authentic reference must cover exactly all 30 staff post IDs")
+    if not labels[column].isin(VALID_LABELS).all():
+        raise ValueError("Staff labels contain missing or invalid label strings")
     by_id = dict(zip(labels["id"], labels[column]))
 
     rows = {}
@@ -198,14 +208,19 @@ def main():
         print("pandas isn't installed. Run: pip install -r requirements.txt", file=sys.stderr)
         sys.exit(1)
 
+    # Validate the student's complete file before reading any staff answers.
+    mine = load(args.mine, pd)
+    if len(mine) != 30:
+        raise ValueError("Independently label all 30 staff posts before comparing")
     if args.staff:
         staff = load(args.staff, pd)
     else:
         staff = load_pair(args.staff_posts, args.staff_labels, pd)
-    mine = load(args.mine, pd)
     matched, disagreements, missing, extra = compare(staff, mine)
 
     compared = len(matched) + len(disagreements)
+    if compared != 30 or missing or extra:
+        raise ValueError("Agreement requires exactly the same complete 30-post set")
     if not compared:
         print("No posts matched between the two files.", file=sys.stderr)
         print("Posts are matched on their text, so it has to be pasted unchanged.", file=sys.stderr)
