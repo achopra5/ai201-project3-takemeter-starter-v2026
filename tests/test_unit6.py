@@ -167,6 +167,7 @@ class StaffSpreadsheetTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'valid final label'):
                 workflow.import_adjudications(root / 'staff_adjudication_review.csv', root)
             self.assertEqual(output.read_bytes(), frozen)
+
             for row in review:
                 row.update(final_label=row['my_original_label'], pile='c', rule='1',
                            rationale='TEST FIXTURE ONLY', human_approved='yes')
@@ -174,6 +175,26 @@ class StaffSpreadsheetTests(unittest.TestCase):
             workflow.import_adjudications(root / 'returned_adjudications_TEST_ONLY.csv', root)
             self.assertTrue(json.loads((root / 'agreement_results.json').read_text())['adjudication_complete'])
             self.assertEqual(output.read_bytes(), frozen)
+
+    def test_perfect_agreement_requires_no_fabricated_adjudication_file(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            fixture(root)
+            posts = list(csv.DictReader((root / 'data/staff_posts.csv').open(newline='')))
+            rows = [{'id': p['id'], 'my_label': importer.LABELS[i%3]} for i,p in enumerate(posts)]
+            source = root / 'TEST_ONLY_selections.csv'
+            workflow.write_csv(source, rows, ['id','my_label'])
+            importer.convert_id_labels(source, root)
+            workflow.write_csv(root / 'data/staff_labels.csv', [
+                {'id': r['id'], 'label': r['my_label']} for r in rows], ['id','label'])
+            result = workflow.prepare(root, reference_source='SYNTHETIC TEST FIXTURE ONLY')
+            self.assertEqual(result['agreed'], 30)
+            self.assertEqual(result['agreement_rate'], 1.)
+            self.assertEqual(result['criterion5'], 'PASS')
+            self.assertTrue(result['adjudication_complete'])
+            self.assertFalse(result['disagreements'])
+            self.assertFalse((root / 'staff_adjudication_review.csv').exists())
+            self.assertFalse((root / 'data/staff_review/approved_adjudications.json').exists())
 
     def test_no_automatic_adjudication_or_approval(self):
         result = {'disagreements': [{'id': 'TEST_ONLY', 'text': 'Synthetic test text', 'mine': 'analysis', 'staff': 'hot_take'}]}

@@ -1,7 +1,24 @@
 {
   "automated_work": "VERIFIED",
-  "staff_exercise": "PERSONAL SELECTIONS SAVED; AUTHENTIC TF REFERENCE PENDING",
+  "staff_exercise": "COMPLETE; NOT SUBMITTED TO COURSE PORTAL",
   "course_portal_submitted": false,
+  "repository_readiness": "READY FOR COURSE SUBMISSION",
+  "criteria_original_model": {
+    "1": "FAIL",
+    "2": "FAIL",
+    "3": "FAIL",
+    "4": "PASS",
+    "5": "PASS"
+  },
+  "criteria_length_only_after": {
+    "1": "FAIL",
+    "2": "FAIL",
+    "3": "FAIL",
+    "4": "PASS",
+    "5": "PASS"
+  },
+  "student_reflection": "STUDENT-SUPPLIED; SAVED VERBATIM",
+  "submission_action": "Submit the existing GitHub repository URL in the Unit 6 course assignment; Git push does not perform this action.",
   "baseline_accuracy": 0.3333333333333333,
   "baseline_macro_f1": 0.31134259259259256,
   "original_mean": {
@@ -18,13 +35,10 @@
   "baseline_per_class_metrics": "Recomputed from saved predictions",
   "after_metrics": "Recomputed from saved predictions; identical test identities",
   "staff_template": "30 exact texts; all labels blank; all dropdowns verified; full taxonomy preserved",
-  "pending_human_work": [
-    "Obtain authentic staff labels from TF",
-    "Adjudicate each disagreement and approve final decisions"
-  ],
+  "pending_human_work": [],
   "markdown": {
     "files_checked": 14,
-    "local_links_checked": 76,
+    "local_links_checked": 79,
     "readme_tables_and_placeholders": "PASS",
     "documented_python_entry_points": "PASS"
   }

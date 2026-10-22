@@ -1,8 +1,8 @@
 {
-  "checked_utc": "2026-10-22T00:33:32.518679+00:00",
+  "checked_utc": "2026-10-22T00:41:46.431488+00:00",
   "unit_tests": {
     "command": ".venv/bin/python -m unittest discover -s tests -v",
-    "passed": 71,
+    "passed": 72,
     "failed": 0,
     "scope": "Synthetic decisions only in temporary fixture directories."
   },
@@ -41,7 +41,7 @@
     "csv_policy": "Allow standard CRLF CSV records without altering pinned evidence bytes"
   },
   "course_portal_submitted": false,
-  "pending": "Personal labels, authentic TF reference and human-approved adjudications",
+  "pending": "Submit the repository URL in the Unit 6 course portal; repository work is complete.",
   "staff_selection_import": {
     "source": "Explicit user labels and reasons supplied in chat",
     "validated_selections": 30,
@@ -52,6 +52,15 @@
     },
     "original_texts_exact": true,
     "completed_workbook_supplied": false,
-    "agreement": "Not evaluated; authentic TF reference not supplied"
+    "agreement": "30/30 exact matches (100%); criterion 5 PASS; zero disagreements"
+  },
+  "staff_agreement": {
+    "reference_source": "User-supplied file from dts-fa26-ai201-tech-help-3",
+    "compared": 30,
+    "agreed": 30,
+    "disagreements": 0,
+    "criterion5": "PASS",
+    "student_reflection": "Supplied in chat and saved verbatim",
+    "adjudication": "No disagreements; no final decisions or approvals fabricated"
   }
 }

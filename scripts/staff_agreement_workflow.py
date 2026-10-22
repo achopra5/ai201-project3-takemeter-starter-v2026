@@ -138,6 +138,17 @@ def render_report(root, result, decisions):
              f"Human-approved adjudications: {len(decisions)}/{len(result['disagreements'])}.", '',
              'Agreement always uses the original independent labels, before adjudication. Staff labels are a second opinion, not an unquestionable answer key.', '',
              'The running-forum staff taxonomy is independent of the four-category r/LocalLLaMA taxonomy. There is no direct mapping between their label pairs; this does not measure consistency on the 200 TakeMeter posts.', '']
+    lines += ['Reference source: ' + result['reference_source'], '',
+              'The source is the student-supplied course provenance; the utility does not independently authenticate the channel.', '']
+    if not result['disagreements']:
+        lines += ['All 30 original selections match the reference. There are no disagreements to adjudicate; no final adjudication decisions were required or fabricated.', '']
+    reflection = root / 'data/staff_review/student_reflection.json'
+    if reflection.exists():
+        saved = json.loads(reflection.read_text())
+        if saved['mine_sha256'] != result['mine_sha256'] or saved['staff_sha256'] != result['staff_sha256']:
+            raise ValueError('Reflection refers to different comparison inputs')
+        lines += ['## Student reflection', '', '> ' + saved['reflection'], '',
+                  'Recorded verbatim from the student’s chat reply after seeing the agreement result. No specific difficult post was identified.', '']
     by_id = {r['id']: r for r in decisions}
     for row in result['disagreements']:
         lines += [f"## {row['id']}", '', row['text'], '', f"Original human label: `{row['mine']}`. Staff: `{row['staff']}`.", '']

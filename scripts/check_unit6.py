@@ -13,7 +13,7 @@ from validation_experiment import ROOT, LABELS, SEEDS, sha, text_sha, split_indi
 def inspect(root=ROOT):
     manifest = json.loads((root / 'submission/unit6_manifest.json').read_text())
     verify_historical_closeout(root, json.loads((root / 'submission/closeout_manifest.json').read_text()))
-    for name, digest in manifest['artifact_sha256'].items():
+    for name, digest in {**manifest['artifact_sha256'], **manifest.get('staff_exercise_sha256', {})}.items():
         require(sha(root / name) == digest, f'Unit 6 saved evidence changed: {name}')
     import pandas as pd
     frame = pd.read_csv(root / 'labels.csv', keep_default_na=False)
@@ -84,6 +84,8 @@ def inspect(root=ROOT):
     validate_workbook(root / 'staff_review.xlsx', root=root, template=True)
     pending = ['Return independently completed staff_review.xlsx', 'Obtain authentic staff labels from TF', 'Adjudicate each disagreement and approve final decisions']
     staff_status = 'PENDING PERSONAL LABELS AND AUTHENTIC REFERENCE'
+    reflection_status = 'NOT PROVIDED'
+    staff_criterion = 'NOT EVALUATED'
     if (root / 'data/staff_review/label_import.json').exists():
         from staff_agreement_workflow import label_inputs
         label_inputs(root)
@@ -102,15 +104,35 @@ def inspect(root=ROOT):
         require(agreement['agreed'] == expected and agreement['compared'] == 30, 'Staff agreement count mismatch')
         equal_number(agreement['agreement_rate'], expected/30, 'Staff agreement rate')
         require(agreement['criterion5'] == ('PASS' if expected >= 23 else 'FAIL'), 'Staff criterion verdict mismatch')
+        staff_criterion = agreement['criterion5']
         if agreement.get('adjudication_complete'):
             approved_path = root / 'data/staff_review/approved_adjudications.json'
             if agreement['disagreements']:
                 require(sha(approved_path) == agreement['adjudication_sha256'], 'Human adjudication evidence changed')
                 validate_adjudications(json.loads(approved_path.read_text())['decisions'], agreement)
             staff_status, pending = 'COMPLETE; NOT SUBMITTED TO COURSE PORTAL', []
+            reflection = root / 'data/staff_review/student_reflection.json'
+            if reflection.exists():
+                saved = json.loads(reflection.read_text())
+                require(saved['mine_sha256'] == agreement['mine_sha256'] and saved['staff_sha256'] == agreement['staff_sha256'], 'Reflection comparison hashes changed')
+                require(bool(saved['reflection'].strip()), 'Student reflection is empty')
+                reflection_status = 'STUDENT-SUPPLIED; SAVED VERBATIM'
+            elif not agreement['disagreements']:
+                pending = ['Provide a personal reflection on perfect agreement']
         else:
             staff_status, pending = 'AGREEMENT MEASURED; HUMAN ADJUDICATION PENDING', [pending[-1]]
+    def verdicts(records):
+        counts = frame.label.value_counts()
+        return {'1': 'PASS' if all(r['accuracy'] >= .70 for r in records) else 'FAIL',
+                '2': 'PASS' if all(r['f1_macro'] >= .60 for r in records) else 'FAIL',
+                '3': 'PASS' if all(r['per_label'][label]['f1'] >= .40 for r in records for label in LABELS) else 'FAIL',
+                '4': 'PASS' if all(.15 <= counts[label]/len(frame) <= .40 for label in LABELS) else 'FAIL',
+                '5': staff_criterion}
     return {'automated_work': 'VERIFIED', 'staff_exercise': staff_status, 'course_portal_submitted': False,
+            'repository_readiness': 'READY FOR COURSE SUBMISSION' if not pending else 'AWAITING HUMAN INPUT',
+            'criteria_original_model': verdicts(before), 'criteria_length_only_after': verdicts(after),
+            'student_reflection': reflection_status,
+            'submission_action': 'Submit the existing GitHub repository URL in the Unit 6 course assignment; Git push does not perform this action.',
             'baseline_accuracy': baseline['scores']['accuracy'], 'baseline_macro_f1': baseline['scores']['f1_macro'],
             'original_mean': {k: sum(r[k] for r in before)/3 for k in ('accuracy','f1_macro')},
             'length_only_after_mean': {k: sum(r[k] for r in after)/3 for k in ('accuracy','f1_macro')},

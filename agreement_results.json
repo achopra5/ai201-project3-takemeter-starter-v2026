@@ -1,0 +1,15 @@
+{
+  "compared": 30,
+  "agreed": 30,
+  "agreement_rate": 1.0,
+  "disagreements": [],
+  "staff_posts_not_in_mine": 0,
+  "mine_sha256": "259334653bef75ecaaf002c79421ba54280878f3a888af9ab513b5f8620280cf",
+  "staff_sha256": "e3ff58e0c42d21c519ae91de7dd2f42fc07010a571679660bf280b95eaa4f1cb",
+  "taxonomy_sha256": "49ffb40b207f4d36b4bb1a7165340cd98dc357f0d96ba969f29800eda5d44603",
+  "reference_source": "User supplied file (SEND AFTER THEY ARE DONE) staff_labels.csv and identified course channel dts-fa26-ai201-tech-help-3.",
+  "reference_authentication": "Student-supplied TF provenance, not independently authenticated by the utility",
+  "adjudication_complete": true,
+  "adjudications_approved": 0,
+  "criterion5": "PASS"
+}

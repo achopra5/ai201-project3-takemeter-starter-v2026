@@ -21,6 +21,11 @@ def table(headers, rows):
 def experiment_section():
     before = json.loads((ROOT / 'results_three_seeds_before.json').read_text())
     after = json.loads((ROOT / 'results_three_seeds_after.json').read_text())
+    staff_path = ROOT / 'agreement_results.json'
+    staff = json.loads(staff_path.read_text()) if staff_path.exists() else None
+    staff_verdict = staff['criterion5'] + ' (shared)' if staff else 'NOT EVALUATED'
+    staff_diagnosis = (f"{staff['agreed']}/30 exact matches ({staff['agreement_rate']:.1%}); measured once under the separate staff taxonomy, not per model configuration."
+                       if staff else 'Requires original student selections and the authentic TF reference; no personal decisions are fabricated.')
     lines = ['## Unit 6 Single-Variable Experiment: 128 to 256 Tokens', '',
              '**Completed: three fresh fits, three epochs each.** This is the required single-variable experiment. '
              'It is separate from the earlier exploratory eight-epoch-scheduler experiment. '
@@ -97,7 +102,7 @@ def experiment_section():
         [2, 'Macro F1 ≥ 0.60 for every seed', 'FAIL', 'FAIL', 'Best after macro F1 is 0.344322; all three seeds fall short.'],
         [3, 'Every class F1 ≥ 0.40 for every seed', 'FAIL', 'FAIL', 'Technical-report F1 is zero at every seed; discussions also remain weak.'],
         [4, 'Each full-dataset class share 15–40%', 'PASS', 'PASS', 'Dataset unchanged: 36/58/51/55 posts out of 200. Balance does not imply reliable classification.'],
-        [5, 'Independent staff-taxonomy agreement ≥ 23/30', 'NOT EVALUATED', 'NOT EVALUATED', 'Requires original student selections and the authentic TF reference; no personal decisions are fabricated.']])
+        [5, 'Independent staff-taxonomy agreement ≥ 23/30', staff_verdict, staff_verdict, staff_diagnosis]])
     lines += ['', 'Criterion 5 concerns `analysis`, `hot_take`, `reaction` under the staff rules. '
               'All model metrics above concern only `technical_report`, `help_request`, `discussion`, `resource_share`. '
               'There is no justified direct confusion-pair mapping across the two independent tasks. '

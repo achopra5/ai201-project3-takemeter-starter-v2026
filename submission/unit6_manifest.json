@@ -34,5 +34,14 @@
     "experiments/unit6-length256-three-epochs/runs/seed7/test_predictions.csv": "3601db63d2166f1f20872497de0c084c4cd9d55022557e4a530f7e37be404e7c",
     "results_three_seeds_after.json": "60ea6fb9a3fcb2f1e9e275309ba99063df8ea0cacae0f957eb3c31769c149aa3"
   },
-  "baseline_provenance": "Hashes recorded after the already-completed baseline; not a retroactive pre-result prediction."
+  "baseline_provenance": "Hashes recorded after the already-completed baseline; not a retroactive pre-result prediction.",
+  "staff_exercise_sha256": {
+    "data/staff_labels.csv": "e3ff58e0c42d21c519ae91de7dd2f42fc07010a571679660bf280b95eaa4f1cb",
+    "my_staff_labels.csv": "259334653bef75ecaaf002c79421ba54280878f3a888af9ab513b5f8620280cf",
+    "data/staff_review/submitted_labels.csv": "7fe9f2dba0be43c9cbfece48a955d07099c5ce1966ff84364d0fab67f49fc891",
+    "data/staff_review/label_import.json": "4c3523d70fe394f4d6fd0ed5c7b9bf76668aa9ac7a05feeb5905e2994c50a355",
+    "data/staff_review/student_reflection.json": "28f5f4e7e1334308b9c11c71c37b43cb8d387cdf9e4e3d2fdc8515f8fc057a1e",
+    "agreement_results.json": "ce55d34fc5a7bf03ad6dd0694a307f35097c2f8b1956f453138c20a97283aa24",
+    "staff_agreement_report.md": "16f3d70f604d54d71330375817c015d3d0b121af6746b57ecaf341d4178b45e8"
+  }
 }

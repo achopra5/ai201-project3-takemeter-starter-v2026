@@ -3,7 +3,9 @@
 **Current status:** The student supplied all 30 labels and reasons in chat.
 They have been imported into `my_staff_labels.csv`; no workbook return is required
 for those saved selections. The instructions below remain available for the original
-blank template. Next, obtain the authentic reference labels from the TF.
+blank template. The reference from `dts-fa26-ai201-tech-help-3` has now been
+compared: 30/30 labels match, with no disagreements requiring adjudication.
+The student's reflection is saved. No further labeling is needed for this set.
 
 1. Open **staff_review.xlsx** in Excel.
 2. Read the complete **Staff taxonomy** sheet. These are the staff's three running-forum labels, separate from TakeMeter's four labels.

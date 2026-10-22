@@ -7,7 +7,10 @@ The original blank `staff_review.xlsx` remains available as a template, as descr
 in [STAFF_REVIEW_INSTRUCTIONS.md](STAFF_REVIEW_INSTRUCTIONS.md).
 There is no interactive or terminal review interface. `scripts/import_staff_review.py`
 is an agent-operated converter for returned workbooks or explicit ID/label selections.
-The next input is the authentic staff reference file from the TF.
+The student has now supplied the staff reference from `dts-fa26-ai201-tech-help-3`.
+Agreement is 30/30 (100%); there are no disagreements to adjudicate. The student's
+perfect-agreement reflection is saved verbatim. The remaining action is submission
+of the repository URL in the Unit 6 course portal.
 `scripts/check_unit6.py` validates current saved evidence without inference.
 `scripts/unit6_experiment.py` records the completed fresh three-epoch,
 256-token runs; do not rerun or overwrite them. Original Unit 5 evidence and
