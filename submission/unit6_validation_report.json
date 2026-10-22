@@ -1,0 +1,32 @@
+{
+  "automated_work": "VERIFIED",
+  "staff_exercise": "PENDING PERSONAL LABELS AND AUTHENTIC REFERENCE",
+  "course_portal_submitted": false,
+  "baseline_accuracy": 0.3333333333333333,
+  "baseline_macro_f1": 0.31134259259259256,
+  "original_mean": {
+    "accuracy": 0.43333333333333335,
+    "f1_macro": 0.2976799954431533
+  },
+  "length_only_after_mean": {
+    "accuracy": 0.41111111111111115,
+    "f1_macro": 0.2646600844876707
+  },
+  "new_completed_fits": 3,
+  "new_optimizer_updates": 81,
+  "historical_unit5_hashes": "Preserved; original starter definitions retained in the documented snapshot",
+  "baseline_per_class_metrics": "Recomputed from saved predictions",
+  "after_metrics": "Recomputed from saved predictions; identical test identities",
+  "staff_template": "30 exact texts; all labels blank; all dropdowns verified; full taxonomy preserved",
+  "pending_human_work": [
+    "Return independently completed staff_review.xlsx",
+    "Obtain authentic staff labels from TF",
+    "Adjudicate each disagreement and approve final decisions"
+  ],
+  "markdown": {
+    "files_checked": 14,
+    "local_links_checked": 74,
+    "readme_tables_and_placeholders": "PASS",
+    "documented_python_entry_points": "PASS"
+  }
+}

@@ -2,6 +2,8 @@
 
 **Unit 5 submission: READY.** The dataset, taxonomy, five precommitted criteria, original training outputs and write-up are complete. The model misses its performance targets; readiness here means an accurate, reproducible submission, not deployment readiness. Existing exploratory follow-up results are included without further experimentation.
 
+**Unit 6 automated evaluation: complete; human staff exercise pending.** The baseline and fresh three-epoch length-only experiment are saved below. For the personal exercise, fill the yellow dropdown cells in [staff_review.xlsx](staff_review.xlsx) and return the workbook, following [the short instructions](STAFF_REVIEW_INSTRUCTIONS.md). No terminal workflow is required. Unit 6 has not been submitted to the course portal.
+
 **Repository:** [achopra 5/ai 201-project 3-takemeter-starter-v 2026](https://github.com/achopra5/ai201-project3-takemeter-starter-v2026).
 
 [Setup and course requirements](RUNNING.md) · [Five original criteria](criteria.md) · [Dataset validation](data/validation_report.md) · [Submission checks](submission/validation_report.md) · [Reproducibility and local artifacts](submission/REPRODUCIBILITY.md).
@@ -265,7 +267,7 @@ Rows and columns use exactly the same order as the original matrices. Each seed 
 
 In seed 42, discussion→help errors fall from 5 to 2 and correct discussions rise from 1 to 3. However, three discussions and three technical reports are now predicted as resource shares. The model still misses the report category entirely. Each test prediction changes accuracy by 3.33 percentage points; report recall moves in steps of 20% with only five reports. Three overlapping splits cannot establish stable generalization or organic-community performance.
 
-## Five Original Acceptance Criteria
+## Five Original Acceptance Criteria — Historical Exploratory Comparison
 
 [criteria.md](criteria.md) is preserved byte-for-byte. Criteria 1–3 must hold for **every seed**, and criterion 3 for every class in every seed. Validation gains do not count as held-out passes.
 
@@ -279,19 +281,146 @@ In seed 42, discussion→help errors fall from 5 to 2 and correct discussions ri
 
 The evidence is consistent with too few effective training updates initially, severe context truncation, sparse technical-report examples and limited generalization from 139 training posts. These are hypotheses supported by diagnostics, not experimentally isolated causes of every error. No staff agreement or independent second annotation exists to distinguish model limitations from possible label inconsistency; the confusion matrices alone cannot establish annotation mistakes. Thresholds and labels were not changed after inspecting outcomes.
 
-## Baseline vs. Trained — Unit 6 Pending
+## Baseline vs. Trained — Unit 6 Started
 
-**The zero-shot baseline has not been run:** no `baseline_results.json` exists. Therefore there is no honest baseline-versus-trained difference or pre-result baseline prediction to report. No timestamped prior prediction is supplied here retroactively. [baseline.py](baseline.py) and [label_definitions.txt](label_definitions.txt) are present for the separate Unit 6 assignment; closeout does not run them. The original trained metrics above are not a zero-shot comparison.
+**Baseline completed October 21, 2026.** [baseline_results.json](baseline_results.json) records the local `facebook/bart-large-mnli` zero-shot run on all 30 unchanged posts in [test_split.csv](test_split.csv), compared with the original seed-42 [results.json](results.json). The command was `.venv/bin/python baseline.py --trained results.json`; the pipeline reported `mps:0`. [label_definitions.txt](label_definitions.txt) now contains the four exact TakeMeter definitions from the taxonomy above, replacing the starter's unrelated running-forum examples. No labeled examples were supplied to the baseline. The prompt uses these short definitions; the longer ordered tie-break rules in the README are not included.
+
+Baseline accuracy is **0.333333 (10/30)** and macro F1 is **0.311343**, versus the original trained model's **0.533333 (16/30)** and **0.383207**. Fine-tuning gains **20 percentage points** of accuracy and **0.071864** macro F1 on this split. A constant majority-class prediction would score 9/30 (30%) here, so the zero-shot accuracy is only one correct post above that reference.
+
+The class-level picture is mixed. Baseline F1 is **0.500000 technical report**, **0.000000 help request**, **0.370370 discussion** and **0.375000 resource share**. The original trained F1 values are **0.000000**, **0.583333**, **0.222222** and **0.727273**, respectively. The trained model improves help requests and resource shares while losing ground on technical reports and discussions. Higher aggregate accuracy therefore does not establish better performance across all four purposes. This baseline comparison covers seed 42 only; the baseline has not been evaluated on the other seeds' test sets.
+
+<!-- UNIT6_BASELINE_TABLE_START -->
+| Measure | Baseline | Trained | Difference |
+|---|---|---|---|
+| Overall accuracy | 0.333 | 0.533 | +0.200 |
+| Macro F1 | 0.311 | 0.383 | +0.072 |
+| F1 — `technical_report` | 0.500 | 0.000 | -0.500 |
+| F1 — `help_request` | 0.000 | 0.583 | +0.583 |
+| F1 — `discussion` | 0.370 | 0.222 | -0.148 |
+| F1 — `resource_share` | 0.375 | 0.727 | +0.352 |
+<!-- UNIT6_BASELINE_TABLE_END -->
+
+**Prediction provenance:** Original trained results were already known before Week 6 began. No pre-result student prediction is recorded, and none is supplied retroactively. This run and interpretation were completed with Codex assistance. The saved Unit 5 closeout reports remain historical snapshots; their pending-baseline statements describe October 19, before this run, and their pinned definition-file checksum describes the old starter definitions.
+
+<!-- UNIT6_LENGTH_EXPERIMENT_START -->
+## Unit 6 Single-Variable Experiment: 128 to 256 Tokens
+
+**Completed: three fresh fits, three epochs each.** This is the required single-variable experiment. It is separate from the earlier exploratory eight-epoch-scheduler experiment. Only maximum input length changes from 128 to 256. Learning rate remains 2e-5, both batch sizes 16, epochs 3, seeds 42/7/2024, and the dataset, label mapping and split algorithm remain unchanged. The linear scheduler has exactly 27 optimizer updates per seed and ends at zero learning rate. No earlier checkpoint was used for initialization or as a substitute result.
+
+[After results](results_three_seeds_after.json), [fixed protocol](experiments/unit6-length256-three-epochs/protocol.json), [runner](scripts/unit6_experiment.py) and compact per-seed metadata, histories and test predictions under `experiments/unit6-length256-three-epochs/runs/` record the actual execution. The runner compiles only function definitions from the unchanged original notebook. Weights remain local and ignored. GPU nondeterminism and the longer dropout tensors limit exact numerical reproducibility.
+
+### Before and after on matching test splits
+
+| Seed | Before accuracy | After accuracy | Accuracy difference | Before macro F1 | After macro F1 | F1 difference |
+|---|---|---|---|---|---|---|
+| 42 | 0.533333 | 0.533333 | +0.000000 | 0.383207 | 0.344322 | -0.038885 |
+| 7 | 0.366667 | 0.366667 | +0.000000 | 0.238722 | 0.231801 | -0.006921 |
+| 2024 | 0.400000 | 0.333333 | -0.066667 | 0.271111 | 0.217857 | -0.053254 |
+| Mean | 0.433333 | 0.411111 | -0.022222 | 0.297680 | 0.264660 | -0.033020 |
+
+### Per-class F1 before and after
+
+| Seed | Label | Test support | Before F1 | After F1 | Difference |
+|---|---|---|---|---|---|
+| 42 | `technical_report` | 5 | 0.000000 | 0.000000 | +0.000000 |
+| 42 | `help_request` | 9 | 0.583333 | 0.615385 | +0.032051 |
+| 42 | `discussion` | 8 | 0.222222 | 0.000000 | -0.222222 |
+| 42 | `resource_share` | 8 | 0.727273 | 0.761905 | +0.034632 |
+| 7 | `technical_report` | 5 | 0.000000 | 0.000000 | +0.000000 |
+| 7 | `help_request` | 9 | 0.428571 | 0.444444 | +0.015873 |
+| 7 | `discussion` | 8 | 0.000000 | 0.000000 | +0.000000 |
+| 7 | `resource_share` | 8 | 0.526316 | 0.482759 | -0.043557 |
+| 2024 | `technical_report` | 5 | 0.000000 | 0.000000 | +0.000000 |
+| 2024 | `help_request` | 9 | 0.444444 | 0.166667 | -0.277778 |
+| 2024 | `discussion` | 8 | 0.000000 | 0.133333 | +0.133333 |
+| 2024 | `resource_share` | 8 | 0.640000 | 0.571429 | -0.068571 |
+
+### Actual three-seed run log
+
+Original runs use 128 tokens and three epochs on MPS with PyTorch 2.14.1; their saved results remain unchanged. Each seed uses 139 train / 31 validation / 30 test posts. In label order `technical_report`, `help_request`, `discussion`, `resource_share`, the supports are 25/40/35/39 in training, 6/9/8/8 in validation and 5/9/8/8 in test. The original notebook output preserves the original execution; no original run timestamps have been invented. The following timestamps and measured training runtimes belong to the new 256-token fits.
+
+| Seed | Device | Updates | Training seconds | Started UTC | Completed UTC |
+|---|---|---|---|---|---|
+| 42 | mps | 27 | 14.30 | 2026-10-22T00:13:27.202020+00:00 | 2026-10-22T00:13:42.763468+00:00 |
+| 7 | mps | 27 | 10.35 | 2026-10-22T00:13:42.977919+00:00 | 2026-10-22T00:13:54.139403+00:00 |
+| 2024 | mps | 27 | 10.34 | 2026-10-22T00:13:54.369520+00:00 | 2026-10-22T00:14:05.529093+00:00 |
+
+### After confusion matrices
+
+Rows are original human labels; columns are predictions, in the original four-label order. Every matrix sums to 30. The original matrices are preserved in **Original confusion matrices** above.
+
+#### 256 tokens, three epochs, seed 42
+
+| Gold / predicted | `technical_report` | `help_request` | `discussion` | `resource_share` |
+|---|---|---|---|---|
+| `technical_report` | 0 | 4 | 0 | 1 |
+| `help_request` | 0 | 8 | 0 | 1 |
+| `discussion` | 0 | 5 | 0 | 3 |
+| `resource_share` | 0 | 0 | 0 | 8 |
+
+#### 256 tokens, three epochs, seed 7
+
+| Gold / predicted | `technical_report` | `help_request` | `discussion` | `resource_share` |
+|---|---|---|---|---|
+| `technical_report` | 0 | 1 | 0 | 4 |
+| `help_request` | 0 | 4 | 0 | 5 |
+| `discussion` | 0 | 3 | 0 | 5 |
+| `resource_share` | 0 | 1 | 0 | 7 |
+
+#### 256 tokens, three epochs, seed 2024
+
+| Gold / predicted | `technical_report` | `help_request` | `discussion` | `resource_share` |
+|---|---|---|---|---|
+| `technical_report` | 0 | 0 | 1 | 4 |
+| `help_request` | 0 | 1 | 5 | 3 |
+| `discussion` | 0 | 2 | 1 | 5 |
+| `resource_share` | 0 | 0 | 0 | 8 |
+
+### Result, diagnosis and remaining failure
+
+**The proposed improvement did not improve these measurements.** Mean accuracy falls from 0.4333 to 0.4111; mean macro F1 falls from 0.2977 to 0.2647. Seeds 42 and 7 have unchanged accuracy, while seed 2024 loses two correct posts. Macro F1 falls at every seed. More available context by itself was insufficient under the original short training schedule.
+
+After accuracy spans 0.3333–0.5333 (spread 0.2000); macro F1 spans 0.2179–0.3443 (spread 0.1265). These overlapping splits are sensitivity checks on one small dataset, not independent replications. One test decision changes accuracy by 3.33 percentage points; each report-recall step is 20 percentage points.
+
+Technical-report F1 remains zero for every seed, with zero report predictions in all three new runs. In seed 42, five discussions become help requests while zero help requests become discussions. In seed 7, five help requests and five discussions become resource shares; the reverse cells are one and zero. The directional pattern supports a failure to distinguish primary purpose. It does not establish that the human labels are wrong. The baseline’s report F1 of 0.50 on seed 42, versus zero for both trained versions, shows that aggregate accuracy gains conceal a lost category.
+
+The pre-existing token audit shows truncation was substantial, but this controlled result rejects the claim that doubling context alone solves it. Sparse report examples (25 in training), only 27 updates, mixed-purpose text and the small archive sample remain plausible explanations. They have not been experimentally separated here. The earlier schedule-and-length exploration cannot establish a length-only gain.
+
+Original test outcomes and earlier exploratory outcomes were already known. This is an honest exploratory follow-up with a fixed requested intervention; no post-result seed selection, threshold changes, relabeling or additional tuning was performed. Retain the original trained setup for the comparison; these results do not justify replacing it with the longer input model.
+
+### Original acceptance-criteria verdicts for the required experiment
+
+| Criterion | Original target | Before | After | Diagnosis |
+|---|---|---|---|---|
+| 1 | Accuracy ≥ 0.70 for every seed | FAIL | FAIL | Best before and after accuracy is 0.533333; all three seeds fall short. |
+| 2 | Macro F1 ≥ 0.60 for every seed | FAIL | FAIL | Best after macro F1 is 0.344322; all three seeds fall short. |
+| 3 | Every class F1 ≥ 0.40 for every seed | FAIL | FAIL | Technical-report F1 is zero at every seed; discussions also remain weak. |
+| 4 | Each full-dataset class share 15–40% | PASS | PASS | Dataset unchanged: 36/58/51/55 posts out of 200. Balance does not imply reliable classification. |
+| 5 | Independent staff-taxonomy agreement ≥ 23/30 | NOT EVALUATED | NOT EVALUATED | Requires the student’s workbook and authentic TF reference; no personal decisions are fabricated. |
+
+Criterion 5 concerns `analysis`, `hot_take`, `reaction` under the staff rules. All model metrics above concern only `technical_report`, `help_request`, `discussion`, `resource_share`. There is no justified direct confusion-pair mapping across the two independent tasks. Any later staff disagreement can motivate reflection about rule application, but cannot prove inconsistency on the TakeMeter dataset.
+
+<!-- UNIT6_LENGTH_EXPERIMENT_END -->
 
 ## Agreement Report — Unit 6 Pending
 
 **NOT EVALUATED.** [Staff posts](data/staff_posts.csv) and [staff taxonomy](data/staff_taxonomy.md) are present, but `my_staff_labels.csv`, `data/staff_labels.csv` and `agreement_results.json` are absent. There is no agreement rate or adjudicated disagreement to report. The 180-post offline attestation is not a staff exercise, an independent second annotation or evidence of≥ 23/30 agreement. These Unit 6 requirements do not block the completed Unit 5 submission.
 
+[The review workbook](staff_review.xlsx) contains the 30 exact original posts, blank yellow `my_label` dropdowns with only `analysis`, `hot_take`, `reaction`, and the complete original staff taxonomy on a separate sheet. [Instructions](STAFF_REVIEW_INSTRUCTIONS.md) explain how to return it. No AI labels or suggestions are supplied. This staff taxonomy never enters TakeMeter training, baseline scoring or model criteria 1–4.
+
+After the independently completed workbook is returned, [the converter](scripts/import_staff_review.py) validates all selections and exact texts before writing only `text,label` to `my_staff_labels.csv`. It retains the returned workbook and hashes as evidence and refuses partial labels or silent replacement. Only then should the authentic TF reference be obtained. [The agreement workflow](scripts/staff_agreement_workflow.py) validates all 30 reference IDs, records the student-supplied TF provenance, preserves original decisions and prepares a file containing each disagreement with blank final-label, pile, rule, reasoning and approval fields. Each final decision requires explicit `human_approved=yes`; a taxonomy-gap decision also requires a proposed rule. No adjudication is automatically assigned or approved. These future outputs are not created until their genuine inputs exist.
+
 ## What's Still Broken
 
 The classifier does not reliably recognize technical reports, and discussion performance is unstable across seeds. The intended taxonomy distinguishes primary purpose even when posts share model names, hardware and numbers; the matrices show the model repeatedly maps those purposes into help or resource categories instead. Balanced labels and a larger context window did not solve that boundary.
 
-All three precommitted held-out model thresholds remain missed. The small, deliberately curated archive sample, overlapping seeds, tiny class supports, validation candidate selection and previously known test aggregates limit the strength of the improvement claim. No deployment-readiness claim is made. Baseline/staff work remains explicitly pending for Unit 6; no further experiments are being initiated for this submission.
+All three precommitted held-out model thresholds remain missed. The small, deliberately curated archive sample, overlapping seeds, tiny class supports, validation candidate selection and previously known test aggregates limit the strength of the improvement claim. No deployment-readiness claim is made. The Unit 6 baseline and new length-only three-seed experiment are complete; personal staff-set labeling, authentic staff answers, agreement and adjudication remain pending. The earlier exploratory schedule experiment remains historical evidence and is not substituted for the required length-only experiment.
+
+## Unit 6 Verification and Evidence
+
+Run [the Unit 6 checker](scripts/check_unit6.py) to verify saved baseline metrics, all original hashes or explicitly retained historical snapshots, the three fresh runs, matching held-out identities, per-class metrics, training configuration, checkpoint hashes when locally present, and the blank workbook's exact contents and dropdowns. It performs no training or inference. [The validation report](submission/unit6_validation_report.json) records the current status; `course_portal_submitted` remains false. [Quality-check evidence](submission/unit6_quality_checks.json) records 68 passing tests, environment checks and workbook verification.
+
+The unchanged [Unit 5 closeout manifest](submission/closeout_manifest.json) still contains every original hash. The sole documented file evolution is the starter baseline definition file, whose original bytes are retained in [the historical snapshot](submission/unit5_originals/label_definitions.txt). [The Unit 6 manifest](submission/unit6_manifest.json) pins both versions and the new saved evidence; no original hash was overwritten. Training data, annotations, original four-label taxonomy, criteria, notebook and original results remain unchanged. Model weights, caches and verbose training logs stay outside Git.
 
 ## Unit 5 Submission and Verification
 

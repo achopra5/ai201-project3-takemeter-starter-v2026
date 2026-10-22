@@ -1,5 +1,15 @@
 # Running TakeMeter
 
+**Unit 6 update:** Automated evaluation is complete. For personal staff labeling,
+open `staff_review.xlsx`, fill the yellow label dropdowns and return the saved
+workbook as described in [STAFF_REVIEW_INSTRUCTIONS.md](STAFF_REVIEW_INSTRUCTIONS.md).
+There is no interactive or terminal review interface. `scripts/import_staff_review.py`
+is an agent-operated file converter after the workbook is returned.
+`scripts/check_unit6.py` validates current saved evidence without inference.
+`scripts/unit6_experiment.py` records the completed fresh three-epoch,
+256-token runs; do not rerun or overwrite them. Original Unit 5 evidence and
+the earlier exploratory experiment remain separate.
+
 Everything about how the starter works.
 
 **Submission closeout:** Unit 5 work and the existing exploratory follow-up are

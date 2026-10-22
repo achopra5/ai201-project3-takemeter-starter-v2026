@@ -8,11 +8,21 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import unquote
+from evidence_integrity import verify_frozen_file
 
 from review_labels import Session
 from validation_experiment import ROOT, LABELS, SEEDS, read_json, save_json, sha, score, text_sha, verify, select_candidate
 
 EXPERIMENT = "experiments/validation-20261018T234742Z"
+
+
+def verify_historical_closeout(root, closeout):
+    """Retain original hashes; allow only the documented definition-file evolution."""
+    transitions_path = root / "submission/unit6_manifest.json"
+    transitions = read_json(transitions_path).get("unit5_evolution", {}) if transitions_path.exists() else {}
+    require(set(transitions) <= {"label_definitions.txt"}, "Unsupported frozen-evidence exception")
+    for name, digest in closeout["protected_sha256"].items():
+        verify_frozen_file(root, name, digest)
 
 
 def require(condition, message):
@@ -50,7 +60,8 @@ def markdown_checks(root):
     files = [root / name for name in ("README.md", "RUNNING.md", "REVIEWING.md", "criteria.md",
               "exploration.md", "taxonomy_stress_test.md", "data/validation_report.md",
               "data/ambiguous_cases.md", "data/supplemental_cases.md", "submission/REPRODUCIBILITY.md",
-              "submission/validation_report.md", f"{EXPERIMENT}/EXPERIMENT.md", f"{EXPERIMENT}/validation_report.md")]
+              "submission/validation_report.md", "STAFF_REVIEW_INSTRUCTIONS.md",
+              f"{EXPERIMENT}/EXPERIMENT.md", f"{EXPERIMENT}/validation_report.md")]
     links = 0
     for path in files:
         require(path.is_file(), f"Missing referenced documentation: {path}")
@@ -83,8 +94,7 @@ def markdown_checks(root):
 def inspect(root=ROOT):
     exp = root / EXPERIMENT
     closeout = read_json(root / "submission/closeout_manifest.json")
-    for name, digest in closeout["protected_sha256"].items():
-        require(sha(root / name) == digest, f"Frozen closeout evidence changed: {name}")
+    verify_historical_closeout(root, closeout)
     session = Session(root)
     dataset = session.report()
     require(dataset["ready"] and dataset["labels_csv_matches_current_reviews"], "Dataset validation failed")
@@ -172,7 +182,12 @@ def inspect(root=ROOT):
             "original_mean": {k: sum(r[k] for r in before) / 3 for k in ("accuracy", "f1_macro")},
             "improved_mean": {k: final[f"mean_{k}"] for k in ("accuracy", "f1_macro")},
             "criteria_original": verdicts(original_metrics), "criteria_improved": verdicts(improved_metrics),
-            "markdown": markdown_checks(root), "unit6_pending": ["zero-shot baseline", "personal/staff taxonomy agreement"],
+            "markdown": markdown_checks(root),
+            "unit6_pending": (["zero-shot baseline"] if not (root / 'baseline_results.json').exists() else []) +
+                             (["single-variable improvement"] if not (root / 'results_three_seeds_after.json').exists() else []) +
+                             (["personal/staff taxonomy agreement and human adjudication"]
+                              if not (root / 'agreement_results.json').exists() or
+                              not read_json(root / 'agreement_results.json').get('adjudication_complete', False) else []),
             "submission_action": "Submit the existing GitHub repository URL in the Unit 5 course assignment"}
 
 
@@ -203,8 +218,8 @@ def write_report(root, report):
               "`git diff --check` and `git status --short`. The final command outcomes are recorded in "
               "[quality_checks.json](quality_checks.json). This integrity checker does not itself invoke those commands.", "",
               "## Remaining work", "",
-              "Zero-shot baseline and personal/staff-taxonomy agreement are Unit 6 work and remain explicitly pending. "
-              "They are not fabricated or required to finish this Unit 5 write-up. No unresolved Unit 5 repository-content blocker was found.", "",
+              "Current remaining Unit 6 work: " + (", ".join(report['unit6_pending']) or "none in this checkout") + ". "
+              "Unit 6 status does not change the historical Unit 5 readiness assessment. No portal submission is performed by this checker.", "",
               "Submit https://github.com/achopra5/ai201-project3-takemeter-starter-v2026 as the repository URL in "
               "the Unit 5 course assignment. Git push does not submit the course portal form.", ""]
     (root / "submission/validation_report.md").write_text("\n".join(lines))

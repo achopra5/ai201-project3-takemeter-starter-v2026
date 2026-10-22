@@ -1,0 +1,38 @@
+{
+  "created_utc": "2026-10-22T00:21:04.980653+00:00",
+  "purpose": "Unit 6 evidence; historical Unit 5 manifest remains unchanged.",
+  "unit5_evolution": {
+    "label_definitions.txt": {
+      "historical_sha256": "d108e0537ed10bdc01f39b700022c11877c531f272b987ad8d69fc1e3ed263c9",
+      "original_snapshot": "submission/unit5_originals/label_definitions.txt",
+      "unit6_sha256": "3a1f6de9a2449ae3042b918c2d6c9a6eeb6a57e3c6320fd1e71e010fa37e0891",
+      "reason": "Replace unrelated starter baseline definitions with the four unchanged TakeMeter definitions."
+    }
+  },
+  "artifact_sha256": {
+    "baseline_results.json": "0d6377af4dcdf9b56d25cd38e7462b8e01d27d95e8fff4d717845dce2dcd2b30",
+    "experiments/unit6-length256-three-epochs/complete.json": "9a0a62d281087d4f60eb2145abae2a04b4253f7ce141b70cadee17dddfded244",
+    "experiments/unit6-length256-three-epochs/protocol.json": "e8dac39c7dcd03a893b5e9b9ecf4b6c8823033e227574e70be4e8e8db23ad8f0",
+    "experiments/unit6-length256-three-epochs/runner_used.py": "604d7716258e7377e3220504e168badcc901b4f321935e066ad3b696915d994e",
+    "experiments/unit6-length256-three-epochs/runs/seed2024/complete.json": "482699952a031f9c47e8cbfb2f836cf32c40d375f4f2e42e86001bc569ac11a3",
+    "experiments/unit6-length256-three-epochs/runs/seed2024/history.json": "77acfcf94425f0615cdb208822de608feaf0f6612a7fd4263789afbaf0398353",
+    "experiments/unit6-length256-three-epochs/runs/seed2024/metadata.json": "834a72e745e432efd1618f79a15ca53008a71462f860088403d898b9b682065d",
+    "experiments/unit6-length256-three-epochs/runs/seed2024/result.json": "c0d0707fd898c97978ae663dacb8aae52d3193a4e3bfac83d748237c370aa996",
+    "experiments/unit6-length256-three-epochs/runs/seed2024/started.json": "60b8f781f2e2fb6dee377d38769940ee965c6751dcc4d14a2d961cd08a2b4a64",
+    "experiments/unit6-length256-three-epochs/runs/seed2024/test_predictions.csv": "ee103378677f1204562c9c494996fe7902f71e2b3281dcd72fb5dda807b6c9fb",
+    "experiments/unit6-length256-three-epochs/runs/seed42/complete.json": "e7eb5e26ce19f58734d16eca7e3ae8b5db6ce8985c41538cb9e32063ca93675f",
+    "experiments/unit6-length256-three-epochs/runs/seed42/history.json": "161ebd1b72deabd102700909a2730b2539aca9c6e2251b1ff2f1e5bb6afda4f9",
+    "experiments/unit6-length256-three-epochs/runs/seed42/metadata.json": "62a1d1a90fe312aeed3e761d05af2b1e65c4cb8d2e32235a5aa678fdd9b7f2fd",
+    "experiments/unit6-length256-three-epochs/runs/seed42/result.json": "b9090d4af33a0e431e5845af3745009c4c00a0c9ecde33dab826afbe0c3dbfcb",
+    "experiments/unit6-length256-three-epochs/runs/seed42/started.json": "1bfee95620dcdeaaf8d98d283bc8ca978281c648b0c1fbbc4cd913fd1c840053",
+    "experiments/unit6-length256-three-epochs/runs/seed42/test_predictions.csv": "23f138c09b8ae8eb2c59996ce117a648bd79f1c170d2b52252d78bb814c05e95",
+    "experiments/unit6-length256-three-epochs/runs/seed7/complete.json": "d7d30bccbe1bc67969415586b45dbddd746eaef8e2cdeb215279a26a336ec7e6",
+    "experiments/unit6-length256-three-epochs/runs/seed7/history.json": "369a0890f2be52c0f1b75ff47549a793f6bc7290f9accd4e0ffa2b54b043cd60",
+    "experiments/unit6-length256-three-epochs/runs/seed7/metadata.json": "e7ccecf854e15f543c23cb3d8b790cb550886359a015c93059be8138e9ea4e7c",
+    "experiments/unit6-length256-three-epochs/runs/seed7/result.json": "e6f67453d71b0b555577a1beb3442b86ec5a4c0fcf11b29fcff998ee8a418485",
+    "experiments/unit6-length256-three-epochs/runs/seed7/started.json": "32b5d7271f77e8a7c437534c78c1622380951ca02faef48ce3e573abdcd56f42",
+    "experiments/unit6-length256-three-epochs/runs/seed7/test_predictions.csv": "3601db63d2166f1f20872497de0c084c4cd9d55022557e4a530f7e37be404e7c",
+    "results_three_seeds_after.json": "60ea6fb9a3fcb2f1e9e275309ba99063df8ea0cacae0f957eb3c31769c149aa3"
+  },
+  "baseline_provenance": "Hashes recorded after the already-completed baseline; not a retroactive pre-result prediction."
+}

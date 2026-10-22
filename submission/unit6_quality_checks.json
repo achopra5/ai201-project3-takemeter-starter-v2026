@@ -1,0 +1,45 @@
+{
+  "checked_utc": "2026-10-22T00:26:03.775704+00:00",
+  "unit_tests": {
+    "command": ".venv/bin/python -m unittest discover -s tests -v",
+    "passed": 68,
+    "failed": 0,
+    "scope": "Synthetic decisions only in temporary fixture directories."
+  },
+  "environment": {
+    "command": ".venv/bin/python test.py",
+    "passed": 10,
+    "warnings": 0
+  },
+  "unit5_integrity": {
+    "command": ".venv/bin/python scripts/check_submission.py",
+    "status": "PASS",
+    "historical_hashes_preserved": true
+  },
+  "unit6_integrity": {
+    "command": ".venv/bin/python scripts/check_unit6.py --write-report",
+    "status": "PASS",
+    "new_fits": 3,
+    "optimizer_updates": 81
+  },
+  "workbook": {
+    "status": "PASS",
+    "original_posts_exact": 30,
+    "blank_label_cells": 30,
+    "dropdown_choices": [
+      "analysis",
+      "hot_take",
+      "reaction"
+    ],
+    "taxonomy": "Full original text preserved on a separate sheet",
+    "visual_review": "Both sheets rendered and inspected; post row heights adjusted for readable full text",
+    "native_feature_check": "OOXML list validation and yellow fill verified"
+  },
+  "whitespace": {
+    "command": "git diff --check; git diff --cached --check",
+    "status": "PASS",
+    "csv_policy": "Allow standard CRLF CSV records without altering pinned evidence bytes"
+  },
+  "course_portal_submitted": false,
+  "pending": "Personal labels, authentic TF reference and human-approved adjudications"
+}

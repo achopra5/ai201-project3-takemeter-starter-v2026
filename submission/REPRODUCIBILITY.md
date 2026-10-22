@@ -1,5 +1,14 @@
 # Submission evidence and reproduction
 
+**Historical Unit 5 closeout notes.** Current Unit 6 progress is in the README
+and `submission/unit6_validation_report.json`. The baseline and the fresh
+length-only three-epoch experiment have since completed. The original closeout
+manifest and original hashes are retained. The old starter baseline definitions
+are preserved in `submission/unit5_originals/label_definitions.txt`; only the
+active baseline definition file has evolved, with both versions recorded in
+`submission/unit6_manifest.json`. The two integrity validators recognize this
+explicit transition without accepting changes to original data or results.
+
 Unit 5 closeout uses completed experiments only. Do not rerun collection,
 training, candidate selection or held-out inference. Verifying saved metrics
 and hashes is read-only and does not perform a new model evaluation.

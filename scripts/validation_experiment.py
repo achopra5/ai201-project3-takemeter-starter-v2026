@@ -12,6 +12,7 @@ import math
 import platform
 from datetime import datetime, timezone
 from pathlib import Path
+from evidence_integrity import verify_frozen_file
 
 ROOT = Path(__file__).resolve().parents[1]
 LABELS = ["technical_report", "help_request", "discussion", "resource_share"]
@@ -81,8 +82,7 @@ def verify(exp):
         if text_sha(taxonomy(ROOT / "README.md")) != expected_taxonomy:
             raise ValueError("Original README taxonomy changed")
     for name, digest in protocol["protected_sha256"].items():
-        if sha(ROOT / name) != digest:
-            raise ValueError(f"Frozen input changed: {name}")
+        verify_frozen_file(ROOT, name, digest)
     for name, digest in protocol["artifact_sha256"].items():
         if sha(exp / name) != digest:
             raise ValueError(f"Frozen experiment artifact changed: {name}")
